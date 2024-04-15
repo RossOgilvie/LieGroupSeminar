@@ -1,0 +1,204 @@
+\documentclass[twoside,11pt,a4paper,leqno]{article}
+
+% leqno put equations numbers on the left. this is not typical, but makes them easier to find because I number them in sequence with theorems.
+
+% \usepackage[utf8]{inputenc} % should be default anyhow
+% \usepackage[iso]{umlaute}
+% \usepackage{theorem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsxtra}
+% \usepackage{german} % darf nicht weiter oben stehen
+% \usepackage[matrix,arrow]{xy}    % all
+% \usepackage{makeidx}
+\usepackage{fancyhdr}%  für die Seitenküpfe
+% \usepackage{epsfig}
+% \usepackage{curves,epic,eepic}% z.B. für groüe Kreise
+% \usepackage{boxedminipage}
+% \usepackage[T1]{fontenc}  % Suche in PDF, vgl. Mail von Viktor Bindewald vom 24.11.09
+% \usepackage{verbatim}
+% \usepackage{longtable}
+\usepackage{tikz}
+\usepackage{mathrsfs} % \mathscr{...}: super-cursive letters
+% \usepackage{wasysym} % \smiley{}
+% \usepackage{framed}
+\usepackage{mdframed}
+\usepackage{graphicx}
+% \usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    % filecolor=magenta,      
+    % urlcolor=cyan,
+    % pdftitle={Overleaf Example},
+    % pdfpagemode=FullScreen,
+    }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Page formatting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\textheight}{23cm}
+\setlength{\textwidth}{16cm}
+\setlength{\oddsidemargin}{0.2cm}
+\setlength{\evensidemargin}{0.2cm}
+% \setlength{\topmargin}{0cm}
+% \setlength{\headheight}{0cm}
+% \setlength{\topsep}{0pt}
+% \setlength{\headsep}{1.0cm}
+% \setlength{\partopsep}{0pt}
+\parindent0pt
+\setlength{\parskip}{0.7\baselineskip}
+
+% Start sections on a new page
+% \AddToHook{cmd/section/before}{\clearpage}
+
+\renewcommand{\theenumi}{\alph{enumi}}
+% \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Theorem Environments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\numberwithin{equation}{section}
+
+\theoremstyle{plain}
+% \newtheorem{Def}{Definition}[]
+\newtheorem{definition}[equation]{Definition}
+%\newtheorem{Prop}[Def]{Proposition.}
+\newtheorem{theorem}[equation]{Theorem}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{corollary}[equation]{Corollary}
+
+% \theorembodyfont{\rmfamily\mdseries\upshape}
+%\newtheorem{Beispiel}[Def]{Beispiel}
+\theoremstyle{definition}
+\newtheorem{example}[equation]{Example}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{question}[equation]{Question}
+\newtheorem{exercise}[equation]{Exercise}
+% To end an example environment with a symbol.
+% \AtBeginEnvironment{example}{%
+%   \pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}%
+% }
+% \AtEndEnvironment{example}{\popQED\endexample}
+\newmdenv[
+  leftmargin = 0pt,
+  innerleftmargin = 1em,
+  innertopmargin = 0pt,
+  innerbottommargin = 0pt,
+  innerrightmargin = 0pt,
+  rightmargin = 0pt,
+  linewidth = 1pt,
+  topline = false,
+  rightline = false,
+  bottomline = false
+  ]{leftbar}
+\AtBeginEnvironment{example}{%
+  \begin{leftbar}
+}
+\AtEndEnvironment{example}{\end{leftbar}}
+
+% Force a label on a * equation environment
+\newcommand{\labelthis}[1]{\addtocounter{equation}{1}\tag{\theequation}\label{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\src}{src}
+\DeclareMathOperator{\codom}{codom}
+\DeclareMathOperator{\img}{img}
+% \DeclareMathOperator{\ker}{ker}
+\DeclareMathOperator{\vspan}{span}
+% \DeclareMathOperator{\parto}{\rightharpoonup}
+% \DeclareMathOperator{\dist}{dist}
+% \DeclareMathOperator{\det}{det}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\id}{id}
+% \DeclareMathOperator{\Rm}{Rm}
+% \DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator*{\proj}{proj}
+\DeclareMathOperator{\Real}{Re}
+\DeclareMathOperator{\Imag}{Im}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+% \newcommand{\II}{\mathrm{I\!I}}
+% \newcommand{\iu}{\iota}
+% \newcommand{\pder}[2]{\frac{\partial{#1}}{\partial{#2}}}
+% \newcommand{\del}[1]{\partial_{#1}}
+% \newcommand{\delp}[2]{\partial_{#1}\big|_{#2}}
+% \newcommand{\Del}[1]{\frac{\partial}{\partial{#1}}}
+% \newcommand{\Delp}[2]{\left.\frac{\partial}{\partial{#1}}\right|_{#2}}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\ad}{ad}
+
+\newcommand{\bbA}{\mathbb{A}}
+\newcommand{\bbB}{\mathbb{B}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbD}{\mathbb{D}}
+\newcommand{\bbE}{\mathbb{E}}
+\newcommand{\bbF}{\mathbb{F}}
+\newcommand{\bbG}{\mathbb{G}}
+\newcommand{\bbH}{\mathbb{H}}
+\newcommand{\bbI}{\mathbb{I}}
+\newcommand{\bbJ}{\mathbb{J}}
+\newcommand{\bbK}{\mathbb{K}}
+\newcommand{\bbL}{\mathbb{L}}
+\newcommand{\bbM}{\mathbb{M}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbO}{\mathbb{O}}
+\newcommand{\bbP}{\mathbb{P}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbS}{\mathbb{S}}
+\newcommand{\bbT}{\mathbb{T}}
+\newcommand{\bbU}{\mathbb{U}}
+\newcommand{\bbV}{\mathbb{V}}
+\newcommand{\bbW}{\mathbb{W}}
+\newcommand{\bbX}{\mathbb{X}}
+\newcommand{\bbY}{\mathbb{Y}}
+\newcommand{\bbZ}{\mathbb{Z}}
+
+\newcommand{\RP}{\mathbb{R}\mathrm{P}}
+\newcommand{\CP}{\mathbb{C}\mathrm{P}}
+
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\SU}{\mathrm{SU}}
+\renewcommand{\O}{\mathrm{O}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\Sp}{\mathrm{Sp}}
+
+\newcommand{\frgl}{\mathfrak{gl}}
+\newcommand{\frsl}{\mathfrak{sl}}
+\newcommand{\fro}{\mathfrak{o}}
+\newcommand{\frso}{\mathfrak{so}}
+\newcommand{\frsu}{\mathfrak{su}}
+\newcommand{\frsp}{\mathfrak{sp}}
+
+\newcommand{\fra}{\mathfrak{a}}
+\newcommand{\frg}{\mathfrak{g}}
+\newcommand{\frh}{\mathfrak{h}}
+
+
+
+\begin{document}
+\title{Lie Group Reading Group 2023/24}
+\author{Nicolas Hasse and Ross Ogilvie}
+\maketitle
+
+\include{lg-0-introduction}
+\include{lg-1-preliminaries}
+\include{lg-2-lie-groups}
+\include{lg-3-lie-algebras}
+\include{lg-4-classification}
+
+\bibliographystyle{alpha} 
+\bibliography{LieGroups}
+
+\end{document}
+

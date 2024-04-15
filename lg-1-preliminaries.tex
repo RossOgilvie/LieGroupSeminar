@@ -1,0 +1,163 @@
+
+\section{Preliminaries}
+
+\subsection{Submanifolds}
+
+TODO: After drafting this, I have come to the view that one should begin with immersions.
+Then you can discuss the different topologies of $f(S)$, which leads to consideration of the different sorts of immersions.
+Only then can you ask the question: which are uniquely determined by the image alone?
+I would suggest calling these immersed manifolds and reserving the word submanifold for the images.
+This makes it clear to ask, for example, if a closed submanifold is a proper immersed manifold with the inclusion map.
+Also regular submanifold vs embedded manifold.
+
+There are several notions of submanifold, each of which are appropriate in different circumstances.
+Perhaps the fundamental reason for this is that given a subset $N$ of a manifold $M$ it isn't obvious how to construct charts on it; the obvious thing would be to restrict the charts of $M$ but how should we realise the image $\phi(N) \subset \bbR^m$ as an open subset of a euclidean space?
+
+There are two approaches to consider the possible definitions of submanifold. Sharpe deals directly with subsets, where as Warner considers immersions.
+The latter is indirect, but is more suitable for consideration of multiple manifold structures of the same subset.
+We mostly give a summary of Sharpe Section~1.2.
+
+Given a chart $U \subset M$, the components of $N\cap U$ are called plaques.
+If $\phi(W)$ lies in an $n$-dimensional affine subspace of $\bbR^m$ then we call the plaque $W$ flat and $\phi|_W$ a plaque chart of $W$.
+If a there is a collection of charts of $M$ that cover $\bar{N}$ and all plaques are flat, then we call $N$ a submanifold.
+The intersection of open sets of $M$ with plaques gives $N$ the submanifold topology, and with respect to this topology and the plaque charts, $N$ is a manifold.
+In general the submanifold topology is finer (has more open sets) than the subspace topology.
+
+It is worth contrasting this to an immersed submanifold. This is the image of an injective immersion $\iota : N \to M$.
+The trouble is that $N$ is not determined by the image $\iota(N)$.
+To give an example, consider the subset $\{x^2 = y^2\} \subset \bbR^2$.
+We can split this into a line and two rays in two ways.
+
+Sharpe defines in~\cite[Definition~1.1.4]{Sharpe1997} a weak embedding as an injective immersion with the additional property that for every smooth map $f : S \to M$ with $f(S) \subset \iota(M)$ the induced map $\iota^{-1} \circ f$ is smooth.
+The inclusion map of a submanifold is a weak embedding.
+We propose to call submanifold in the sense of Sharpe weakly embedded submanifolds where necessary to distinguish them from other sorts.
+
+If there are weakly embedded submanifolds, there are embedded submanifolds, which Sharpe calls regular submanifolds.
+They are submanifolds in which there is a covering such that each chart has a single plaque.
+For regular submanifolds the subspace and submanifold topologies coincide.
+In terms of an inclusion map $\iota$ should be a homeomorphism to its image (in the subspace topology).
+Maps with this property are called embeddings.
+The image of $\iota : (0,\infty) \to \bbR^2, \iota(t) = (1-e^{-t})(\cos t, \sin t)$ is a weakly embedded submanifold that is not an embedded submanifold, 
+TODO: I'm confused. Sharpe draws a picture of this spiral, but the definition of regular submanifold doesn't require the charts to cover $\bar{N}$, which is meant to be the main obstacle?
+
+Finally, a submanifold is proper if the intersection of $N$ and a compact set is compact in the submanifold topology.
+Equivalently if the inclusion map is proper (preimage of compact is compact).
+By \cite[Theorem~1.2.11]{Sharpe1997} proper submanifolds are automatically embedded, so we have a strict hierarchy of conditions.
+The standard example of a regular submanifold that is not regular is $(0,1) \subset \bbR$.
+We see that a sequence in $N$ may converge to a point of $M\setminus N$.
+
+
+\subsection{Distributions}
+
+It is common in a course on manifolds to study vector fields and their integral curves.
+The key local result is
+\begin{theorem}[Picard-Lindelöff]
+Let $F : J \times U \subset \bbR\times\bbR^n \to \bbR^n$ be a smooth time-dependent vector field. 
+Assume $0 \in J$. 
+Consider $u : \bbR \to U$ the system of ODEs $u'(t) = F(t,u(t))$.
+For any $c \in U$ there exists a $\varepsilon > 0$ such that there is a unique solution smooth solution on $(-\varepsilon,\varepsilon)$ with $u(0) = c$.
+Moreover, for any $p \in U$ there is an open neighbourhood $p \in V \subset U$, $\varepsilon > 0$ and smooth map $u : (-\varepsilon,\varepsilon) \times V \to U$ such that $u(\dot,c)$ is the unique solution with initial condition $c$.
+\\\textup{\cite[Theorem~2.1.1]{Sharpe1997}}\cite[Theorem~1.2.1]{Ivey}
+\end{theorem}
+
+If one has a smooth vector field on a manifold, then this theorem provides for the existence of integral curves of the vector field in every coordinate chart, and uniqueness means that they can be patched together to give unique maximal integral curves through every point.
+
+We will need a generalisation of this result that deals with multiple vector fields.
+To motivate why this is geometrically interesting and not just generalisation for its own sake, consider a submanifold $N$ inside $M$.
+At each point $p \in N$ we can consider the vector subspace $T_pN \subset T_pM$.
+At least locally, we can describe these subspaces as the span of independent vector fields.
+The natural question is the converse: given a set of independent vector fields on $M$, does there exist a submanifold $N$ whose tangent space is their span?
+For a single vector field, the answer is affirmative, namely the integral curve.
+
+\begin{definition}
+An $r$-dimensional distribution $\mathcal{D}$ on $M$ is a choice of an $r$-dimensional subspace $\mathcal{D}_p$ of $T_p M$ at every point $p \in M$.
+It is called smooth if every point has a neighbourhood and smooth vector fields $\{X_1, \dots, X_r \}$ that span the subspaces. 
+It is called integrable if every point has a coordinate neighbourhood in which the distribution is spanned by coordinate vector fields.
+\\
+A set of vector fields is called algebraically involutive if their Lie brackets are contained in their span.
+Two vector fields with the same span are either both algebraically involutive of neither is.
+Therefore algebraically involutive is a property that is defined for Distributions.\\
+A connected $r$-dimensional submanifold $N$ is called an integral manifold of $\mathcal{D}$ if at every point $T_pN = \mathcal{D}_p$.
+\\\textup{\cite[2.2.1,.2.2.2,2.3.2]{Sharpe1997}}
+\end{definition}
+
+If a distribution is integrable, then every point has an integral submanifold through it, just by taking a coordinate plane in an appropriate chart.
+The important theorem is Frobenius' theorem~\cite[2.4.1]{Sharpe1997}, which states a distribution is integrable if and only if it is algebraically involutive.
+The proof inductively applies the Picard-Lindelöff theorem.
+
+TODO: Example of spheres in $\bbR^3\setminus\{0\}$ showing that you might not have global vector fields.
+
+There is also a formulation of Frobenius' theorem in terms of differential forms.
+We can define the annihilator of a distribution as the algebraic ideal generated by the one-forms such that $\omega(v) = 0$ for all $v \in \mathcal{D}_p$.
+By this we mean all $C^\infty$-linear combinations and wedge products.
+Conversely, the kernel of an algebraic ideal of differential forms generated locally by $m-r$ independent one-forms is a distribution.
+The theorem then says that $\mathcal{D}$ is integrable if and only if the ideal contains all its exterior derivatives (it is a differential ideal).
+The proof comes down to the simple formula
+\[
+d\omega(X,Y) = X(\omega(Y)) - Y(\omega(X)) - \omega([X,Y]).
+\]
+
+TODO: Sharpe does foliations in general, and the argument look a lot like the arguments Warner uses for Lie subgroups.
+I think it might be advantageous to follow Sharpe here and separate what is truly manifold theory from Lie theory.
+
+
+
+\subsection{Eigenvalues and Weights}
+
+Eigenvalues and eigenvectors are ubiquitous in linear algebra.
+If we are working over $\bbC$, then every linear endomorphism (linear map from a vector space $V$ to itself) has an eigenvalue (root of the characteristic polynomial) and every eigenvalue has an eigenvector $Av_\lambda = \lambda v_\lambda$.
+If we can find a basis of eigenvectors, then with respect to this basis the linear operator is a diagonal matrix.
+In general however, there may be fewer eigenvectors than the dimension of the vector space.
+A standard result in linear algebra says that every matrix is conjugate to a matrix in Jordan normal form, unique up to reordering of the blocks.
+
+Going further, we may ask what can be said of two linear endomorphisms $A,B$.
+The key observation is to consider commuting operators.
+If $A$ and $B$ commute then $B$ preserves the eigenspaces  eigenspaces of $A$:
+\[
+(A- \lambda I) (Bv) 
+= B(A- \lambda I) v
+= 0.
+\]
+Therefore $B$ restricts to an endomorphism on each of the eigenspaces of $A$.
+Imposing different conditions on $A$ restricts the possible decompositions of $B$.
+For example, if $A$ is diagonalizable (so $V$ decomposes as the direct sum of the eigenspaces of $A$) then on each eigenspace of $A$ we can choose a basis that puts $B$ into Jordan normal form.
+Hence $A$ and $B$ can simultaneously conjugated to normal form.
+Or if $A$ is diagonalizable and has no repeated eigenvalues, ie its eigenspaces are one dimensional, then these must also be eigenspaces of $B$.
+Hence $A$ and $B$ are simultaneously diagonalizable.
+
+This argument can be applied inductively to a finite set $\{A_1,\dots,A_k\}$ of pairwise commuting endomorphisms.
+It also extends to a commuting family of operators $\mathcal{A} = \vspan\{A_1,\dots,A_k\}$, a linear subspace of $\End(V)$ such that all operators are pairwise commuting.
+These are effectively equivalent, since a family is pairwise commuting if and only if a basis is pairwise commuting.
+Likewise, $v$ is a simultaneous eigenvector for $\{A_1,\dots,A_k\}$ if and only if it is a simultaneous eigenvector for every operator of $\mathcal{A}$.
+The eigenvalues are not completely independent:
+\[
+\lambda v
+= Av 
+= (a_1A_1 + \dots + a_kA_k)v
+= a_1 \lambda_1 v + \dots + a_k \lambda_k v
+= (a_1 \lambda_1 + \dots + a_k \lambda_k )v.
+\]
+We understand the eigenvalue of $v$ to be a linear function 
+\[
+\lambda : \mathcal{A} \to \mathbb{K}, 
+\quad
+\lambda(A) = a_1 \lambda_1 + \dots + a_k \lambda_k .
+\]
+Understood in this way, it is more common to call $\lambda$ a \emph{weight} of the commuting family $\mathcal{A}$, $v$ a \emph{weight vector}, and the set of vectors $v$ with $Av = \lambda(A)v$ the \emph{weight} space~\cite[Definition~A.14]{Hall2015}.
+
+As an aside, the descriptor ``weight'' should probably replace ``eigen-'' even in the single operator case.
+Consider an operator $A$ with a $2$-weight vector $v$ and a $3$-weight vector $w$.
+Then of course $A(av+bw) = 2v + 3w$, which is a weighted sum.
+
+We finish with an example.
+Let $\mathcal{A}$ be the set of diagonal $n\times n$ matrices.
+Then a basis for this family is $A_i = e_{ii}$, with $1$ at the $i$th position on the diagonal.
+$e_i$ is a $1$-weight vector of $A_i$ while all vectors of $\vspan\{e_1,\dots,\hat{e}_i,\dots,e_n\}$ are $0$-weight (in the kernel).
+These are all diagonal (in particular simultaneously diagonal) so there should be a basis of weight vectors.
+Indeed, this is just the standard basis $\{e_1,\dots,e_n\}$.
+The weight of $e_i$ is the linear form
+\[
+A = \operatorname{diag}(a_1,\dots,a_n) \mapsto a_i
+\]
+because $A e_i = a_i$.
+

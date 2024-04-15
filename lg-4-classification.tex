@@ -1,0 +1,60 @@
+
+
+\section{Classification of Lie algebras}
+
+TODO: make sections.
+
+I would like to gather up at the start all the structure that we need. I am thinking here in particular of inner products and Weyl reflections.
+
+The introduction of \url{https://terrytao.wordpress.com/2013/04/27/notes-on-the-classification-of-complex-lie-algebras/} is nice.
+
+From \url{https://en.wikipedia.org/wiki/Killing_form} there seems to be a close connection between the Killing form and decompositions of Lie algebras:
+\begin{itemize}
+\item On a simple Lie algebra any invariant symmetric bilinear form is a scalar multiple of the Killing form.
+\item The Killing form is also invariant under automorphisms of the Lie algebra
+\item The Cartan criterion states that a Lie algebra is semisimple if and only if the Killing form is non-degenerate.
+\item The Killing form of a nilpotent Lie algebra is identically zero.
+\item Ideals that intersect only trivially are orthogonal.
+\end{itemize}
+This paper \url{https://math.uchicago.edu/~may/REU2012/REUPapers/Bosshardt.pdf} from Uchicago undergrad summer projects 2012 seems to go hard on the Killing form.
+
+If we are focused on simple Lie algebras, then can we avoid the other types?
+
+I don't want to build representation theory.
+I think we only really need the adjoint representation and $\frsl(2,\bbC)$-representations.
+Maybe we can understand them as a special type of subspace.
+
+
+\subsection{Cartan subalgebra}
+A point of difficulty seems to be Cartan subalgebras.
+In fact there are several, somewhat incompatible definitions in the literature (in different cases) to suit different circumstances.
+Hall takes the simplest definition: a maximal commuting subalgebra of diagonalizable elements.
+This immediately gives you a root space decomposition, commuting implies simultaneously diagonalizable.
+The existence is rather easy too, but only because he begins with a real compact form for the complex semisimple algebra.
+FH takes the same definition, but in Appendix D proves existence through regular elements.
+
+Knapp takes a more principled approach, asking what we should require of a subalgebra to get a decomposition like we see in the standard examples, p83.
+It takes the more general starting point of a nilpotent subalgebra h.
+Not all of them lead to a really nice decomposition, but somehow maximal ones do, and these we call Cartan subalgebras.
+The drawback is that we don't have diagonalizability at the start, so we have to work with generalised eigenspaces, see Prop 2.5 p88.
+Here too the existence relies on regular elements Theorem 2.9.
+
+Knapp Chapter 4 comes back to Hall's point: Cor 4.26 a compact Lie group has negative definite Killing form. Prop 4.27, gives an argument for the converse!
+
+What drew me to Knapp though was the discussion of real simple Lie algebras.
+In particular, how complex Lie algebras can arise from real ones.
+The two extremes are the split real form and the compact real form.
+These are constructed explicitly Cor 6.10 and Thm 6.11, but they require the root decomposition.
+Other real forms (and these ones too) are described by a Cartan involution. 
+It is a vector space sum on which the Killing form is resp pos and neg definite (6.26) and the brackets are behaved (6.24).
+Perhaps this could be the basis of a direct proof of a compact real form.
+After some googling, this was suggested by Cartan 1929 to simplify the proof, and there's a paper by Richardson (?) that carries it out.
+But it's not as simple as it sounds.
+
+Another thing to consider would be to only classify compact lie groups.
+This has the advantage that then the compact real form is a natural part of the set-up.
+You get basically the same list at the end.
+It has most of the features you want to consider.
+And then maybe you can carry the classification all the way back to the level of real Lie groups, without so much of the messy involution stuff at the end.
+Go deeper on compact Lie groups; apparently their universal covers are compact, you can understand the quotient theory well.
+It does feel like a limitation, when we are so close to getting all complex semisimple Lie algebras.
