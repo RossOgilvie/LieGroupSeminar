@@ -13,14 +13,14 @@ Hence any rotation $R$ can be described by a real $3\times 3$-matrix.
 Moreover rotation is length and angle preserving, so $\langle Rx, Ry \rangle = \langle x, y \rangle$.
 This holds exactly if $R^TR = I$, which gives us the orthogonal group
 \[
-\O(3) = \{ R \in \Mat(3,\bbR) \mid R^TR = I \}.
+\lgO(3) = \{ R \in \Mat(3,\bbR) \mid R^TR = I \}.
 \]
 We can understand the defining equation as saying that the columns of $R$ are an orthonormal basis of $\bbR^3$.
 Indeed they are the images of the standard basis of $\bbR^3$ under $R$.
 We were discussing proper rotations, which are by definition orientation preserving, so we want that the columns of $R$ are a right handed basis.
 That leads to the special orthogonal group
 \[
-\SO(3) = \{ R \in \O(3) \mid \det R = 1 \}.
+\lgSO(3) = \{ R \in \lgO(3) \mid \det R = 1 \}.
 \]
 The group operation is composition of operators, ie matrix multiplication.
 Both groups clearly contain the identity $I$.
@@ -32,35 +32,35 @@ Moreover the sign of the determinant can be used to distinguish a proper rotatio
 Heuristically, we have nine choices for the matrix of $R$ subject to the restriction each of the three columns must be unit length and the restriction that pairs of columns must be orthogonal (six restrictions total).
 This agrees with the three degrees of freedom we argued for above.
 To see this is a manifold however we consider a function $f$ from $\Mat(3,\bbR)$ to the symmetric matrices given by $f(R) = R^TR$.
-The orthogonal matrices are exactly $\O(3) = f^{-1}(I)$.
+The orthogonal matrices are exactly $\lgO(3) = f^{-1}(I)$.
 The derivative at $R$ in the direction $S$ is $f'(R)(S) = R^TS + S^T R = R^T S + (R^T S)^T$.
-At a point $R \in \O(3)$ this is surjective in $S$: for any symmetric matrix $Y$ let $S = \frac{1}{2}RY$.
-Hence $f$ is full rank at every point $R \in \O(3)$ and by the implicit function theorem $\O(3)$ is an embedded submanifold of $\Mat(3,\bbR) \cong \bbR^9$.
+At a point $R \in \lgO(3)$ this is surjective in $S$: for any symmetric matrix $Y$ let $S = \frac{1}{2}RY$.
+Hence $f$ is full rank at every point $R \in \lgO(3)$ and by the implicit function theorem $\lgO(3)$ is an embedded submanifold of $\Mat(3,\bbR) \cong \bbR^9$.
 The symmetric matrices are dimension $6$, so in fact our heuristic has been formalised to a rigorous argument.
 
 The group operation, matrix multiplication, is a smooth operation on the set of matrices because it is polynomial.
 Therefore it is also smooth when restricted to an embedded submanifold.
-Similarly inversion is an everywhere defined rational function on the open set of invertible matrices, so also smooth on $\O(3)$.
-This makes $\O(3)$ and $\SO(3)$ Lie groups.
+Similarly inversion is an everywhere defined rational function on the open set of invertible matrices, so also smooth on $\lgO(3)$.
+This makes $\lgO(3)$ and $\lgSO(3)$ Lie groups.
 
-Now that we know that $\O(3)$ is a manifold, we can ask about its connected components.
-Intuitively we can rotate any right handed frame $R \in \SO(3)$ to the standard basis $I$, so $\SO(3)$ is connected.
+Now that we know that $\lgO(3)$ is a manifold, we can ask about its connected components.
+Intuitively we can rotate any right handed frame $R \in \lgSO(3)$ to the standard basis $I$, so $\lgSO(3)$ is connected.
 Because it contains the identity, it is called the identity component.
 On the other hand, the reflection in the plane $x_1 = 0$ has determinant $-1$ whereas $\det I = 1$.
-Determinant is continuous (polynomial) function on matrices and as already noted $R \in \O(3)$ implies $\det R = \pm 1$, so this reflection is not in the identity component.
-Composing an improper rotation with this reflection gives a proper rotation and vice-versa. Therefore the subset of $\O(3)$ with $\det R = -1$ is also a connected component of $\O(3)$.
-In conclusion, $\SO(3)$ is connected and $\O(3)$ has two diffeomorphic components.
+Determinant is continuous (polynomial) function on matrices and as already noted $R \in \lgO(3)$ implies $\det R = \pm 1$, so this reflection is not in the identity component.
+Composing an improper rotation with this reflection gives a proper rotation and vice-versa. Therefore the subset of $\lgO(3)$ with $\det R = -1$ is also a connected component of $\lgO(3)$.
+In conclusion, $\lgSO(3)$ is connected and $\lgO(3)$ has two diffeomorphic components.
 
-To understand the topology of $\SO(3)$ an alternate description is useful.
+To understand the topology of $\lgSO(3)$ an alternate description is useful.
 Every rotation of $\bbR^3$ is rotation around an axis.
 More precisely, we can describe the rotation axis by a unit vector $u$ such that the rotation is right handed by an angle $\theta$ in the range $[0,\pi]$.
 Thus the rotations can be described by the closed unit ball $\theta u \in \overline{B(0,1)}$.
 The origin is rotation by angle $0$ with the axis of rotation irrelevant.
 But similarly, rotation by $\pi$ around $u$ and $-u$ are the same rotation.
-Thus $\SO(3)$ can be modelled as the closed unit ball with antipodal points on the boundary identified, the real projective space $\RP^3$.
+Thus $\lgSO(3)$ can be modelled as the closed unit ball with antipodal points on the boundary identified, the real projective space $\RP^3$.
 
 In this model it is easy to understand the fundamental group.
-Take any closed loop in $\SO(3)$.
+Take any closed loop in $\lgSO(3)$.
 If it lies entirely in $B(0,1)$ then it can be contracted to a point.
 % If it meets $\partial B(0,1)$ in one point then we may describe it as a path $\gamma : (0,1) \to B(0,1)$ with $\gamma(1) = - \gamma(0) \in \partial B(0,1)$. 
 Otherwise it can be divided into a collection of segments $\gamma_i : (0,1) \to B(0,1)$ with $\gamma_{i+1}(0) = \pm \gamma_i(1) \in \partial B(0,1)$ and $\gamma_1(0) = \pm \gamma_n(1) \in \partial B(0,1)$.
@@ -127,7 +127,7 @@ Then $\gamma_2$ can be contracted to the constant map $\gamma_1(1) = -\gamma_2(0
 This means that we can eliminate $\gamma_2$ and fuse $\gamma_1$ and $\gamma_3$ into a single segment.
 In particular, the index has decreased by two.
 This argument has not quite proved that the parity of the index (even or odd) is a homotopy invariant, since there is still the possibility that some other tricky operation can decrease the index by an odd amount. 
-But it should convince you none-the-less that the fundamental group of $\RP^3$, and hence $\SO(3)$, is $\bbZ_2$:
+But it should convince you none-the-less that the fundamental group of $\RP^3$, and hence $\lgSO(3)$, is $\bbZ_2$:
 any loop with an even number of segments can be contracted to a point, whereas any loop with an odd number of segments can be reduced to a diameter.
 
 
@@ -179,8 +179,8 @@ There are many interesting properties that Lie groups can possess, and we give a
 All finite groups are also Lie groups using the discrete topology to make them $0$-dimensional manifolds.
 These are not central examples of Lie groups, whose essential character is their `continuity', and they could reasonably be excluded by definition.
 However we do not do so because they arise naturally.
-For example, we have seen that the $\SO(3)$ is the component of $\O(3)$ that contains the identity.
-In fact $\O(3)$ is the product of $\SO(3)$ and $C_2$ the group with two elements.
+For example, we have seen that the $\lgSO(3)$ is the component of $\lgO(3)$ that contains the identity.
+In fact $\lgO(3)$ is the product of $\lgSO(3)$ and $C_2$ the group with two elements.
 Generalising, the identity component $G_0$ of a Lie group $G$ is a Lie group.
 To prove this, note that $II = I$ and $I^{-1} = I$, so the images of $G_0\times G_0$ under multiplication and $G_0$ under inversion are both contained in $G_0$.
 If $g$ belongs to another connected component $G_1$ then multiplication with $g$ is a diffeomorphism between $G_0$ and $G_1$.
@@ -188,29 +188,29 @@ In this way, every Lie group with finitely many connected components is the prod
 For this reason we usually consider connected Lie groups of positive dimension.
 
 Perhaps the most important category of Lie group are the matrix Lie groups~\cite[Definition~1.4]{Hall2015}.
-First we have the general linear group $\GL(n,\bbC)$, the set of $n\times n$ invertible matrices with complex entries.
-This can be considered as an open subset of $\bbC^{n^2}$, so it is a manifold. And just as for $\O(3)$ the group operation is polynomial and group inversion is rational without zeroes of the denominator, hence both are smooth.
-A matrix group is any closed Lie subgroup of $\GL(n,\bbC)$.
-As a special case we have the real matrix groups, which are subsets of the (real) matrix group $\GL(n,\bbR)$.
+First we have the general linear group $\lgGL(n,\bbC)$, the set of $n\times n$ invertible matrices with complex entries.
+This can be considered as an open subset of $\bbC^{n^2}$, so it is a manifold. And just as for $\lgO(3)$ the group operation is polynomial and group inversion is rational without zeroes of the denominator, hence both are smooth.
+A matrix group is any closed Lie subgroup of $\lgGL(n,\bbC)$.
+As a special case we have the real matrix groups, which are subsets of the (real) matrix group $\lgGL(n,\bbR)$.
 
-We have already seen the real matrix groups $\O(3)$ and $\SO(3)$.
+We have already seen the real matrix groups $\lgO(3)$ and $\lgSO(3)$.
 As the notation suggests, these belong to families indexed by the size of the matrices.
 We have the following families of matrix groups
 \begin{align*}
-\SL(n,\bbC) &= \{ A \in \GL(n,\bbC) \mid \det A = 1 \} \\
-\SL(n,\bbR) &= \{ A \in \GL(n,\bbR) \mid \det A = 1 \} \\
-\U(n) &= \{ A \in \GL(n,\bbC) \mid \bar{A}^T A = I \} \\
-\SU(n) &= \{ A \in \U(n) \mid \det A = 1 \} \\
-\O(n) &= \{ A \in \GL(n,\bbR) \mid A^T A = I \} \\
-\SO(n) &= \{ A \in \O(n) \mid \det A = 1 \}.
+\lgSL(n,\bbC) &= \{ A \in \lgGL(n,\bbC) \mid \det A = 1 \} \\
+\lgSL(n,\bbR) &= \{ A \in \lgGL(n,\bbR) \mid \det A = 1 \} \\
+\lgU(n) &= \{ A \in \lgGL(n,\bbC) \mid \bar{A}^T A = I \} \\
+\lgSU(n) &= \{ A \in \lgU(n) \mid \det A = 1 \} \\
+\lgO(n) &= \{ A \in \lgGL(n,\bbR) \mid A^T A = I \} \\
+\lgSO(n) &= \{ A \in \lgO(n) \mid \det A = 1 \}.
 \end{align*}
 If we give $\bbC^n$ the standard inner product $\langle v,w \rangle = \bar{v}^Tw$ then unitary matrices are exactly the linear transformations that preserve it.
 In this way the orthogonal groups are the real counterparts to the unitary groups.
-The following trick shows that $\U(n)$ is compact: As a vector in $\bbC^{n^2}$ the square of the norm of $A \in \U(n)$ is $\tr(\bar{A}^T A) = \tr I = n$, thus $\U(n)$ is bounded.
-Thus all closed subsets, such as $\SU(n), \O(n),\SO(n)$, are also compact.
+The following trick shows that $\lgU(n)$ is compact: As a vector in $\bbC^{n^2}$ the square of the norm of $A \in \lgU(n)$ is $\tr(\bar{A}^T A) = \tr I = n$, thus $\lgU(n)$ is bounded.
+Thus all closed subsets, such as $\lgSU(n), \lgO(n),\lgSO(n)$, are also compact.
 
 There are also the symplectic groups.
-Like $\U$ and $\O$ they preserve a bilinear form.
+Like $\lgU$ and $\lgO$ they preserve a bilinear form.
 Let 
 \[
 \Omega = \begin{pmatrix}
@@ -219,18 +219,18 @@ Let
 \]
 be a $2n\times 2n$ matrix in block form and define
 \begin{align*}
-\Sp(2n,\bbC) &= \{ A \in \GL(2n,\bbC) \mid A^T\Omega A = \Omega \} \\
-\Sp(2n,\bbR) &= \{ A \in \GL(2n,\bbR) \mid A^T\Omega A = \Omega \} \\
-\Sp(n) &= \Sp(2n,\bbC) \cap \U(2n).
+\lgSp(2n,\bbC) &= \{ A \in \lgGL(2n,\bbC) \mid A^T\Omega A = \Omega \} \\
+\lgSp(2n,\bbR) &= \{ A \in \lgGL(2n,\bbR) \mid A^T\Omega A = \Omega \} \\
+\lgSp(n) &= \lgSp(2n,\bbC) \cap \lgU(2n).
 \end{align*}
-The notation around $\Sp(n)$ is a bit confusing, but the point is to make a compact group.
-Indeed $\Sp(n)$ is called the compact symplectic group.
+The notation around $\lgSp(n)$ is a bit confusing, but the point is to make a compact group.
+Indeed $\lgSp(n)$ is called the compact symplectic group.
 
 Together, these examples are called the classical groups and they will figure prominently in the classification of Lie groups.
 There are of course many other matrix Lie groups.
 One could consider groups of matrices preserving other bilinear forms. 
 For a concrete example, the subset of diagonal matrices of any of the classical groups is again a matrix group.
-In $\U(n)$ the diagonal subgroup is $\{\operatorname{diag}(\lambda_1,\dots,\lambda_n)\}$ with $|\lambda_i| = 1$.
+In $\lgU(n)$ the diagonal subgroup is $\{\operatorname{diag}(\lambda_1,\dots,\lambda_n)\}$ with $|\lambda_i| = 1$.
 We see that this is isomorphic to $\bbT^n$.
 The standard terminology is that a Lie group that is isomorphic to a matrix group is called a linear group.
 In other words, $\bbT^n$ which is defined as the product of circles, is a linear group but not a matrix group.
@@ -243,14 +243,14 @@ Similarly $\bbR$ is a linear group because we can consider real matrices of the 
 \]
 The result of multiplying two such matrices is the add the off-diagonal term.
 
-TODO: Complex Lie groups. $\SL(n,\bbC)$ is a complex Lie group but $\U(n)$ is not.
+TODO: Complex Lie groups. $\lgSL(n,\bbC)$ is a complex Lie group but $\lgU(n)$ is not.
 A similar direction that we will not explore is linear algebraic groups.
 These are matrix groups whose defining equations are polynomial.
 This means that they can be defined over any field, not just $\bbC$ and $\bbR$.
 
 
 As in group theory, we have abelian and non-abelian groups.
-Abelian Lie groups include $\bbR^n$ and $\bbT^n$ and $\O(3)$ and $\SO(3)$ are examples of non-abelian groups.
+Abelian Lie groups include $\bbR^n$ and $\bbT^n$ and $\lgO(3)$ and $\lgSO(3)$ are examples of non-abelian groups.
 % Similarly, consider the Heisenberg group
 % \[
 % H = \begin{pmatrix}
