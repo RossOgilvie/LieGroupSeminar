@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# There's a problem with build and output dirs interacting strangely that'll have to look into.
+make4ht --build-dir .aux lie-groups.tex "mathml,mathjax"
+
+mkdir web
+cp .aux/lie-groups.html web/
+cp .aux/lie-groups.css web/
+cp .aux/*.svg web/
