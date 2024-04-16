@@ -26,6 +26,9 @@
 \usepackage{mdframed}
 \usepackage{graphicx}
 % \usepackage{enumitem}
+
+% \usepackage{desmos4ht}
+
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -207,6 +210,22 @@
 \newcommand{\fry}{\mathfrak{y}}
 \newcommand{\frz}{\mathfrak{z}}
 
+%% This is a macro to put a desmos iframe in the webpage, but a picture in the doc
+\ifdefined\HCode 
+\newcommand\desmos[2]{% 
+\HCode{<iframe src="https://www.desmos.com/calculator/#1" style="width:800px; height:500px"></iframe> }% 
+}% 
+\newcommand\desmosThreeD[2]{% 
+\HCode{<iframe src="https://www.desmos.com/3d/#1" style="width:800px; height:500px"></iframe> }% 
+}% 
+\else 
+\newcommand\desmos[2]{%
+TODO: Desmos picture here #2
+}% 
+\newcommand\desmosThreeD[2]{% 
+TODO: Desmos3D picture here #2
+}% 
+\fi 
 
 
 \begin{document}
