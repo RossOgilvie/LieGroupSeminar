@@ -1,0 +1,890 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>Lie Group Reading Group 2023/24</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='lie-groups.css' rel='stylesheet' type='text/css' /> 
+<meta content='lie-groups.tex' name='src' /> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js' type='text/javascript'></script>  
+</head><body>
+<div class='maketitle'>
+                                                                                       
+
+                                                                                       
+                                                                                       
+
+                                                                                       
+
+<h2 class='titleHead'>Lie Group Reading Group 2023/24</h2>
+ <div class='author'><span class='cmr-12'>Nicolas Hasse and Ross Ogilvie</span></div>
+<br />
+<div class='date'><span class='cmr-12'>April 16, 2024</span></div>
+</div>
+                                                                                       
+
+                                                                                       
+<h3 class='sectionHead' id='introduction'><span class='titlemark'>1   </span> <a id='x1-10001'></a>Introduction</h3>
+<!-- l. 4 --><p class='noindent'>In HWS2023 and FSS2024, we held a weekly reading group to work through the proof of the
+classification of simple Lie groups. Famously, there is a complete classification: every simple Lie group
+belongs to one of four infinite families or is one of five exceptions. What surprised us is that there was
+no single book (that we found) who set itself the task of proving this result from the beginning in full.
+The purpose of this seminar report is to consolidate our understanding by putting together our sources
+into a single proof. We found that quite often the theorems were written with an eye towards
+further developments. This was especially true for parts of the representation theory of
+Lie algebras. We felt certain techniques were avoided or others emphasised because of the
+role that they play e.g. in linear algebraic groups over finite fields. So a secondary aim is
+to reduce the ideas to the simplest form necessary to prove the classification. We do not
+intend to be fanatical; if an idea is clearer in its general form, so be it. Finally, we are
+geometers and we do not try to hide our biases about what we find interesting or worth
+exploring.
+</p><!-- l. 15 --><p class='noindent'>We imagined audience of this report is ourselves one year ago. If we could send this through time a
+year into the past, then it would have served as the main source for our reading group. We assume
+therefore that a reader is a graduate student familiar with manifold theory but has never formally
+studied Lie groups. Basic linear algebra is also a given.
+</p><!-- l. 20 --><p class='noindent'>TODO: Lit review <span class='cite'>[<a href='#XWarner1983'>War83</a>]</span> We used this for Lie group theory and the bridge to Lie algebras. <span class='cite'>[<a href='#XHall2015'>Hal15</a>]</span>
+We used this for Lie algebra theory. <span class='cite'>[<a href='#XFulton2004'>FH04</a>]</span> We used this as a supplement for Lie algebra theory,
+including for the classification of Dynkin diagrams.
+</p><!-- l. 25 --><p class='noindent'><span class='cite'>[<span class='cmbx-10x-x-109'>?</span>, p. 349]</span> has a nice quote
+        </p><blockquote class='quotation'>
+     <!-- l. 27 --><p class='indent'>     The virtue of classification is that it provides a clear indication of the scope of
+     examples in the subject. It is rarely a sound idea to prove a theorem by proving
+     it case-by-case for all simple real Lie algebras. Instead the important thing about
+     classification is the techniques that are involved. Techniques that are subtle enough
+     to identify all the examples are probably subtle enough to help in investigating all
+     semisimple Lie algebras simultaneously.</p></blockquote>
+                                                                                       
+
+                                                                                       
+<h3 class='sectionHead' id='preliminaries'><span class='titlemark'>2   </span> <a id='x1-20002'></a>Preliminaries</h3>
+<!-- l. 4 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='submanifolds'><span class='titlemark'>2.1   </span> <a id='x1-30002.1'></a>Submanifolds</h4>
+<!-- l. 6 --><p class='noindent'>TODO: After drafting this, I have come to the view that one should begin with immersions. Then you can discuss the
+different topologies of <!-- l. 7 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>f</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>S</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>,
+which leads to consideration of the different sorts of immersions. Only then can you ask the question:
+which are uniquely determined by the image alone? I would suggest calling these immersed manifolds
+and reserving the word submanifold for the images. This makes it clear to ask, for example, if a closed
+submanifold is a proper immersed manifold with the inclusion map. Also regular submanifold vs
+embedded manifold.
+</p><!-- l. 13 --><p class='noindent'>There are several notions of submanifold, each of which are appropriate in different
+circumstances. Perhaps the fundamental reason for this is that given a subset
+<!-- l. 14 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>N</mi></math> of a
+manifold <!-- l. 14 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>M</mi></math> it
+isn’t obvious how to construct charts on it; the obvious thing would be to restrict the charts of
+<!-- l. 14 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>M</mi></math> but how should we
+realise the image <!-- l. 14 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>ϕ</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>N</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>⊂</mo> <msup><mrow><mi>ℝ</mi></mrow><mrow><mi>m</mi></mrow></msup></mrow></math>
+as an open subset of a euclidean space?
+</p><!-- l. 16 --><p class='noindent'>There are two approaches to consider the possible definitions of submanifold. Sharpe deals directly
+with subsets, where as Warner considers immersions. The latter is indirect, but is more suitable for
+consideration of multiple manifold structures of the same subset. We mostly give a summary of Sharpe
+Section 1.2.
+</p><!-- l. 20 --><p class='noindent'>Given a chart <!-- l. 20 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>U</mi> <mo class='MathClass-rel' stretchy='false'>⊂</mo> <mi>M</mi></mrow></math>, the
+components of <!-- l. 20 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>N</mi> <mo class='MathClass-bin' stretchy='false'>∩</mo> <mi>U</mi></mrow></math> are
+called plaques. If <!-- l. 21 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>ϕ</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>W</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> lies in
+an <!-- l. 21 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>n</mi></math>-dimensional affine
+subspace of <!-- l. 21 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>ℝ</mi></mrow><mrow><mi>m</mi></mrow></msup></math> then we
+call the plaque <!-- l. 21 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>W</mi></math> flat
+and <!-- l. 21 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>ϕ</mi><msub><mrow><mo class='MathClass-rel' stretchy='false'>|</mo></mrow><mrow><mi>W</mi> </mrow></msub></mrow></math> a plaque chart of
+<!-- l. 21 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>W</mi></math>. If a there is a collection
+of charts of <!-- l. 22 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>M</mi></math> that cover
+<!-- l. 22 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mover accent='true'><mrow><mi>N</mi></mrow><mo accent='true'>¯</mo></mover></math> and all plaques are flat, then
+we call <!-- l. 22 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>N</mi></math> a submanifold. The
+intersection of open sets of <!-- l. 23 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>M</mi></math>
+with plaques gives <!-- l. 23 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>N</mi></math>
+the submanifold topology, and with respect to this topology and the plaque charts,
+<!-- l. 23 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>N</mi></math> is a
+manifold. In general the submanifold topology is finer (has more open sets) than the subspace
+                                                                                       
+
+                                                                                       
+topology.
+</p><!-- l. 26 --><p class='noindent'>It is worth contrasting this to an immersed submanifold. This is the image of an injective immersion
+<!-- l. 26 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>ι</mi> <mo class='MathClass-punc' stretchy='false'>:</mo> <mi>N</mi> <mo class='MathClass-rel' stretchy='false'>→</mo> <mi>M</mi></mrow></math>. The trouble is that
+<!-- l. 27 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>N</mi></math> is not determined by the
+image <!-- l. 27 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>ι</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>N</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>. To give an example,
+consider the subset <!-- l. 28 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo class='MathClass-open' stretchy='false'>{</mo><msup><mrow><mi>x</mi></mrow><mrow><mn>2</mn></mrow></msup> <mo class='MathClass-rel' stretchy='false'>=</mo> <msup><mrow><mi>y</mi></mrow><mrow><mn>2</mn></mrow></msup><mo class='MathClass-close' stretchy='false'>}</mo><mo class='MathClass-rel' stretchy='false'>⊂</mo> <msup><mrow><mi>ℝ</mi></mrow><mrow><mn>2</mn></mrow></msup></mrow></math>.
+We can split this into a line and two rays in two ways.
+</p><!-- l. 31 --><p class='noindent'>Sharpe defines in <span class='cite'>[<a href='#XSharpe1997'>Sha97</a>, Definition 1.1.4]</span> a weak embedding as an
+injective immersion with the additional property that for every smooth map
+<!-- l. 31 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>f</mi> <mo class='MathClass-punc' stretchy='false'>:</mo> <mi>S</mi> <mo class='MathClass-rel' stretchy='false'>→</mo> <mi>M</mi></mrow></math> with
+<!-- l. 31 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>f</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>S</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>⊂</mo> <mi>ι</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>M</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> the induced
+map <!-- l. 31 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msup><mrow><mi>ι</mi></mrow><mrow><mo class='MathClass-bin' stretchy='false'>−</mo><mn>1</mn></mrow></msup> <mo class='MathClass-bin' stretchy='false'>∘</mo> <mi>f</mi></mrow></math> is
+smooth. The inclusion map of a submanifold is a weak embedding. We propose to call submanifold in
+the sense of Sharpe weakly embedded submanifolds where necessary to distinguish them from other
+sorts.
+</p><!-- l. 35 --><p class='noindent'>If there are weakly embedded submanifolds, there are embedded submanifolds, which Sharpe calls regular
+submanifolds. They are submanifolds in which there is a covering such that each chart has a single plaque.
+For regular submanifolds the subspace and submanifold topologies coincide. In terms of an inclusion map
+<!-- l. 38 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>ι</mi></math> should be
+a homeomorphism to its image (in the subspace topology). Maps with this property are called embeddings.
+The image of <!-- l. 40 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>ι</mi> <mo class='MathClass-punc' stretchy='false'>:</mo> <mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-punc' stretchy='false'>,</mo><mi>∞</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>→</mo> <msup><mrow><mi>ℝ</mi></mrow><mrow><mn>2</mn></mrow></msup><mo class='MathClass-punc' stretchy='false'>,</mo><mi>ι</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>t</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>(</mo><mn>1</mn> <mo class='MathClass-bin' stretchy='false'>−</mo> <msup><mrow><mi>e</mi></mrow><mrow><mo class='MathClass-bin' stretchy='false'>−</mo><mi>t</mi></mrow></msup><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-open' stretchy='false'>(</mo><mtext class='qopname'>cos</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mi>t</mi><mo class='MathClass-punc' stretchy='false'>,</mo><mtext class='qopname'>sin</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mi>t</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+is a weakly embedded submanifold that is not an embedded submanifold, TODO: I’m confused. Sharpe
+draws a picture of this spiral, but the definition of regular submanifold doesn’t require the charts to
+cover <!-- l. 41 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mover accent='true'><mrow><mi>N</mi></mrow><mo accent='true'>¯</mo></mover></math>,
+which is meant to be the main obstacle?
+</p><!-- l. 43 --><p class='noindent'>Finally, a submanifold is proper if the intersection of
+<!-- l. 43 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>N</mi></math> and a
+compact set is compact in the submanifold topology. Equivalently if the inclusion map is proper (preimage of
+compact is compact). By <span class='cite'>[<a href='#XSharpe1997'>Sha97</a>, Theorem 1.2.11]</span> proper submanifolds are automatically embedded, so we
+have a strict hierarchy of conditions. The standard example of a regular submanifold that is not regular is
+<!-- l. 46 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-punc' stretchy='false'>,</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>⊂</mo> <mi>ℝ</mi></mrow></math>. We see that a
+sequence in <!-- l. 47 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>N</mi></math> may
+converge to a point of <!-- l. 47 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>M</mi> <mo class='MathClass-bin' stretchy='false'>∖</mo> <mi>N</mi></mrow></math>.
+</p><!-- l. 50 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='distributions'><span class='titlemark'>2.2   </span> <a id='x1-40002.2'></a>Distributions</h4>
+<!-- l. 52 --><p class='noindent'>It is common in a course on manifolds to study vector fields and their integral curves. The key local
+result is
+</p>
+                                                                                       
+
+                                                                                       
+<div class='newtheorem'>
+<!-- l. 54 --><p class='noindent'><span class='head'>
+<a id='x1-4001r1'></a>
+<span class='cmbx-10x-x-109'>Theorem 2.1 </span>(Picard-Lindelöff)<span class='cmbx-10x-x-109'>.</span>  </span><span class='cmti-10x-x-109'>Let </span><!-- l. 55 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>F</mi> <mo class='MathClass-punc' stretchy='false'>:</mo> <mi>J</mi> <mo class='MathClass-bin' stretchy='false'>×</mo> <mi>U</mi> <mo class='MathClass-rel' stretchy='false'>⊂</mo> <mi>ℝ</mi> <mo class='MathClass-bin' stretchy='false'>×</mo> <msup><mrow><mi>ℝ</mi></mrow><mrow><mi>n</mi></mrow></msup> <mo class='MathClass-rel' stretchy='false'>→</mo> <msup><mrow><mi>ℝ</mi></mrow><mrow><mi>n</mi></mrow></msup></mrow></math>
+<span class='cmti-10x-x-109'>be a smooth time-dependent vector field. Assume </span><!-- l. 56 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mn>0</mn> <mo class='MathClass-rel' stretchy='false'>∈</mo> <mi>J</mi></mrow></math><span class='cmti-10x-x-109'>.
+Consider </span><!-- l. 57 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>u</mi> <mo class='MathClass-punc' stretchy='false'>:</mo> <mi>ℝ</mi> <mo class='MathClass-rel' stretchy='false'>→</mo> <mi>U</mi></mrow></math>
+<span class='cmti-10x-x-109'>the system of ODEs </span><!-- l. 57 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msup><mrow><mi>u</mi></mrow><mrow><mi>′</mi></mrow></msup><mo class='MathClass-open' stretchy='false'>(</mo><mi>t</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>F</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>t</mi><mo class='MathClass-punc' stretchy='false'>,</mo><mi>u</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>t</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math><span class='cmti-10x-x-109'>.
+For any </span><!-- l. 58 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>c</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo> <mi>U</mi></mrow></math>
+<span class='cmti-10x-x-109'>there exists a </span><!-- l. 58 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>𝜀</mi> <mo class='MathClass-rel' stretchy='false'>&gt;</mo> <mn>0</mn></mrow></math>
+<span class='cmti-10x-x-109'>such that there is a unique solution smooth solution on </span><!-- l. 58 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo class='MathClass-open' stretchy='false'>(</mo><mo class='MathClass-bin' stretchy='false'>−</mo><mi>𝜀</mi><mo class='MathClass-punc' stretchy='false'>,</mo><mi>𝜀</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+<span class='cmti-10x-x-109'>with </span><!-- l. 58 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>u</mi><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>c</mi></mrow></math><span class='cmti-10x-x-109'>.
+Moreover, for any </span><!-- l. 59 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>p</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo> <mi>U</mi></mrow></math>
+<span class='cmti-10x-x-109'>there is an open neighbourhood </span><!-- l. 59 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>p</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo> <mi>V</mi> <mo class='MathClass-rel' stretchy='false'>⊂</mo> <mi>U</mi></mrow></math><span class='cmti-10x-x-109'>,</span>
+<!-- l. 59 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>𝜀</mi> <mo class='MathClass-rel' stretchy='false'>&gt;</mo> <mn>0</mn></mrow></math>
+<span class='cmti-10x-x-109'>and smooth map </span><!-- l. 59 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>u</mi> <mo class='MathClass-punc' stretchy='false'>:</mo> <mo class='MathClass-open' stretchy='false'>(</mo><mo class='MathClass-bin' stretchy='false'>−</mo><mi>𝜀</mi><mo class='MathClass-punc' stretchy='false'>,</mo><mi>𝜀</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-bin' stretchy='false'>×</mo> <mi>V</mi> <mo class='MathClass-rel' stretchy='false'>→</mo> <mi>U</mi></mrow></math>
+<span class='cmti-10x-x-109'>such that </span><!-- l. 59 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>u</mi><mo class='MathClass-open' stretchy='false'>(</mo><mover accent='true'><mrow><mo class='MathClass-punc' stretchy='false'>,</mo></mrow><mo accent='true'>˙</mo></mover><mi>c</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+<span class='cmti-10x-x-109'>is the unique solution with initial condition </span><!-- l. 59 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>c</mi></math><span class='cmti-10x-x-109'>.</span>
+<br class='newline' /><span class='cite'>[<a href='#XSharpe1997'>Sha97</a>, Theorem 2.1.1]</span><span class='cite'><span class='cmti-10x-x-109'>[</span><a href='#XIvey'><span class='cmti-10x-x-109'>IL</span></a><span class='cmti-10x-x-109'>, Theorem 1.2.1]</span></span>
+</p>
+</div>
+<!-- l. 61 --><p class='noindent'>
+</p><!-- l. 63 --><p class='noindent'>If one has a smooth vector field on a manifold, then this theorem provides for the existence of integral
+curves of the vector field in every coordinate chart, and uniqueness means that they can be patched
+together to give unique maximal integral curves through every point.
+</p><!-- l. 65 --><p class='noindent'>We will need a generalisation of this result that deals with multiple vector fields. To motivate why this
+is geometrically interesting and not just generalisation for its own sake, consider a submanifold
+<!-- l. 66 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>N</mi></math> inside
+<!-- l. 66 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>M</mi></math>. At each point
+<!-- l. 67 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>p</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo> <mi>N</mi></mrow></math> we can consider the
+vector subspace <!-- l. 67 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>T</mi></mrow><mrow><mi>p</mi></mrow></msub><mi>N</mi> <mo class='MathClass-rel' stretchy='false'>⊂</mo> <msub><mrow><mi>T</mi></mrow><mrow><mi>p</mi></mrow></msub><mi>M</mi></mrow></math>.
+At least locally, we can describe these subspaces as the span of independent vector
+fields. The natural question is the converse: given a set of independent vector fields on
+<!-- l. 69 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>M</mi></math>, does there exist
+a submanifold <!-- l. 69 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>N</mi></math>
+whose tangent space is their span? For a single vector field, the answer is affirmative, namely the
+integral curve.
+</p>
+<div class='newtheorem'>
+<!-- l. 72 --><p class='noindent'><span class='head'>
+                                                                                       
+
+                                                                                       
+<a id='x1-4002r2'></a>
+<span class='cmbx-10x-x-109'>Definition 2.2.</span>  </span><span class='cmti-10x-x-109'>An </span><!-- l. 73 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>r</mi></math><span class='cmti-10x-x-109'>-dimensional
+distribution </span><!-- l. 73 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mstyle mathvariant='script'><mi>D</mi></mstyle></math>
+<span class='cmti-10x-x-109'>on </span><!-- l. 73 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>M</mi></math>
+<span class='cmti-10x-x-109'>is a choice of an </span><!-- l. 73 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>r</mi></math><span class='cmti-10x-x-109'>-dimensional
+subspace </span><!-- l. 73 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mstyle mathvariant='script'><mi>D</mi></mstyle></mrow><mrow><mi>p</mi></mrow></msub></math>
+<span class='cmti-10x-x-109'>of </span><!-- l. 73 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>T</mi></mrow><mrow><mi>p</mi></mrow></msub><mi>M</mi></mrow></math>
+<span class='cmti-10x-x-109'>at every point </span><!-- l. 73 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>p</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo> <mi>M</mi></mrow></math><span class='cmti-10x-x-109'>.
+It is called smooth if every point has a neighbourhood and smooth vector fields </span><!-- l. 74 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo class='MathClass-open' stretchy='false'>{</mo><msub><mrow><mi>X</mi></mrow><mrow><mn>1</mn></mrow></msub><mo class='MathClass-punc' stretchy='false'>,</mo><mi>…</mi><mo class='MathClass-punc' stretchy='false'>,</mo><msub><mrow><mi>X</mi></mrow><mrow><mi>r</mi></mrow></msub><mo class='MathClass-close' stretchy='false'>}</mo></mrow></math>
+<span class='cmti-10x-x-109'>that span the subspaces. It is called integrable if every point has a coordinate neighbourhood in
+which the distribution is spanned by coordinate vector fields. </span><br class='newline' /><span class='cmti-10x-x-109'>A set of vector fields is called algebraically involutive if their Lie brackets are contained in their
+span. Two vector fields with the same span are either both algebraically involutive of neither is.
+Therefore algebraically involutive is a property that is defined for Distributions.</span><br class='newline' /><span class='cmti-10x-x-109'>A connected </span><!-- l. 80 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>r</mi></math><span class='cmti-10x-x-109'>-dimensional
+submanifold </span><!-- l. 80 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>N</mi></math>
+<span class='cmti-10x-x-109'>is called an integral manifold of </span><!-- l. 80 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mstyle mathvariant='script'><mi>D</mi></mstyle></math>
+<span class='cmti-10x-x-109'>if at every point </span><!-- l. 80 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>T</mi></mrow><mrow><mi>p</mi></mrow></msub><mi>N</mi> <mo class='MathClass-rel' stretchy='false'>=</mo><msub><mrow> <mstyle mathvariant='script'><mi>D</mi></mstyle></mrow><mrow><mi>p</mi></mrow></msub></mrow></math><span class='cmti-10x-x-109'>.</span>
+<br class='newline' /><span class='cite'>[<a href='#XSharpe1997'>Sha97</a>, 2.2.1,.2.2.2,2.3.2]</span>
+</p>
+</div>
+<!-- l. 82 --><p class='noindent'>
+</p><!-- l. 84 --><p class='noindent'>If a distribution is integrable, then every point has an integral submanifold through it, just by taking a
+coordinate plane in an appropriate chart. The important theorem is Frobenius’ theorem <span class='cite'>[<a href='#XSharpe1997'>Sha97</a>, 2.4.1]</span>,
+which states a distribution is integrable if and only if it is algebraically involutive. The proof
+inductively applies the Picard-Lindelöff theorem.
+</p><!-- l. 88 --><p class='noindent'>TODO: Example of spheres in <!-- l. 88 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msup><mrow><mi>ℝ</mi></mrow><mrow><mn>3</mn></mrow></msup> <mo class='MathClass-bin' stretchy='false'>∖</mo><mo class='MathClass-open' stretchy='false'>{</mo><mn>0</mn><mo class='MathClass-close' stretchy='false'>}</mo></mrow></math>
+showing that you might not have global vector fields.
+</p><!-- l. 90 --><p class='noindent'>There is also a formulation of Frobenius’ theorem in terms of differential forms. We can define the
+annihilator of a distribution as the algebraic ideal generated by the one-forms such that
+<!-- l. 91 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>ω</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>v</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mn>0</mn></mrow></math> for all
+<!-- l. 91 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>v</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><msub><mrow><mstyle mathvariant='script'><mi>D</mi></mstyle></mrow><mrow><mi>p</mi></mrow></msub></mrow></math>. By this we
+mean all <!-- l. 92 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>C</mi></mrow><mrow><mi>∞</mi></mrow></msup></math>-linear
+combinations and wedge products. Conversely, the kernel of an algebraic ideal of differential forms generated
+locally by <!-- l. 93 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>m</mi> <mo class='MathClass-bin' stretchy='false'>−</mo> <mi>r</mi></mrow></math>
+independent one-forms is a distribution. The theorem then says that
+<!-- l. 94 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mstyle mathvariant='script'><mi>D</mi></mstyle></math> is
+integrable if and only if the ideal contains all its exterior derivatives (it is a differential ideal). The
+proof comes down to the simple formula </p><table class='equation-star'><tr><td>
+                                                                                       
+
+                                                                                       
+<!-- l. 96 --><math class='equation' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow>
+                      <mi mathvariant='italic'>dω</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>X</mi><mo class='MathClass-punc' stretchy='false'>,</mo><mi>Y</mi> <mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>X</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>ω</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>Y</mi> <mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-bin' stretchy='false'>−</mo> <mi>Y</mi> <mo class='MathClass-open' stretchy='false'>(</mo><mi>ω</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>X</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-bin' stretchy='false'>−</mo> <mi>ω</mi><mo class='MathClass-open' stretchy='false'>(</mo><mo class='MathClass-open' stretchy='false'>[</mo><mi>X</mi><mo class='MathClass-punc' stretchy='false'>,</mo><mi>Y</mi> <mo class='MathClass-close' stretchy='false'>]</mo><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-punc' stretchy='false'>.</mo>
+</mrow></math></td></tr></table>
+<!-- l. 100 --><p class='noindent'>TODO: Sharpe does foliations in general, and the argument look a lot like the arguments Warner uses
+for Lie subgroups. I think it might be advantageous to follow Sharpe here and separate what is truly
+manifold theory from Lie theory.
+</p><!-- l. 105 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='eigenvalues-and-weights'><span class='titlemark'>2.3   </span> <a id='x1-50002.3'></a>Eigenvalues and Weights</h4>
+<!-- l. 107 --><p class='noindent'>Eigenvalues and eigenvectors are ubiquitous in linear algebra. If we are working over
+<!-- l. 108 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>ℂ</mi></math>,
+then every linear endomorphism (linear map from a vector space
+<!-- l. 108 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>V</mi> </mrow></math> to
+itself) has an eigenvalue (root of the characteristic polynomial) and every eigenvalue has an eigenvector
+<!-- l. 108 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>A</mi><msub><mrow><mi>v</mi></mrow><mrow><mi>λ</mi></mrow></msub> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>λ</mi><msub><mrow><mi>v</mi></mrow><mrow><mi>λ</mi></mrow></msub></mrow></math>. If we
+can find a basis of eigenvectors, then with respect to this basis the linear operator is a diagonal matrix.
+In general however, there may be fewer eigenvectors than the dimension of the vector space. A
+standard result in linear algebra says that every matrix is conjugate to a matrix in Jordan normal
+form, unique up to reordering of the blocks.
+</p><!-- l. 113 --><p class='noindent'>Going further, we may ask what can be said of two linear endomorphisms
+<!-- l. 113 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>A</mi><mo class='MathClass-punc' stretchy='false'>,</mo><mi>B</mi></mrow></math>.
+The key observation is to consider commuting operators. If
+<!-- l. 115 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>A</mi></math> and
+<!-- l. 115 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>B</mi></math> commute then
+<!-- l. 115 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>B</mi></math> preserves the eigenspaces
+eigenspaces of <!-- l. 115 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>A</mi></math>:
+</p><table class='equation-star'><tr><td>
+                                                                                       
+
+                                                                                       
+<!-- l. 116 --><math class='equation' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow>
+                            <mo class='MathClass-open' stretchy='false'>(</mo><mi>A</mi> <mo class='MathClass-bin' stretchy='false'>−</mo> <mi mathvariant='italic'>λI</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-open' stretchy='false'>(</mo><mi mathvariant='italic'>Bv</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>B</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>A</mi> <mo class='MathClass-bin' stretchy='false'>−</mo> <mi mathvariant='italic'>λI</mi><mo class='MathClass-close' stretchy='false'>)</mo><mi>v</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mn>0</mn><mo class='MathClass-punc' stretchy='false'>.</mo>
+</mrow></math></td></tr></table>
+<!-- l. 121 --><p class='noindent'>Therefore <!-- l. 121 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>B</mi></math>
+restricts to an endomorphism on each of the eigenspaces of
+<!-- l. 121 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>A</mi></math>. Imposing different conditions
+on <!-- l. 122 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>A</mi></math> restricts the possible
+decompositions of <!-- l. 122 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>B</mi></math>. For
+example, if <!-- l. 123 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>A</mi></math> is diagonalizable
+(so <!-- l. 123 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>V</mi> </mrow></math> decomposes as the direct
+sum of the eigenspaces of <!-- l. 123 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>A</mi></math>) then
+on each eigenspace of <!-- l. 123 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>A</mi></math> we can
+choose a basis that puts <!-- l. 123 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>B</mi></math> into
+Jordan normal form. Hence <!-- l. 124 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>A</mi></math>
+and <!-- l. 124 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>B</mi></math> can simultaneously
+conjugated to normal form. Or if <!-- l. 125 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>A</mi></math>
+is diagonalizable and has no repeated eigenvalues, ie its eigenspaces are one dimensional, then these must also be
+eigenspaces of <!-- l. 125 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>B</mi></math>.
+Hence <!-- l. 126 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>A</mi></math>
+and <!-- l. 126 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>B</mi></math>
+are simultaneously diagonalizable.
+</p><!-- l. 128 --><p class='noindent'>This argument can be applied inductively to a finite set
+<!-- l. 128 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo class='MathClass-open' stretchy='false'>{</mo><msub><mrow><mi>A</mi></mrow><mrow><mn>1</mn></mrow></msub><mo class='MathClass-punc' stretchy='false'>,</mo><mi>…</mi><mo class='MathClass-punc' stretchy='false'>,</mo><msub><mrow><mi>A</mi></mrow><mrow><mi>k</mi></mrow></msub><mo class='MathClass-close' stretchy='false'>}</mo></mrow></math> of
+pairwise commuting endomorphisms. It also extends to a commuting family of operators
+<!-- l. 129 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='script'><mi>A</mi></mstyle> <mo class='MathClass-rel' stretchy='false'>=</mo><mtext class='qopname'> span</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mo class='MathClass-open' stretchy='false'>{</mo><msub><mrow><mi>A</mi></mrow><mrow><mn>1</mn></mrow></msub><mo class='MathClass-punc' stretchy='false'>,</mo><mtext class='qopname'>…</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mo class='MathClass-punc' stretchy='false'>,</mo><msub><mrow><mi>A</mi></mrow><mrow><mi>k</mi></mrow></msub><mo class='MathClass-close' stretchy='false'>}</mo></mrow></math>, a linear
+subspace of <!-- l. 129 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mtext class='qopname'>End</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mo class='MathClass-open' stretchy='false'>(</mo><mi>V</mi> <mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+such that all operators are pairwise commuting. These are effectively equivalent, since a
+family is pairwise commuting if and only if a basis is pairwise commuting. Likewise,
+<!-- l. 131 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>v</mi></math> is a simultaneous
+eigenvector for <!-- l. 131 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo class='MathClass-open' stretchy='false'>{</mo><msub><mrow><mi>A</mi></mrow><mrow><mn>1</mn></mrow></msub><mo class='MathClass-punc' stretchy='false'>,</mo><mi>…</mi><mo class='MathClass-punc' stretchy='false'>,</mo><msub><mrow><mi>A</mi></mrow><mrow><mi>k</mi></mrow></msub><mo class='MathClass-close' stretchy='false'>}</mo></mrow></math>
+if and only if it is a simultaneous eigenvector for every operator of
+<!-- l. 131 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mstyle mathvariant='script'><mi>A</mi></mstyle></math>. The
+eigenvalues are not completely independent: </p><table class='equation-star'><tr><td>
+                                                                                       
+
+                                                                                       
+<!-- l. 133 --><math class='equation' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow>
+         <mi mathvariant='italic'>λv</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi mathvariant='italic'>Av</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>(</mo><msub><mrow><mi>a</mi></mrow><mrow><mn>1</mn></mrow></msub><msub><mrow><mi>A</mi></mrow><mrow><mn>1</mn></mrow></msub> <mo class='MathClass-bin' stretchy='false'>+</mo> <mo class='MathClass-rel' stretchy='false'>⋯</mo> <mo class='MathClass-bin' stretchy='false'>+</mo> <msub><mrow><mi>a</mi></mrow><mrow><mi>k</mi></mrow></msub><msub><mrow><mi>A</mi></mrow><mrow><mi>k</mi></mrow></msub><mo class='MathClass-close' stretchy='false'>)</mo><mi>v</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <msub><mrow><mi>a</mi></mrow><mrow><mn>1</mn></mrow></msub><msub><mrow><mi>λ</mi></mrow><mrow><mn>1</mn></mrow></msub><mi>v</mi> <mo class='MathClass-bin' stretchy='false'>+</mo> <mo class='MathClass-rel' stretchy='false'>⋯</mo> <mo class='MathClass-bin' stretchy='false'>+</mo> <msub><mrow><mi>a</mi></mrow><mrow><mi>k</mi></mrow></msub><msub><mrow><mi>λ</mi></mrow><mrow><mi>k</mi></mrow></msub><mi>v</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>(</mo><msub><mrow><mi>a</mi></mrow><mrow><mn>1</mn></mrow></msub><msub><mrow><mi>λ</mi></mrow><mrow><mn>1</mn></mrow></msub> <mo class='MathClass-bin' stretchy='false'>+</mo> <mo class='MathClass-rel' stretchy='false'>⋯</mo> <mo class='MathClass-bin' stretchy='false'>+</mo> <msub><mrow><mi>a</mi></mrow><mrow><mi>k</mi></mrow></msub><msub><mrow><mi>λ</mi></mrow><mrow><mi>k</mi></mrow></msub><mo class='MathClass-close' stretchy='false'>)</mo><mi>v</mi><mo class='MathClass-punc' stretchy='false'>.</mo>
+</mrow></math></td></tr></table>
+<!-- l. 140 --><p class='noindent'>We understand the eigenvalue of <!-- l. 140 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>v</mi></math>
+to be a linear function </p><table class='equation-star'><tr><td>
+<!-- l. 141 --><math class='equation' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow>
+                           <mi>λ</mi> <mo class='MathClass-punc' stretchy='false'>:</mo> <mstyle mathvariant='script'><mi>A</mi></mstyle> <mo class='MathClass-rel' stretchy='false'>→</mo> <mi>𝕂</mi><mo class='MathClass-punc' stretchy='false'>,</mo><mspace class='quad' width='1em'></mspace><mi>λ</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>A</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <msub><mrow><mi>a</mi></mrow><mrow><mn>1</mn></mrow></msub><msub><mrow><mi>λ</mi></mrow><mrow><mn>1</mn></mrow></msub> <mo class='MathClass-bin' stretchy='false'>+</mo> <mo class='MathClass-rel' stretchy='false'>⋯</mo> <mo class='MathClass-bin' stretchy='false'>+</mo> <msub><mrow><mi>a</mi></mrow><mrow><mi>k</mi></mrow></msub><msub><mrow><mi>λ</mi></mrow><mrow><mi>k</mi></mrow></msub><mo class='MathClass-punc' stretchy='false'>.</mo>
+</mrow></math></td></tr></table>
+<!-- l. 146 --><p class='noindent'>Understood in this way, it is more common to call
+<!-- l. 146 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>λ</mi></math> a <span class='cmti-10x-x-109'>weight </span>of the
+commuting family <!-- l. 146 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mstyle mathvariant='script'><mi>A</mi></mstyle></math>,
+<!-- l. 146 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>v</mi></math> a <span class='cmti-10x-x-109'>weight vector</span>, and
+the set of vectors <!-- l. 146 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>v</mi></math>
+with <!-- l. 146 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi mathvariant='italic'>Av</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>λ</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>A</mi><mo class='MathClass-close' stretchy='false'>)</mo><mi>v</mi></mrow></math>
+the <span class='cmti-10x-x-109'>weight </span>space <span class='cite'>[<a href='#XHall2015'>Hal15</a>, Definition A.14]</span>.
+</p><!-- l. 148 --><p class='noindent'>As an aside, the descriptor “weight” should probably replace “eigen-” even in the single operator case. Consider
+an operator <!-- l. 149 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>A</mi></math>
+with a <!-- l. 149 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mn>2</mn></math>-weight
+vector <!-- l. 149 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>v</mi></math> and
+a <!-- l. 149 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mn>3</mn></math>-weight
+vector <!-- l. 149 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>w</mi></math>. Then
+of course <!-- l. 150 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>A</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi mathvariant='italic'>av</mi> <mo class='MathClass-bin' stretchy='false'>+</mo> <mi mathvariant='italic'>bw</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mn>2</mn><mi>v</mi> <mo class='MathClass-bin' stretchy='false'>+</mo> <mn>3</mn><mi>w</mi></mrow></math>,
+which is a weighted sum.
+</p><!-- l. 152 --><p class='noindent'>We finish with an example. Let <!-- l. 153 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mstyle mathvariant='script'><mi>A</mi></mstyle></math>
+be the set of diagonal <!-- l. 153 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>n</mi> <mo class='MathClass-bin' stretchy='false'>×</mo> <mi>n</mi></mrow></math> matrices.
+Then a basis for this family is <!-- l. 154 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>A</mi></mrow><mrow><mi>i</mi></mrow></msub> <mo class='MathClass-rel' stretchy='false'>=</mo> <msub><mrow><mi>e</mi></mrow><mrow><mi mathvariant='italic'>ii</mi></mrow></msub></mrow></math>,
+with <!-- l. 154 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mn>1</mn></math> at the
+<!-- l. 154 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>i</mi></math>th position on
+the diagonal. <!-- l. 155 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>e</mi></mrow><mrow><mi>i</mi></mrow></msub></math>
+is a <!-- l. 155 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mn>1</mn></math>-weight
+vector of <!-- l. 155 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>A</mi></mrow><mrow><mi>i</mi></mrow></msub></math> while
+all vectors of <!-- l. 155 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mtext class='qopname'>span</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mo class='MathClass-open' stretchy='false'>{</mo><msub><mrow><mi>e</mi></mrow><mrow><mn>1</mn></mrow></msub><mo class='MathClass-punc' stretchy='false'>,</mo><mtext class='qopname'>…</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mo class='MathClass-punc' stretchy='false'>,</mo><msub><mrow><mi>ê</mi></mrow><mrow><mi>i</mi></mrow></msub><mo class='MathClass-punc' stretchy='false'>,</mo><mtext class='qopname'>…</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mo class='MathClass-punc' stretchy='false'>,</mo><msub><mrow><mi>e</mi></mrow><mrow><mi>n</mi></mrow></msub><mo class='MathClass-close' stretchy='false'>}</mo></mrow></math>
+are <!-- l. 155 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mn>0</mn></math>-weight
+                                                                                       
+
+                                                                                       
+(in the kernel). These are all diagonal (in particular simultaneously diagonal) so
+there should be a basis of weight vectors. Indeed, this is just the standard basis
+<!-- l. 157 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo class='MathClass-open' stretchy='false'>{</mo><msub><mrow><mi>e</mi></mrow><mrow><mn>1</mn></mrow></msub><mo class='MathClass-punc' stretchy='false'>,</mo><mi>…</mi><mo class='MathClass-punc' stretchy='false'>,</mo><msub><mrow><mi>e</mi></mrow><mrow><mi>n</mi></mrow></msub><mo class='MathClass-close' stretchy='false'>}</mo></mrow></math>. The
+weight of <!-- l. 158 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>e</mi></mrow><mrow><mi>i</mi></mrow></msub></math>
+is the linear form </p><table class='equation-star'><tr><td>
+<!-- l. 159 --><math class='equation' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow>
+                                 <mi>A</mi> <mo class='MathClass-rel' stretchy='false'>=</mo><mtext class='qopname'> diag</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mo class='MathClass-open' stretchy='false'>(</mo><msub><mrow><mi>a</mi></mrow><mrow><mn>1</mn></mrow></msub><mo class='MathClass-punc' stretchy='false'>,</mo><mtext class='qopname'>…</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mo class='MathClass-punc' stretchy='false'>,</mo><msub><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></msub><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-rel' stretchy='false'>↦</mo><msub><mrow><mi>a</mi></mrow><mrow><mi>i</mi></mrow></msub>
+</mrow></math></td></tr></table>
+<!-- l. 162 --><p class='noindent'>because <!-- l. 162 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>A</mi><msub><mrow><mi>e</mi></mrow><mrow><mi>i</mi></mrow></msub> <mo class='MathClass-rel' stretchy='false'>=</mo> <msub><mrow><mi>a</mi></mrow><mrow><mi>i</mi></mrow></msub></mrow></math>.
+                                                                                       
+
+                                                                                       
+                                                                                       
+
+                                                                                       
+                                                                                       
+
+                                                                                       
+</p>
+<h3 class='sectionHead' id='lie-groups'><span class='titlemark'>3   </span> <a id='x1-60003'></a>Lie Groups</h3>
+<!-- l. 3 --><p class='noindent'>Historically and in practice, Lie groups arise first as the study of the transformation of
+geometric objects. Let us consider the example of a sphere in euclidean space. There are in a
+sense three ways to rotate a sphere. Choose a point on the equator of a sphere. You can
+rotate the sphere so that this point moves towards a pole (y-axis rotation), so that this
+point moves along the equator (z-axis rotation), or so that the point is stationary (x-axis
+rotation). Moreover these rotations are continuous in a way that rotating an equilateral
+triangle is not, because at each stage of rotation the sphere as a whole occupies the same
+space.
+</p><!-- l. 10 --><p class='noindent'>How should we describe the rotations of a sphere? First observe that antipodal points
+remain antipodal, so the rotation of a sphere extends to a linear transformation of
+<!-- l. 11 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>ℝ</mi></mrow><mrow><mn>3</mn></mrow></msup></math>. Hence any rotation
+<!-- l. 12 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>R</mi></math> can be described by a real
+<!-- l. 12 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mn>3</mn> <mo class='MathClass-bin' stretchy='false'>×</mo> <mn>3</mn></mrow></math>-matrix. Moreover rotation is
+length and angle preserving, so <!-- l. 13 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo class='MathClass-open' stretchy='false'>⟨</mo><mi mathvariant='italic'>Rx</mi><mo class='MathClass-punc' stretchy='false'>,</mo><mi mathvariant='italic'>Ry</mi><mo class='MathClass-close' stretchy='false'>⟩</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>⟨</mo><mi>x</mi><mo class='MathClass-punc' stretchy='false'>,</mo><mi>y</mi><mo class='MathClass-close' stretchy='false'>⟩</mo></mrow></math>.
+This holds exactly if <!-- l. 14 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msup><mrow><mi>R</mi></mrow><mrow><mi>T</mi> </mrow></msup><mi>R</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>I</mi></mrow></math>,
+which gives us the orthogonal group </p><table class='equation-star'><tr><td>
+<!-- l. 15 --><math class='equation' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow>
+                           <mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>{</mo><mi>R</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mtext class='qopname'> Mat</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℝ</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-rel' stretchy='false'>∣</mo><msup><mrow><mi>R</mi></mrow><mrow><mi>T</mi> </mrow></msup><mi>R</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>I</mi><mo class='MathClass-close' stretchy='false'>}</mo><mo class='MathClass-punc' stretchy='false'>.</mo>
+</mrow></math></td></tr></table>
+<!-- l. 18 --><p class='noindent'>We can understand the defining equation as saying that the columns of
+<!-- l. 18 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>R</mi></math> are an orthonormal basis of
+<!-- l. 18 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>ℝ</mi></mrow><mrow><mn>3</mn></mrow></msup></math>. Indeed they are the images
+of the standard basis of <!-- l. 19 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>ℝ</mi></mrow><mrow><mn>3</mn></mrow></msup></math>
+under <!-- l. 19 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>R</mi></math>. We
+were discussing proper rotations, which are by definition orientation preserving, so we want that the
+columns of <!-- l. 20 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>R</mi></math>
+are a right handed basis. That leads to the special orthogonal group </p><table class='equation-star'><tr><td>
+                                                                                       
+
+                                                                                       
+<!-- l. 22 --><math class='equation' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow>
+                             <mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>{</mo><mi>R</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-rel' stretchy='false'>∣</mo><mtext class='qopname'>det</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mi>R</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mn>1</mn><mo class='MathClass-close' stretchy='false'>}</mo><mo class='MathClass-punc' stretchy='false'>.</mo>
+</mrow></math></td></tr></table>
+<!-- l. 25 --><p class='noindent'>The group operation is composition of operators, ie matrix multiplication. Both groups clearly contain the
+identity <!-- l. 26 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>I</mi></math>. The
+property <!-- l. 27 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msup><mrow><mi>R</mi></mrow><mrow><mi>T</mi> </mrow></msup><mi>R</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>I</mi></mrow></math>
+implies <!-- l. 27 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msup><mrow><mo class='MathClass-open' stretchy='false'>(</mo><mtext class='qopname'>det</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mi>R</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow><mrow><mn>2</mn></mrow></msup> <mo class='MathClass-rel' stretchy='false'>=</mo> <mn>1</mn></mrow></math>, so
+these are invertible matrices. Therefore they really are groups. Moreover the sign of the determinant
+can be used to distinguish a proper rotation from an improper one.
+</p><!-- l. 32 --><p class='noindent'>Heuristically, we have nine choices for the matrix of
+<!-- l. 32 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>R</mi></math> subject
+to the restriction each of the three columns must be unit length and the restriction that pairs of
+columns must be orthogonal (six restrictions total). This agrees with the three degrees of
+freedom we argued for above. To see this is a manifold however we consider a function
+<!-- l. 34 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>f</mi></math> from
+<!-- l. 34 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mtext class='qopname'>Mat</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℝ</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> to the symmetric matrices
+given by <!-- l. 34 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>f</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>R</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <msup><mrow><mi>R</mi></mrow><mrow><mi>T</mi> </mrow></msup><mi>R</mi></mrow></math>. The orthogonal
+matrices are exactly <!-- l. 35 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <msup><mrow><mi>f</mi></mrow><mrow><mo class='MathClass-bin' stretchy='false'>−</mo><mn>1</mn></mrow></msup><mo class='MathClass-open' stretchy='false'>(</mo><mi>I</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>.
+The derivative at <!-- l. 36 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>R</mi></math>
+in the direction <!-- l. 36 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>S</mi></math>
+is <!-- l. 36 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msup><mrow><mi>f</mi></mrow><mrow><mi>′</mi></mrow></msup><mo class='MathClass-open' stretchy='false'>(</mo><mi>R</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-open' stretchy='false'>(</mo><mi>S</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <msup><mrow><mi>R</mi></mrow><mrow><mi>T</mi> </mrow></msup><mi>S</mi> <mo class='MathClass-bin' stretchy='false'>+</mo> <msup><mrow><mi>S</mi></mrow><mrow><mi>T</mi> </mrow></msup><mi>R</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <msup><mrow><mi>R</mi></mrow><mrow><mi>T</mi> </mrow></msup><mi>S</mi> <mo class='MathClass-bin' stretchy='false'>+</mo> <msup><mrow><mo class='MathClass-open' stretchy='false'>(</mo><msup><mrow><mi>R</mi></mrow><mrow><mi>T</mi> </mrow></msup><mi>S</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow><mrow><mi>T</mi> </mrow></msup></mrow></math>. At a point
+<!-- l. 37 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>R</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> this is surjective
+in <!-- l. 37 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>S</mi></math>: for any
+symmetric matrix <!-- l. 37 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>Y</mi> </mrow></math>
+let <!-- l. 37 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>S</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mfrac><mrow><mn>1</mn></mrow> 
+<mrow><mn>2</mn></mrow></mfrac><mi mathvariant='italic'>RY</mi> </mrow></math>. Hence
+<!-- l. 38 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>f</mi></math> is full rank at every point
+<!-- l. 38 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>R</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> and by the implicit function
+theorem <!-- l. 38 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> is an embedded
+submanifold of <!-- l. 38 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mtext class='qopname'>Mat</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℝ</mi><mo class='MathClass-close' stretchy='false'>)</mo><mtext class='qopname'>≅</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><msup><mrow><mi>ℝ</mi></mrow><mrow><mn>9</mn></mrow></msup></mrow></math>. The symmetric
+matrices are dimension <!-- l. 39 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mn>6</mn></math>,
+so in fact our heuristic has been formalised to a rigorous argument.
+</p><!-- l. 41 --><p class='noindent'>The group operation, matrix multiplication, is a smooth operation on the set of matrices because it is
+polynomial. Therefore it is also smooth when restricted to an embedded submanifold. Similarly inversion is
+an everywhere defined rational function on the open set of invertible matrices, so also smooth on
+<!-- l. 43 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>. This
+makes <!-- l. 44 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+and <!-- l. 44 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+Lie groups.
+</p><!-- l. 46 --><p class='noindent'>Now that we know that <!-- l. 46 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+is a manifold, we can ask about its connected components. Intuitively we can rotate any right handed frame
+<!-- l. 47 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>R</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> to the standard
+                                                                                       
+
+                                                                                       
+basis <!-- l. 47 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>I</mi></math>, so
+<!-- l. 47 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> is connected.
+Because it contains the identity, it is called the identity component. On the other hand, the reflection in the
+plane <!-- l. 49 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>x</mi></mrow><mrow><mn>1</mn></mrow></msub> <mo class='MathClass-rel' stretchy='false'>=</mo> <mn>0</mn></mrow></math> has
+determinant <!-- l. 49 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow> <mo class='MathClass-bin' stretchy='false'>−</mo> <mn>1</mn></mrow></math>
+whereas <!-- l. 49 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mtext class='qopname'>det</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mi>I</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mn>1</mn></mrow></math>.
+Determinant is continuous (polynomial) function on matrices and as already noted
+<!-- l. 50 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>R</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> implies
+<!-- l. 50 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mtext class='qopname'>det</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mi>R</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-bin' stretchy='false'>±</mo><mn>1</mn></mrow></math>,
+so this reflection is not in the identity component. Composing an improper rotation
+with this reflection gives a proper rotation and vice-versa. Therefore the subset of
+<!-- l. 51 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> with
+<!-- l. 51 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mtext class='qopname'>det</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mi>R</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-bin' stretchy='false'>−</mo><mn>1</mn></mrow></math> is also a connected
+component of <!-- l. 51 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>.
+In conclusion, <!-- l. 52 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> is
+connected and <!-- l. 52 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+has two diffeomorphic components.
+</p><!-- l. 54 --><p class='noindent'>To understand the topology of <!-- l. 54 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+an alternate description is useful. Every rotation of
+<!-- l. 55 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>ℝ</mi></mrow><mrow><mn>3</mn></mrow></msup></math> is
+rotation around an axis. More precisely, we can describe the rotation axis by a unit vector
+<!-- l. 56 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>u</mi></math> such that the rotation is
+right handed by an angle <!-- l. 56 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>𝜃</mi></math>
+in the range <!-- l. 56 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo class='MathClass-open' stretchy='false'>[</mo><mn>0</mn><mo class='MathClass-punc' stretchy='false'>,</mo><mi>π</mi><mo class='MathClass-close' stretchy='false'>]</mo></mrow></math>.
+Thus the rotations can be described by the closed unit ball
+<!-- l. 57 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi mathvariant='italic'>𝜃u</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mover accent='false' class='mml-overline'><mrow><mi>B</mi><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-punc' stretchy='false'>,</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow><mo accent='true'>¯</mo></mover></mrow></math>. The origin is
+rotation by angle <!-- l. 58 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mn>0</mn></math>
+with the axis of rotation irrelevant. But similarly, rotation by
+<!-- l. 59 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>π</mi></math> around
+<!-- l. 59 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>u</mi></math> and
+<!-- l. 59 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow> <mo class='MathClass-bin' stretchy='false'>−</mo> <mi>u</mi></mrow></math> are the same
+rotation. Thus <!-- l. 60 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+can be modelled as the closed unit ball with antipodal points on the boundary identified, the real projective
+space <!-- l. 60 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>ℝ</mi><msup><mrow><mstyle mathvariant='normal'><mi>P</mi></mstyle></mrow><mrow><mn>3</mn></mrow></msup></mrow></math>.
+</p><!-- l. 62 --><p class='noindent'>In this model it is easy to understand the fundamental group. Take any closed loop in
+<!-- l. 63 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>. If it lies
+entirely in <!-- l. 64 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>B</mi><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-punc' stretchy='false'>,</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+then it can be contracted to a point. Otherwise it can be divided into a collection of segments
+<!-- l. 66 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>γ</mi></mrow><mrow><mi>i</mi></mrow></msub> <mo class='MathClass-punc' stretchy='false'>:</mo> <mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-punc' stretchy='false'>,</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>→</mo> <mi>B</mi><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-punc' stretchy='false'>,</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> with
+<!-- l. 66 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>γ</mi></mrow><mrow><mi>i</mi><mo class='MathClass-bin' stretchy='false'>+</mo><mn>1</mn></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-bin' stretchy='false'>±</mo><msub><mrow><mi>γ</mi></mrow><mrow><mi>i</mi></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>∈</mo> <mi mathvariant='italic'>∂B</mi><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-punc' stretchy='false'>,</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> and
+<!-- l. 66 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>γ</mi></mrow><mrow><mn>1</mn></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-bin' stretchy='false'>±</mo><msub><mrow><mi>γ</mi></mrow><mrow><mi>n</mi></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>∈</mo> <mi mathvariant='italic'>∂B</mi><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-punc' stretchy='false'>,</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>.
+These conditions ensure that the segments connect up to a loop in
+<!-- l. 67 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>ℝ</mi><msup><mrow><mstyle mathvariant='normal'><mi>P</mi></mstyle></mrow><mrow><mn>3</mn></mrow></msup></mrow></math>.
+We call the number of negative signs the index of the loop. If
+<!-- l. 69 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>γ</mi></mrow><mrow><mi>i</mi><mo class='MathClass-bin' stretchy='false'>+</mo><mn>1</mn></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <msub><mrow><mi>γ</mi></mrow><mrow><mi>i</mi></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> then it is possible to move
+this point into the interior of <!-- l. 69 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>B</mi><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-punc' stretchy='false'>,</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+                                                                                       
+
+                                                                                       
+and fuse these two segments together into a single segment. This doesn’t change the index of the loop.
+As an extreme case, if the index is zero, then we can move all the endpoints of the segments off
+<!-- l. 71 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi mathvariant='italic'>∂B</mi><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-punc' stretchy='false'>,</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> and
+contract the loop to a point. So without loss of generality, assume that all the signs are negatives.
+</p>
+<div class='center'>
+<!-- l. 73 --><p class='noindent'>
+</p><!-- l. 74 --><p class='noindent'><img alt='γγγγγγ112233((((((010101))))))  ' src='lie-groups0x.svg' />
+<img alt='γγγγ1213((((0011)))) = = γγ23(1(0))
+' src='lie-groups1x.svg' /></p></div>
+<!-- l. 125 --><p class='noindent'>If there is more than one segment, we can move
+<!-- l. 125 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>γ</mi></mrow><mrow><mn>1</mn></mrow></msub></math> and
+<!-- l. 125 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>γ</mi></mrow><mrow><mn>2</mn></mrow></msub></math> such that
+<!-- l. 125 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>γ</mi></mrow><mrow><mn>1</mn></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> and
+<!-- l. 125 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>γ</mi></mrow><mrow><mn>2</mn></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> remain fixed (so no other
+segments are affected) but <!-- l. 125 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>γ</mi></mrow><mrow><mn>2</mn></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+is moved to <!-- l. 125 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>γ</mi></mrow><mrow><mn>2</mn></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> (so
+necessarily <!-- l. 125 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>γ</mi></mrow><mrow><mn>1</mn></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>→</mo><mo class='MathClass-bin' stretchy='false'>−</mo><msub><mrow><mi>γ</mi></mrow><mrow><mn>2</mn></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>). Then
+<!-- l. 126 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>γ</mi></mrow><mrow><mn>2</mn></mrow></msub></math> can be contracted to the
+constant map <!-- l. 126 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>γ</mi></mrow><mrow><mn>1</mn></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-bin' stretchy='false'>−</mo><msub><mrow><mi>γ</mi></mrow><mrow><mn>2</mn></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-bin' stretchy='false'>−</mo><msub><mrow><mi>γ</mi></mrow><mrow><mn>2</mn></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>1</mn><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <msub><mrow><mi>γ</mi></mrow><mrow><mn>3</mn></mrow></msub><mo class='MathClass-open' stretchy='false'>(</mo><mn>0</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>. This means
+that we can eliminate <!-- l. 127 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>γ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
+                                                                                       
+
+                                                                                       
+and fuse <!-- l. 127 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>γ</mi></mrow><mrow><mn>1</mn></mrow></msub></math>
+and <!-- l. 127 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>γ</mi></mrow><mrow><mn>3</mn></mrow></msub></math>
+into a single segment. In particular, the index has decreased by two. This argument has
+not quite proved that the parity of the index (even or odd) is a homotopy invariant, since
+there is still the possibility that some other tricky operation can decrease the index by
+an odd amount. But it should convince you none-the-less that the fundamental group of
+<!-- l. 130 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>ℝ</mi><msup><mrow><mstyle mathvariant='normal'><mi>P</mi></mstyle></mrow><mrow><mn>3</mn></mrow></msup></mrow></math>, and
+hence <!-- l. 130 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>,
+is <!-- l. 130 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>ℤ</mi></mrow><mrow><mn>2</mn></mrow></msub></math>: any
+loop with an even number of segments can be contracted to a point, whereas any loop with an odd
+number of segments can be reduced to a diameter.
+</p><!-- l. 134 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='definition'><span class='titlemark'>3.1   </span> <a id='x1-70003.1'></a>Definition</h4>
+<div class='newtheorem'>
+<!-- l. 136 --><p class='noindent'><span class='head'>
+<a id='x1-7001r1'></a>
+<span class='cmbx-10x-x-109'>Definition 3.1.</span>  </span><span class='cite'>[<a href='#XWarner1983'>War83</a>, 3.1]</span><span class='cite'>[<a href='#XHall2015'>Hal15</a>, Definition 1.20]</span> <br class='newline' /><span class='cmti-10x-x-109'>A                        </span>Lie                            Group                          <span class='cmti-10x-x-109'>is                        a</span>
+<!-- l. 138 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>G</mi></math>
+<span class='cmti-10x-x-109'>manifold        with        a        group        structure        such        that        multiplication</span>
+<!-- l. 138 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>μ</mi> <mo class='MathClass-punc' stretchy='false'>:</mo> <mo class='MathClass-open' stretchy='false'>(</mo><mi>g</mi><mo class='MathClass-punc' stretchy='false'>,</mo><mi>h</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-rel' stretchy='false'>↦</mo><mi mathvariant='italic'>gh</mi></mrow></math>
+<span class='cmti-10x-x-109'>and                                                                                                     inversion</span>
+<!-- l. 138 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>ι</mi> <mo class='MathClass-punc' stretchy='false'>:</mo> <mi>g</mi><mo class='MathClass-rel' stretchy='false'>↦</mo><msup><mrow><mi>g</mi></mrow><mrow><mo class='MathClass-bin' stretchy='false'>−</mo><mn>1</mn></mrow></msup></mrow></math>
+<span class='cmti-10x-x-109'>are smooth.</span>
+</p>
+</div>
+<!-- l. 139 --><p class='noindent'>
+</p><!-- l. 141 --><p class='noindent'>Many familiar manifolds are also Lie groups in natural ways. For example, the reals
+<!-- l. 142 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>ℝ</mi></math>
+under addition, the multiplicative group of the complex numbers
+<!-- l. 142 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>ℂ</mi></mrow><mrow><mo class='MathClass-bin' stretchy='false'>×</mo></mrow></msup></math>, and the circle
+<!-- l. 142 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msup><mrow><mi>𝕊</mi></mrow><mrow><mn>1</mn></mrow></msup> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>{</mo><mi>z</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo> <msup><mrow><mi>ℂ</mi></mrow><mrow><mo class='MathClass-bin' stretchy='false'>×</mo></mrow></msup><mo class='MathClass-rel' stretchy='false'>∣</mo><mo class='MathClass-rel' stretchy='false'>|</mo><mi>z</mi><mo class='MathClass-rel' stretchy='false'>|</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mn>1</mn><mo class='MathClass-close' stretchy='false'>}</mo></mrow></math>. The product of two
+Lie groups is a Lie group, using the product manifold and product group structures. This gives us euclidean space
+<!-- l. 144 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>ℝ</mi></mrow><mrow><mi>n</mi></mrow></msup></math> with vector addition
+and the torus <!-- l. 144 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msup><mrow><mi>𝕋</mi></mrow><mrow><mi>n</mi></mrow></msup> <mo class='MathClass-rel' stretchy='false'>=</mo> <msup><mrow><mo class='MathClass-open' stretchy='false'>(</mo><msup><mrow><mi>𝕊</mi></mrow><mrow><mn>1</mn></mrow></msup><mo class='MathClass-close' stretchy='false'>)</mo></mrow><mrow><mi>n</mi></mrow></msup></mrow></math>
+as further examples.
+                                                                                       
+
+                                                                                       
+</p><!-- l. 146 --><p class='noindent'>Left and right actions. We can interchange left and right actions using inversion to make the opposite
+group. Convention is to work primarily with left actions. Hold off talking about general actions until
+quotients.
+</p><!-- l. 151 --><p class='noindent'>Many definition carry over naturally by requiring both a manifold-theory and a group-theory property.
+For example
+</p>
+<div class='newtheorem'>
+<!-- l. 153 --><p class='noindent'><span class='head'>
+<a id='x1-7002r2'></a>
+<span class='cmbx-10x-x-109'>Definition 3.2.</span>  </span><span class='cite'>[<a href='#XWarner1983'>War83</a>, 3.13]</span> <br class='newline' /><span class='cmti-10x-x-109'>A        </span>homomorphism         of         Lie         groups        <span class='cmti-10x-x-109'>is        a        smooth        map</span>
+<!-- l. 155 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>ϕ</mi> <mo class='MathClass-punc' stretchy='false'>:</mo> <mi>G</mi> <mo class='MathClass-rel' stretchy='false'>→</mo> <mi>H</mi></mrow></math>
+<span class='cmti-10x-x-109'>that   is   also   group   homomorphism.   If   it   is   also   a   diffeomorphism,   then   we   say</span>
+<!-- l. 156 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>ϕ</mi></math>
+<span class='cmti-10x-x-109'>is an </span>isomorphism of Lie groups<span class='cmti-10x-x-109'>.</span>
+</p>
+</div>
+<!-- l. 157 --><p class='noindent'> On the other hand, sometimes a different concept is more appropriate for Lie theory. In manifold
+theory one is mostly concerned with embedded submanifolds, while in Lie theory immersed
+submanifolds are more useful:
+</p>
+<div class='newtheorem'>
+<!-- l. 160 --><p class='noindent'><span class='head'>
+<a id='x1-7003r3'></a>
+<span class='cmbx-10x-x-109'>Definition 3.3.</span>  </span><span class='cite'>[<a href='#XWarner1983'>War83</a>, 3.17]</span>, contrast <span class='cite'>[<a href='#XFulton2004'>FH04</a>, <span class='tcrm-1095'>§</span>7.1]</span><br class='newline' /><span class='cmti-10x-x-109'>A                                                </span>Lie                                                       subgroup
+<!-- l. 162 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo class='MathClass-open' stretchy='false'>(</mo><mi>H</mi><mo class='MathClass-punc' stretchy='false'>,</mo><mi>φ</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+<span class='cmti-10x-x-109'>of                                  a                                  Lie                                  group</span>
+<!-- l. 162 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>G</mi></math>
+<span class='cmti-10x-x-109'>is                                  a                                  Lie                                  group</span>
+<!-- l. 162 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>H</mi></math>
+<span class='cmti-10x-x-109'>and                                            injective                                            immersion</span>
+<!-- l. 162 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>φ</mi> <mo class='MathClass-punc' stretchy='false'>:</mo> <mi>H</mi> <mo class='MathClass-rel' stretchy='false'>→</mo> <mi>G</mi></mrow></math>
+<span class='cmti-10x-x-109'>that    is    also    a    homomorphism.    It    is    called    a    </span>closed    Lie    subgroup    <span class='cmti-10x-x-109'>if</span>
+<!-- l. 163 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>φ</mi><mo class='MathClass-open' stretchy='false'>(</mo><mi>H</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+<span class='cmti-10x-x-109'>is further closed.</span>
+</p>
+                                                                                       
+
+                                                                                       
+</div>
+<!-- l. 164 --><p class='noindent'> An immersed manifold that is closed is an embedded submanifold.
+</p><!-- l. 167 --><p class='noindent'>TODO: What is the proper order of material? In particular, the order of introducing Lie algebras and
+subgroups. Presumably you want to introduce examples early, which are mostly subgroups. Do you
+introduce subgroups before the examples? Is it possible to introduce subgroups, quotients
+and covers without talking about the Lie algebra? Then introduce the Lie algebra and
+show how many of these it can grok. That is certainly a differential geometry supremacist
+approach.
+</p><!-- l. 175 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='examples'><span class='titlemark'>3.2   </span> <a id='x1-80003.2'></a>Examples</h4>
+<!-- l. 177 --><p class='noindent'>There are many interesting properties that Lie groups can possess, and we give a quick tour of them
+with examples.
+</p><!-- l. 179 --><p class='noindent'>All finite groups are also Lie groups using the discrete topology to make them
+<!-- l. 179 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mn>0</mn></math>-dimensional
+manifolds. These are not central examples of Lie groups, whose essential character
+is their ‘continuity’, and they could reasonably be excluded by definition. However
+we do not do so because they arise naturally. For example, we have seen that the
+<!-- l. 182 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> is the component of
+<!-- l. 182 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> that contains the
+identity. In fact <!-- l. 183 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+is the product of <!-- l. 183 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+and <!-- l. 183 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>C</mi></mrow><mrow><mn>2</mn></mrow></msub></math>
+the group with two elements. Generalising, the identity component
+<!-- l. 184 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>G</mi></mrow><mrow><mn>0</mn></mrow></msub></math> of a Lie group
+<!-- l. 184 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>G</mi></math> is a Lie group. To
+prove this, note that <!-- l. 185 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi mathvariant='italic'>II</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>I</mi></mrow></math>
+and <!-- l. 185 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msup><mrow><mi>I</mi></mrow><mrow><mo class='MathClass-bin' stretchy='false'>−</mo><mn>1</mn></mrow></msup> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>I</mi></mrow></math>, so the images of
+<!-- l. 185 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><msub><mrow><mi>G</mi></mrow><mrow><mn>0</mn></mrow></msub> <mo class='MathClass-bin' stretchy='false'>×</mo> <msub><mrow><mi>G</mi></mrow><mrow><mn>0</mn></mrow></msub></mrow></math> under multiplication
+and <!-- l. 185 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>G</mi></mrow><mrow><mn>0</mn></mrow></msub></math> under inversion
+are both contained in <!-- l. 185 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>G</mi></mrow><mrow><mn>0</mn></mrow></msub></math>.
+If <!-- l. 186 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>g</mi></math> belongs to another
+connected component <!-- l. 186 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>G</mi></mrow><mrow><mn>1</mn></mrow></msub></math> then
+multiplication with <!-- l. 186 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>g</mi></math> is a
+diffeomorphism between <!-- l. 186 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>G</mi></mrow><mrow><mn>0</mn></mrow></msub></math>
+and <!-- l. 186 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mi>G</mi></mrow><mrow><mn>1</mn></mrow></msub></math>. In
+this way, every Lie group with finitely many connected components is the product of its identity
+component and a finite group. For this reason we usually consider connected Lie groups of positive
+dimension.
+</p><!-- l. 190 --><p class='noindent'>Perhaps the most important category of Lie group are the matrix Lie groups <span class='cite'>[<a href='#XHall2015'>Hal15</a>, Definition 1.4]</span>. First we have the
+                                                                                       
+
+                                                                                       
+general linear group <!-- l. 191 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>GL</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℂ</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>,
+the set of <!-- l. 191 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>n</mi> <mo class='MathClass-bin' stretchy='false'>×</mo> <mi>n</mi></mrow></math>
+invertible matrices with complex entries. This can be considered as an open subset of
+<!-- l. 192 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>ℂ</mi></mrow><mrow><msup><mrow><mi>n</mi></mrow><mrow><mn>2</mn></mrow></msup>
+    </mrow></msup></math>, so it is a manifold.
+And just as for <!-- l. 192 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+the group operation is polynomial and group inversion is rational without zeroes of the
+denominator, hence both are smooth. A matrix group is any closed Lie subgroup of
+<!-- l. 193 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>GL</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℂ</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>. As a
+special case we have the real matrix groups, which are subsets of the (real) matrix group
+<!-- l. 194 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>GL</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℝ</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>.
+</p><!-- l. 196 --><p class='noindent'>We have already seen the real matrix groups <!-- l. 196 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+and <!-- l. 196 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>.
+As the notation suggests, these belong to families indexed by the size of the matrices. We have the
+following families of matrix groups
+</p><!-- tex4ht:inline --><!-- l. 206 --><math display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mtable class='align-star' columnalign='left' displaystyle='true'>
+                          <mtr><mtd class='align-odd' columnalign='right'><mstyle mathvariant='normal'><mi>SL</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℂ</mi><mo class='MathClass-close' stretchy='false'>)</mo></mtd>                          <mtd class='align-even'> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>{</mo><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>GL</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℂ</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-rel' stretchy='false'>∣</mo><mtext class='qopname'>det</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mn>1</mn><mo class='MathClass-close' stretchy='false'>}</mo><mspace width='2em'></mspace></mtd>                          <mtd class='align-label' columnalign='right'></mtd>                          <mtd class='align-label'>
+                          <mspace width='2em'></mspace></mtd></mtr><mtr><mtd class='align-odd' columnalign='right'><mstyle mathvariant='normal'><mi>SL</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℝ</mi><mo class='MathClass-close' stretchy='false'>)</mo></mtd>                          <mtd class='align-even'> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>{</mo><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>GL</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℝ</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-rel' stretchy='false'>∣</mo><mtext class='qopname'>det</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mn>1</mn><mo class='MathClass-close' stretchy='false'>}</mo><mspace width='2em'></mspace></mtd>                          <mtd class='align-label' columnalign='right'></mtd>                          <mtd class='align-label'>
+                          <mspace width='2em'></mspace></mtd></mtr><mtr><mtd class='align-odd' columnalign='right'><mstyle mathvariant='normal'><mi>U</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo></mtd>                             <mtd class='align-even'> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>{</mo><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>GL</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℂ</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-rel' stretchy='false'>∣</mo><msup><mrow><mi>Ā</mi></mrow><mrow><mi>T</mi> </mrow></msup><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>I</mi><mo class='MathClass-close' stretchy='false'>}</mo><mspace width='2em'></mspace></mtd>                          <mtd class='align-label' columnalign='right'></mtd>                          <mtd class='align-label'>
+                          <mspace width='2em'></mspace></mtd></mtr><mtr><mtd class='align-odd' columnalign='right'><mstyle mathvariant='normal'><mi>SU</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo></mtd>                            <mtd class='align-even'> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>{</mo><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>U</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-rel' stretchy='false'>∣</mo><mtext class='qopname'>det</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mn>1</mn><mo class='MathClass-close' stretchy='false'>}</mo><mspace width='2em'></mspace></mtd>                              <mtd class='align-label' columnalign='right'></mtd>                          <mtd class='align-label'>
+                          <mspace width='2em'></mspace></mtd></mtr><mtr><mtd class='align-odd' columnalign='right'><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo></mtd>                             <mtd class='align-even'> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>{</mo><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>GL</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℝ</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-rel' stretchy='false'>∣</mo><msup><mrow><mi>A</mi></mrow><mrow><mi>T</mi> </mrow></msup><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>I</mi><mo class='MathClass-close' stretchy='false'>}</mo><mspace width='2em'></mspace></mtd>                          <mtd class='align-label' columnalign='right'></mtd>                          <mtd class='align-label'>
+                          <mspace width='2em'></mspace></mtd></mtr><mtr><mtd class='align-odd' columnalign='right'><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo></mtd>                            <mtd class='align-even'> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>{</mo><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-rel' stretchy='false'>∣</mo><mtext class='qopname'>det</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mn>1</mn><mo class='MathClass-close' stretchy='false'>}</mo><mo class='MathClass-punc' stretchy='false'>.</mo><mspace width='2em'></mspace></mtd>                             <mtd class='align-label' columnalign='right'></mtd>                          <mtd class='align-label'>
+<mspace width='2em'></mspace></mtd></mtr></mtable></math>
+<!-- l. 207 --><p class='noindent'>If we give <!-- l. 207 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>ℂ</mi></mrow><mrow><mi>n</mi></mrow></msup></math> the standard
+inner product <!-- l. 207 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo class='MathClass-open' stretchy='false'>⟨</mo><mi>v</mi><mo class='MathClass-punc' stretchy='false'>,</mo><mi>w</mi><mo class='MathClass-close' stretchy='false'>⟩</mo> <mo class='MathClass-rel' stretchy='false'>=</mo><msup><mrow> <mover accent='true'><mrow><mi>v</mi></mrow><mo accent='true'>¯</mo></mover></mrow><mrow><mi>T</mi> </mrow></msup><mi>w</mi></mrow></math>
+then unitary matrices are exactly the linear transformations that preserve it. In this way the
+orthogonal groups are the real counterparts to the unitary groups. The following trick shows that
+<!-- l. 209 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>U</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> is compact: As a
+vector in <!-- l. 209 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>ℂ</mi></mrow><mrow><msup><mrow><mi>n</mi></mrow><mrow><mn>2</mn></mrow></msup>
+    </mrow></msup></math> the square
+of the norm of <!-- l. 209 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>U</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+is <!-- l. 209 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mtext class='qopname'>tr</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mo class='MathClass-open' stretchy='false'>(</mo><msup><mrow><mi>Ā</mi></mrow><mrow><mi>T</mi> </mrow></msup><mi>A</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-rel' stretchy='false'>=</mo><mtext class='qopname'> tr</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mi>I</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi>n</mi></mrow></math>, thus
+<!-- l. 209 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>U</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> is bounded. Thus all
+closed subsets, such as <!-- l. 210 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>SU</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-punc' stretchy='false'>,</mo><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-punc' stretchy='false'>,</mo><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>,
+are also compact.
+</p><!-- l. 212 --><p class='noindent'>There are also the symplectic groups. Like <!-- l. 213 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mstyle mathvariant='normal'><mi>U</mi></mstyle></math>
+and <!-- l. 213 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mstyle mathvariant='normal'><mi>O</mi></mstyle></math>
+                                                                                       
+
+                                                                                       
+they preserve a bilinear form. Let </p><table class='equation-star'><tr><td>
+<!-- l. 215 --><math class='equation' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow>
+<mi mathvariant='normal'>Ω</mi> <mo class='MathClass-rel' stretchy='false'>=</mo>  <mrow><mo fence='true' form='prefix'> (</mo><mrow><mtable align='axis' class='array' columnlines='none none none none none none none none none' displaystyle='true' equalcolumns='false' equalrows='false' style=''> <mtr class='array-row'><mtd class='array-td' columnalign='center'>   <mn>0</mn>   </mtd><mtd class='array-td' columnalign='center'> <msub><mrow><mi>I</mi></mrow><mrow><mi>n</mi></mrow></msub> </mtd>
+</mtr> <mtr class='array-row'><mtd class='array-td' columnalign='center'> <mo class='MathClass-bin' stretchy='false'>−</mo><msub><mrow><mi>I</mi></mrow><mrow><mi>n</mi></mrow></msub> </mtd><mtd class='array-td' columnalign='center'>  <mn>0</mn>  </mtd></mtr>
+<!-- *\c@MaxMatrixCols c --></mtable>                                                                                                                          </mrow><mo fence='true' form='postfix'>)</mo></mrow>
+</mrow></math></td></tr></table>
+<!-- l. 220 --><p class='noindent'>be a <!-- l. 220 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mn>2</mn><mi>n</mi> <mo class='MathClass-bin' stretchy='false'>×</mo> <mn>2</mn><mi>n</mi></mrow></math>
+matrix in block form and define
+</p><!-- tex4ht:inline --><!-- l. 225 --><math display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mtable class='align-star' columnalign='left' displaystyle='true'>
+                         <mtr><mtd class='align-odd' columnalign='right'><mstyle mathvariant='normal'><mi>Sp</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>2</mn><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℂ</mi><mo class='MathClass-close' stretchy='false'>)</mo></mtd>                         <mtd class='align-even'> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>{</mo><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>GL</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>2</mn><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℂ</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-rel' stretchy='false'>∣</mo><msup><mrow><mi>A</mi></mrow><mrow><mi>T</mi> </mrow></msup><mi mathvariant='normal'>Ω</mi><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi mathvariant='normal'>Ω</mi><mo class='MathClass-close' stretchy='false'>}</mo><mspace width='2em'></mspace></mtd>                         <mtd class='align-label' columnalign='right'></mtd>                         <mtd class='align-label'>
+                         <mspace width='2em'></mspace></mtd></mtr><mtr><mtd class='align-odd' columnalign='right'><mstyle mathvariant='normal'><mi>Sp</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>2</mn><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℝ</mi><mo class='MathClass-close' stretchy='false'>)</mo></mtd>                         <mtd class='align-even'> <mo class='MathClass-rel' stretchy='false'>=</mo> <mo class='MathClass-open' stretchy='false'>{</mo><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>∈</mo><mstyle mathvariant='normal'><mi>GL</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>2</mn><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℝ</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-rel' stretchy='false'>∣</mo><msup><mrow><mi>A</mi></mrow><mrow><mi>T</mi> </mrow></msup><mi mathvariant='normal'>Ω</mi><mi>A</mi> <mo class='MathClass-rel' stretchy='false'>=</mo> <mi mathvariant='normal'>Ω</mi><mo class='MathClass-close' stretchy='false'>}</mo><mspace width='2em'></mspace></mtd>                         <mtd class='align-label' columnalign='right'></mtd>                         <mtd class='align-label'>
+                         <mspace width='2em'></mspace></mtd></mtr><mtr><mtd class='align-odd' columnalign='right'><mstyle mathvariant='normal'><mi>Sp</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo></mtd>                             <mtd class='align-even'> <mo class='MathClass-rel' stretchy='false'>=</mo> <mstyle mathvariant='normal'><mi>Sp</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>2</mn><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℂ</mi><mo class='MathClass-close' stretchy='false'>)</mo> <mo class='MathClass-bin' stretchy='false'>∩</mo><mstyle mathvariant='normal'><mi>U</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>2</mn><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-punc' stretchy='false'>.</mo><mspace width='2em'></mspace></mtd>                                   <mtd class='align-label' columnalign='right'></mtd>                         <mtd class='align-label'>
+<mspace width='2em'></mspace></mtd></mtr></mtable></math>
+<!-- l. 226 --><p class='noindent'>The notation around <!-- l. 226 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>Sp</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+is a bit confusing, but the point is to make a compact group. Indeed
+<!-- l. 227 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>Sp</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> is
+called the compact symplectic group.
+</p><!-- l. 229 --><p class='noindent'>Together, these examples are called the classical groups and they will figure prominently in
+the classification of Lie groups. There are of course many other matrix Lie groups. One
+could consider groups of matrices preserving other bilinear forms. For a concrete example,
+the subset of diagonal matrices of any of the classical groups is again a matrix group. In
+<!-- l. 233 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>U</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> the diagonal
+subgroup is <!-- l. 233 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo class='MathClass-open' stretchy='false'>{</mo><mtext class='qopname'>diag</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mo class='MathClass-open' stretchy='false'>(</mo><msub><mrow><mi>λ</mi></mrow><mrow><mn>1</mn></mrow></msub><mo class='MathClass-punc' stretchy='false'>,</mo><mtext class='qopname'>…</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><mo class='MathClass-punc' stretchy='false'>,</mo><msub><mrow><mi>λ</mi></mrow><mrow><mi>n</mi></mrow></msub><mo class='MathClass-close' stretchy='false'>)</mo><mo class='MathClass-close' stretchy='false'>}</mo></mrow></math> with
+<!-- l. 233 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mo class='MathClass-rel' stretchy='false'>|</mo><msub><mrow><mi>λ</mi></mrow><mrow><mi>i</mi></mrow></msub><mo class='MathClass-rel' stretchy='false'>|</mo> <mo class='MathClass-rel' stretchy='false'>=</mo> <mn>1</mn></mrow></math>. We see that this
+is isomorphic to <!-- l. 234 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>𝕋</mi></mrow><mrow><mi>n</mi></mrow></msup></math>.
+The standard terminology is that a Lie group that is isomorphic to a matrix group is called a linear group. In
+other words, <!-- l. 236 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>𝕋</mi></mrow><mrow><mi>n</mi></mrow></msup></math>
+which is defined as the product of circles, is a linear group but not a matrix group. Similarly
+                                                                                       
+
+                                                                                       
+<!-- l. 237 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>ℝ</mi></math> is a
+linear group because we can consider real matrices of the form </p><table class='equation-star'><tr><td>
+<!-- l. 238 --><math class='equation' display='block' xmlns='http://www.w3.org/1998/Math/MathML'><mrow>
+ <mrow><mo fence='true' form='prefix'> (</mo><mrow><mtable align='axis' class='array' columnlines='none none none none none none none none none' displaystyle='true' equalcolumns='false' equalrows='false' style=''> <mtr class='array-row'><mtd class='array-td' columnalign='center'> <mn>1</mn> </mtd><mtd class='array-td' columnalign='center'> <mi>a</mi> </mtd></mtr> <mtr class='array-row'><mtd class='array-td' columnalign='center'> <mn>0</mn> </mtd> <mtd class='array-td' columnalign='center'> <mn>1</mn></mtd></mtr>
+<!-- *\c@MaxMatrixCols c --></mtable>                                                                                     </mrow><mo fence='true' form='postfix'>)</mo></mrow><mo class='MathClass-punc' stretchy='false'>.</mo>
+</mrow></math></td></tr></table>
+<!-- l. 244 --><p class='noindent'>The result of multiplying two such matrices is the add the off-diagonal term.
+</p><!-- l. 246 --><p class='noindent'>TODO: Complex Lie groups. <!-- l. 246 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>SL</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℂ</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+is a complex Lie group but <!-- l. 246 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>U</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mi>n</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+is not. A similar direction that we will not explore is linear algebraic groups. These are matrix groups
+whose defining equations are polynomial. This means that they can be defined over any field, not just
+<!-- l. 249 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>ℂ</mi></math> and
+<!-- l. 249 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>ℝ</mi></math>.
+</p><!-- l. 252 --><p class='noindent'>As in group theory, we have abelian and non-abelian groups. Abelian Lie groups include
+<!-- l. 253 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>ℝ</mi></mrow><mrow><mi>n</mi></mrow></msup></math> and
+<!-- l. 253 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msup><mrow><mi>𝕋</mi></mrow><mrow><mi>n</mi></mrow></msup></math> and
+<!-- l. 253 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>O</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> and
+<!-- l. 253 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mstyle mathvariant='normal'><mi>SO</mi></mstyle><mo class='MathClass-open' stretchy='false'>(</mo><mn>3</mn><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math> are
+examples of non-abelian groups.
+</p><!-- l. 265 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='subgroups'><span class='titlemark'>3.3   </span> <a id='x1-90003.3'></a>Subgroups</h4>
+<!-- l. 268 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='quotients'><span class='titlemark'>3.4   </span> <a id='x1-100003.4'></a>Quotients</h4>
+                                                                                       
+
+                                                                                       
+<!-- l. 271 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='covers'><span class='titlemark'>3.5   </span> <a id='x1-110003.5'></a>Covers</h4>
+<!-- l. 274 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='mauercartan-forms'><span class='titlemark'>3.6   </span> <a id='x1-120003.6'></a>Mauer-Cartan forms</h4>
+<!-- l. 275 --><p class='noindent'>Should we have such a section? Sharpe and Ivey has it, but I don’t think Warner puts as much
+emphasis on it.
+</p><!-- l. 278 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='simple-lie-groups'><span class='titlemark'>3.7   </span> <a id='x1-130003.7'></a>Simple Lie groups</h4>
+<!-- l. 279 --><p class='noindent'>We should give a refined version of the classification problem: to find simply-connected simple Lie
+groups.
+                                                                                       
+
+                                                                                       
+                                                                                       
+
+                                                                                       
+                                                                                       
+
+                                                                                       
+</p>
+<h3 class='sectionHead' id='lie-algebra'><span class='titlemark'>4   </span> <a id='x1-140004'></a>Lie algebra</h3>
+<!-- l. 3 --><p class='noindent'>TODO: maybe the angle here should be that Lie groups are homogeneous manifolds, so it makes sense to
+focus on neighbourhoods of the identity. Maybe the result that a neighbourhood of the identity generates a
+connected Lie group <span class='cite'>[<a href='#XWarner1983'>War83</a>, 3.18]</span>. Then talk about the exponential map which is a local diffeomorphism
+from <!-- l. 5 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>𝔤</mi></math> to
+<!-- l. 5 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>G</mi></math> at
+<!-- l. 5 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>e</mi></math>. This
+frames the section: we have the internal generation of a Lie group, how do we externally generate it
+from the tangent space?
+</p><!-- l. 8 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='lie-bracket'><span class='titlemark'>4.1   </span> <a id='x1-150004.1'></a>Lie Bracket</h4>
+<!-- l. 9 --><p class='noindent'>Lie bracket coming from the adjoint action. There are lots of names for conjugation, eg the power notation, Sharpe
+uses <!-- l. 10 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mstyle mathvariant='bold'><mi>Ad</mi></mstyle></math>, Warner
+<!-- l. 10 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>a</mi></math>. I think a two letter
+operator, eg <!-- l. 10 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mtext class='qopname'>Cn(g)</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --></mrow></math> would be
+best. Wikipedia uses <!-- l. 10 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi mathvariant='normal'>Ψ</mi></math>.
+There’s also the question of <!-- l. 10 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mtext class='qopname'>ad</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mo class='MathClass-open' stretchy='false'>(</mo><mi>x</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+or <!-- l. 10 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mtext class='qopname'>ad</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --></mrow><mrow><mi>x</mi></mrow></msub></math>. I
+think this one shows most clearly how the bracket is encodes some infinitesimal information of the
+group operation.
+</p><!-- l. 13 --><p class='noindent'>This is Lie bracket of left-invariant vector fields.
+</p><!-- l. 16 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='examples1'><span class='titlemark'>4.2   </span> <a id='x1-160004.2'></a>Examples</h4>
+<!-- l. 17 --><p class='noindent'>Matrix vs abstract Lie algebras Bracket of matrix Lie algebras is commutator
+</p><!-- l. 20 --><p class='noindent'>Lie algebras of all the classical groups.
+</p><!-- l. 23 --><p class='noindent'>
+</p>
+                                                                                       
+
+                                                                                       
+<h4 class='subsectionHead' id='correspondences'><span class='titlemark'>4.3   </span> <a id='x1-170004.3'></a>Correspondences</h4>
+<!-- l. 25 --><p class='noindent'>Stuff like Lie group homomorphisms inducing Lie algebra homomorphisms. ideals and subalgebras
+</p><!-- l. 28 --><p class='noindent'>I found this pdf <a class='url' href='https://www.cis.upenn.edu/~cis6100/cis610-15-sl17.pdf'><span class='cmtt-10x-x-109'>https://www.cis.upenn.edu/~cis6100/cis610-15-sl17.pdf</span></a> that connects metrics
+on the Lie group with inner products on the Lie algebra.
+</p><!-- l. 31 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='ados-theorem'><span class='titlemark'>4.4   </span> <a id='x1-180004.4'></a>Ado’s theorem</h4>
+<!-- l. 32 --><p class='noindent'><a class='url' href='https://terrytao.wordpress.com/2011/05/10/ados-theorem/'><span class='cmtt-10x-x-109'>https://terrytao.wordpress.com/2011/05/10/ados-theorem/</span></a> This seems elementary, and
+introduces all the important classes of Lie algebras: sovlable, nilpotent, etc. But it defines complex Lie
+algebras at the outset? Maybe we already need to consider real vs complex Lie algebras,
+complexifications, etc.
+</p><!-- l. 35 --><p class='noindent'>Maybe we only need a weaker version, that all simple Lie algebras are matrix? Indeed, the adjoint
+representation works for centerless Lie algebras.
+                                                                                       
+
+                                                                                       
+                                                                                       
+
+                                                                                       
+                                                                                       
+
+                                                                                       
+</p>
+<h3 class='sectionHead' id='classification-of-lie-algebras'><span class='titlemark'>5   </span> <a id='x1-190005'></a>Classification of Lie algebras</h3>
+<!-- l. 5 --><p class='noindent'>TODO: make sections.
+</p><!-- l. 7 --><p class='noindent'>I would like to gather up at the start all the structure that we need. I am thinking here in particular of
+inner products and Weyl reflections.
+</p><!-- l. 9 --><p class='noindent'>The introduction of <a class='url' href='https://terrytao.wordpress.com/2013/04/27/notes-on-the-classification-of-complex-lie-algebras/'><span class='cmtt-10x-x-109'>https://terrytao.wordpress.com/2013/04/27/notes-on-the-classification-of-complex-lie-algebras/</span></a>
+is nice.
+</p><!-- l. 11 --><p class='noindent'>From <a class='url' href='https://en.wikipedia.org/wiki/Killing_form'><span class='cmtt-10x-x-109'>https://en.wikipedia.org/wiki/Killing_form</span></a> there seems to be a close connection between
+the Killing form and decompositions of Lie algebras: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>On a simple Lie algebra any invariant symmetric bilinear form is a scalar multiple of the
+     Killing form.
+     </li>
+     <li class='itemize'>The Killing form is also invariant under automorphisms of the Lie algebra
+     </li>
+     <li class='itemize'>The Cartan criterion states that a Lie algebra is semisimple if and only if the Killing form
+     is non-degenerate.
+     </li>
+     <li class='itemize'>The Killing form of a nilpotent Lie algebra is identically zero.
+     </li>
+     <li class='itemize'>Ideals that intersect only trivially are orthogonal.</li></ul>
+<!-- l. 19 --><p class='noindent'>This paper <a class='url' href='https://math.uchicago.edu/~may/REU2012/REUPapers/Bosshardt.pdf'><span class='cmtt-10x-x-109'>https://math.uchicago.edu/~may/REU2012/REUPapers/Bosshardt.pdf</span></a> from Uchicago
+undergrad summer projects 2012 seems to go hard on the Killing form.
+</p><!-- l. 21 --><p class='noindent'>If we are focused on simple Lie algebras, then can we avoid the other types?
+</p><!-- l. 23 --><p class='noindent'>I don’t want to build representation theory. I think we only really need the adjoint representation and
+<!-- l. 24 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi mathvariant='italic'>𝔰𝔩</mi><mo class='MathClass-open' stretchy='false'>(</mo><mn>2</mn><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℂ</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>-representations.
+Maybe we can understand them as a special type of subspace.
+                                                                                       
+
+                                                                                       
+</p><!-- l. 28 --><p class='noindent'>
+</p>
+<h4 class='subsectionHead' id='cartan-subalgebra'><span class='titlemark'>5.1   </span> <a id='x1-200005.1'></a>Cartan subalgebra</h4>
+<!-- l. 29 --><p class='noindent'>A point of difficulty seems to be Cartan subalgebras. In fact there are several, somewhat incompatible
+definitions in the literature (in different cases) to suit different circumstances. Hall takes the simplest
+definition: a maximal commuting subalgebra of diagonalizable elements. This immediately gives you a
+root space decomposition, commuting implies simultaneously diagonalizable. The existence is rather
+easy too, but only because he begins with a real compact form for the complex semisimple
+algebra. FH takes the same definition, but in Appendix D proves existence through regular
+elements.
+</p><!-- l. 36 --><p class='noindent'>Knapp takes a more principled approach, asking what we should require of a subalgebra to get a
+decomposition like we see in the standard examples, p83. It takes the more general starting point of a
+nilpotent subalgebra h. Not all of them lead to a really nice decomposition, but somehow maximal ones
+do, and these we call Cartan subalgebras. The drawback is that we don’t have diagonalizability at the
+start, so we have to work with generalised eigenspaces, see Prop 2.5 p88. Here too the existence relies
+on regular elements Theorem 2.9.
+</p><!-- l. 42 --><p class='noindent'>Knapp Chapter 4 comes back to Hall’s point: Cor 4.26 a compact Lie group has negative definite
+Killing form. Prop 4.27, gives an argument for the converse!
+</p><!-- l. 44 --><p class='noindent'>What drew me to Knapp though was the discussion of real simple Lie algebras. In particular, how
+complex Lie algebras can arise from real ones. The two extremes are the split real form and the
+compact real form. These are constructed explicitly Cor 6.10 and Thm 6.11, but they require
+the root decomposition. Other real forms (and these ones too) are described by a Cartan
+involution. It is a vector space sum on which the Killing form is resp pos and neg definite (6.26)
+and the brackets are behaved (6.24). Perhaps this could be the basis of a direct proof of a
+compact real form. After some googling, this was suggested by Cartan 1929 to simplify the
+proof, and there’s a paper by Richardson (?) that carries it out. But it’s not as simple as it
+sounds.
+</p><!-- l. 54 --><p class='noindent'>Another thing to consider would be to only classify compact lie groups. This has the advantage that
+then the compact real form is a natural part of the set-up. You get basically the same list at the end. It
+has most of the features you want to consider. And then maybe you can carry the classification all the
+way back to the level of real Lie groups, without so much of the messy involution stuff at the end. Go
+deeper on compact Lie groups; apparently their universal covers are compact, you can understand the
+quotient theory well. It does feel like a limitation, when we are so close to getting all complex
+semisimple Lie algebras.
+                                                                                       
+
+                                                                                       
+                                                                                       
+
+                                                                                       
+</p>
+<h3 class='likesectionHead' id='references'><a id='x1-21000'></a>References</h3>
+<!-- l. 1 --><p class='noindent'>
+        </p><div class='thebibliography'>
+        <p class='bibitem'><span class='biblabel'>
+ [FH04] <span class='bibsp'>   </span></span><a id='XFulton2004'></a>William Fulton and Joe Harris.  <span class='cmti-10x-x-109'>Representation Theory</span>, volume 129 of <span class='cmti-10x-x-109'>Graduate
+        Texts in Mathematics</span>. Springer New York, New York, NY, 2004.
+        </p>
+        <p class='bibitem'><span class='biblabel'>
+ [Hal15] <span class='bibsp'>   </span></span><a id='XHall2015'></a>Brian C. Hall.   <span class='cmti-10x-x-109'>Lie Groups, Lie Algebras, and Representations: An Elementary
+        Introduction</span>, volume 222 of <span class='cmti-10x-x-109'>Graduate Texts in Mathematics</span>.  Springer International
+        Publishing, Cham, 2015.
+        </p>
+        <p class='bibitem'><span class='biblabel'>
+ [IL]    <span class='bibsp'>   </span></span><a id='XIvey'></a>Thomas A Ivey and J M Landsberg. <span class='cmti-10x-x-109'>Cartan for Beginners: Differential Geometry
+        via Moving Frames and Exterior Differential Systems</span>.
+        </p>
+        <p class='bibitem'><span class='biblabel'>
+ [Sha97] <span class='bibsp'>   </span></span><a id='XSharpe1997'></a>R. W. Sharpe. <span class='cmti-10x-x-109'>Differential Geometry: Cartan’s Generalization of Klein’s Erlangen
+        Program</span>. Number 166 in Graduate Texts in Mathematics. Springer, New York, 1997.
+        </p>
+        <p class='bibitem'><span class='biblabel'>
+ [War83]<span class='bibsp'>   </span></span><a id='XWarner1983'></a>Frank W.  Warner.    <span class='cmti-10x-x-109'>Foundations  of  Differentiable  Manifolds  and  Lie  Groups</span>,
+        volume 94 of <span class='cmti-10x-x-109'>Graduate Texts in Mathematics</span>.  Springer New York, New York, NY,
+        1983.
+</p>
+        </div>
+ 
+</body> 
+</html>
