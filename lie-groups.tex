@@ -1,5 +1,4 @@
 \documentclass[twoside,11pt,a4paper,leqno]{article}
-
 % leqno put equations numbers on the left. this is not typical, but makes them easier to find because I number them in sequence with theorems.
 
 % \usepackage[utf8]{inputenc} % should be default anyhow
@@ -20,6 +19,7 @@
 % \usepackage{verbatim}
 % \usepackage{longtable}
 \usepackage{tikz}
+\usepackage{tikz-cd}
 \usepackage{mathrsfs} % \mathscr{...}: super-cursive letters
 % \usepackage{wasysym} % \smiley{}
 % \usepackage{framed}
@@ -68,7 +68,7 @@
 \theoremstyle{plain}
 % \newtheorem{Def}{Definition}[]
 \newtheorem{definition}[equation]{Definition}
-%\newtheorem{Prop}[Def]{Proposition.}
+\newtheorem{Prop}[equation]{Proposition.}
 \newtheorem{theorem}[equation]{Theorem}
 \newtheorem{lemma}[equation]{Lemma}
 \newtheorem{corollary}[equation]{Corollary}

@@ -46,6 +46,14 @@ By \cite[Theorem~1.2.11]{Sharpe1997} proper submanifolds are automatically embed
 The standard example of a regular submanifold that is not regular is $(0,1) \subset \bbR$.
 We see that a sequence in $N$ may converge to a point of $M\setminus N$.
 
+Here I am adding two statements from Warner on submanifolds whose analogue statements are proven for Lie subgroups: 
+\begin{theorem}\label{thm:submanifolds}
+\textup{\cite[1.33]{Warner1983}}
+\begin{enumerate}
+\item Let $M$ be a differentiable manifold and $A$ a subset of $M$. Fix a topology on $A$. Then there is at most one differentiable structure on $A$ s.t. $(A,\iota)$ is a submanifold of $M$, where $\iota$ is the inclusion map.
+\item Again let $A$ be a subset of $M$. If in the relative topology, $A$ has a differentiable structure s.t. $(A,\iota)$ is a submanifold of $M$, then $A$ has a unique manifold structure (meaning a unique manifold topology and a unique differentiable structure) such that $(A,\iota)$ is a submanifold of $M$.
+\end{enumerate}
+\end{theorem}
 
 \subsection{Distributions}
 
@@ -101,6 +109,11 @@ TODO: Sharpe does foliations in general, and the argument look a lot like the ar
 I think it might be advantageous to follow Sharpe here and separate what is truly manifold theory from Lie theory.
 
 
+I don't know where else to put this theorem:
+\begin{theorem}\label{theorem:cinfty}
+\textup{\cite[1.62]{Warner1983}}\\
+Suppose that $\psi \colon N \to M^d$ is $C^{\infty}$, that $(P^c,\varphi)$ is an integral manifold of an involutive distribution $\mathcal{D}$ on $M$, and that $\psi$ factors through $(P,\varphi)$, that is, $\psi[N] \subset \varphi[P]$. Let $\psi_0 \colon N \to P$ be the (unique) mapping such that $\varphi\colon \psi_0 = \psi$. Then $\psi_0$ is continuous and therefore $C^{\infty}$.
+\end{theorem}
 
 \subsection{Eigenvalues and Weights}
 

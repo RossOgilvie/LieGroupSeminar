@@ -1,4 +1,4 @@
-%!TEX root = lie-groups
+% !TEX root = lie-groups.tex
 \section{Lie Groups}
 
 Historically and in practice, Lie groups arise first as the study of the transformation of geometric objects.
@@ -264,7 +264,48 @@ Abelian Lie groups include $\bbR^n$ and $\bbT^n$ and $\lgO(3)$ and $\lgSO(3)$ ar
 
 
 \subsection{Subgroups}
-Test  2
+First, we remind ourselves of Definition 3.3 to see what a Lie subgroup is. 
+First we start with a Proposition that is used quite often:
+\begin{Prop}
+\textup{\cite[3.18]{Warner1983}}\\
+Let $G$ be a connected Lie group, and let $U$ be a neighborhood of the identity $e$. Then 
+\begin{align*}
+G= \bigcup_{n=1}^{\infty} U^n
+\end{align*}
+where $U^n$ consists of all $n$-fold products of elements of $U$.
+\end{Prop}
+
+\begin{proof}
+We will outline the idea of the proof. We consider an open subset $V \subset U$ s.t. $V=V^{-1}$, for example choosing $V = U\cap U^{-1}$. Then we define 
+\begin{align*}
+H = \bigcup_{n=1}^{\infty} V^n \subset \bigcup_{n=1}^{\infty} U^n.
+\end{align*}
+By choice of $V$, $H$ satisfies the subgroup condition. Further $H$ is an open subset of $G$ as a union of open sets. Now we want to prove that it is also closed:\\
+This part is quite strange to me and I don't get it.
+\end{proof}
+Next we have a theorem considering when an abstract subgroup of a Lie group is also a Lie subgroup. This is an analogon of \ref{thm:submanifolds}
+\begin{theorem}
+\textup{\cite[3.20]{Warner1983}}\\
+If an abstract subgroup $A$ of a Lie group $G$ has a manifold structure which makes $(A, \iota)$ into a submanifold of $G$, where $\iota$ is the inclusion map, then it has a unique manifold structure, and in this manifold structrue, $A$ is a Lie group and hence, $(A, \iota)$, is a Lie subgroup of $G$.
+\end{theorem}
+
+\begin{proof}
+Step 1: Proving that if we have such a manifold structure, then $A$ is a Lie group.
+1.1: We define $\mathcal{D}$ to be the distribution on $G$ determined by left translations of the tangent space to $A$ at the identity $e$. Then prove that $(A,\iota)$ is an integral manifold through $\mathcal{D}$ at $e$. This part of the proof is weird. I'm not quite sure how to write it out. 
+
+1.2:
+After that we know that for any $\sigma \in G$, $(A,l_{\sigma})$ is an integral manifold of $\mathcal{D}$ through $\sigma$. This we call being an involutive distribution. Now the map $\beta \colon A\ \times A \to G$ sending $(\sigma,\tau) \to \varphi(\sigma)\varphi(\tau)^{-1}$ is $C^{\infty}$ (Why ?) giving us the following diagram 
+TODO: Draw diagram. \\
+Since $(H,\varphi)$ is an involutive distribution on $G$, we can use \ref{theorem:cinfty} to see that $\alpha$ is $C^{\infty}$. Therefore $(H,\varphi)$ is a Lie subgroup of $G$. 
+
+
+2. We show uniqueness: Assume that $(K,\psi)$ is another connected Lie subgroup of $G$. Then by step 1, $(K,\psi)$ is also an integral manifold of $\mathcal{D}$ through $e$. Since $(H,\varphi)$ is maximal, we get $\psi[K] \subset \varphi[H]$ and there exists a uniquely determined map $\eta$ s.t. $\varphi \circ \eta = \psi$. Again by Theorem \ref{theorem:cinfty}, $\eta$ is smooth and an injective Lie group homomorphism. It is non-singular everywhere and a diffeomorphism on a neighbourhood of the identity. By the proposition above, the subgroups $(K,\psi)$ and $(H,\varphi)$ are equivalent. This proves uniqueness.
+\end{proof}
+From this, we get the following result
+\begin{theorem}
+\textup{\cite[3.21]{Warner1983}}\\
+Let $(H^d,\varphi)$ be a Lie subgroup of $G^c$. Then $\varphi$ is an embedding (a homeomorphism of $H$ with $\varphi[H]$ in the relative topology) if and only if $(H,\varphi)$ is a closed subgroup of $G$ (meaning $\varphi[H]$ is closed in $G$).
+\end{theorem}
 
 \subsection{Quotients}
 
