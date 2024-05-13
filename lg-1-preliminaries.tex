@@ -3,55 +3,90 @@
 
 \subsection{Submanifolds}
 
-TODO: After drafting this, I have come to the view that one should begin with immersions.
-Then you can discuss the different topologies of $f(S)$, which leads to consideration of the different sorts of immersions.
-Only then can you ask the question: which are uniquely determined by the image alone?
-I would suggest calling these immersed manifolds and reserving the word submanifold for the images.
-This makes it clear to ask, for example, if a closed submanifold is a proper immersed manifold with the inclusion map.
-Also regular submanifold vs embedded manifold.
+Often in mathematics there is an obvious notion of a ``subobject'': given a structure on a set there is a simple way to restrict it to a subset, such that the subset can be said to have the same structure.
+For example, the structure on a group is the identity, inversion, and multiplication; if there is a subset containing the identity and which is preserved under inversion and multiplication, then we have a subgroup.
+Or for a topological space $X$, any subset $A$ has a topology given by intersection of open sets of $X$ with $A$.
+The structures on the subset can often be characterised by the fact that they make the inclusion map $A \hookrightarrow X$ a structure preserving map (group homomorphism and continuous map respectively for the two examples).
 
-There are several notions of submanifold, each of which are appropriate in different circumstances.
-Perhaps the fundamental reason for this is that given a subset $N$ of a manifold $M$ it isn't obvious how to construct charts on it; the obvious thing would be to restrict the charts of $M$ but how should we realise the image $\phi(N) \subset \bbR^m$ as an open subset of a euclidean space?
+In the case of manifolds however the definition of a submanifold is not as trivial and there are several notions that have strong claims for the title.
+To complicate matters, the notion that is the most widely taught and used (embedded submanifold) is not the one that is most appropriate for Lie group theory (immersed submanifold).
+Further, the two perspectives of the first paragraph, restriction and inclusion, each have their advantages.
+It is perhaps more intuitive to work directly with a subset, but a manifold structure is an atlas, and it unpleasant to consider different atlases on the same subset.
+The alternative is to work with inclusion maps.
+Then different manifold structures of the subset are realised as inclusion maps from different manifolds with the same image.
+% Our two main sources for this section are Sharpe and Warner.
 
-There are two approaches to consider the possible definitions of submanifold. Sharpe deals directly with subsets, where as Warner considers immersions.
-The latter is indirect, but is more suitable for consideration of multiple manifold structures of the same subset.
-We mostly give a summary of Sharpe Section~1.2.
+\begin{definition}\textup{\cite[Def~1.27, Rem~1.33]{Warner1983},\cite[Defs~1.1.36,~1.1.40,~1.2.10]{Sharpe1997}} \\
+Let $\phi : N \to M$ be a smooth map of manifolds.
+\begin{enumerate}
+\item 
+$\phi$ is called an \emph{immersion} if $d\phi_p : T_pN \to T_{\phi(p)}M$ is injective at every point $p \in N$.
+The pair $(N,\phi)$ is called an \emph{immersed manifold} in $M$.
+% \item 
+% $\phi$ is called a submersion if $d\phi_p : T_pN \to T_{\phi(p)}M$ is surjective at every point $p \in N$.
+\item
+If $\phi$ is an injective immersion then the pair is called an \emph{immersed submanifold}.
+\item 
+Two immersed submanifolds $(N_1,\phi_1)$ and $(N_2,\phi_2)$ are called \emph{equivalent} if there is a diffeomorphism $\varphi : N_1 \to N_2$ such that $\phi_1 = \phi_2 \circ \varphi$.
+\item
+If an injective immersion $\phi$ has the property that for every smooth map $f: S \to M$ with $f[S] \subset \phi[N]$ the map $\phi^{-1} \circ f : S \to N$ is smooth, then we call $\phi$ a \emph{weak embedding} and the pair a \emph{weakly embedded submanifold}.
+\item
+If an immersion $\phi$ is a homeomorphism from $N$ to $\phi(N)$, the latter with the subspace topology of $M$, then we call it an \emph{embedding} and the pair is called an \emph{embedded submanifold}.
+\item
+A continuous function between Hausdorff spaces is called \emph{proper} if the preimage of a compact set is always a compact set.
+A proper immersion submanifold is called a \emph{proper submanifold}.
+\end{enumerate}
+\end{definition}
 
-Given a chart $U \subset M$, the components of $N\cap U$ are called plaques.
-If $\phi(W)$ lies in an $n$-dimensional affine subspace of $\bbR^m$ then we call the plaque $W$ flat and $\phi|_W$ a plaque chart of $W$.
-If a there is a collection of charts of $M$ that cover $\bar{N}$ and all plaques are flat, then we call $N$ a submanifold.
-The intersection of open sets of $M$ with plaques gives $N$ the submanifold topology, and with respect to this topology and the plaque charts, $N$ is a manifold.
-In general the submanifold topology is finer (has more open sets) than the subspace topology.
+This is a lot of terminology, but it harmonises the definitions in Sharpe and Warner, see below table.
+Note: Sharpe in Exercise~2.23 uses the term weakly embedded submanifold, but nowhere else explains it.
+We do not understand the difference.
+It is in fact a strict hierarchy: each type of submanifold is a subtype of the previous.
 
-It is worth contrasting this to an immersed submanifold. This is the image of an injective immersion $\iota : N \to M$.
-The trouble is that $N$ is not determined by the image $\iota(N)$.
-To give an example, consider the subset $\{x^2 = y^2\} \subset \bbR^2$.
+\begin{table}[h]
+\begin{tabular}{l|l|l}
+ & Sharpe & Warner \\ \hline
+immersed manifold & immersed manifold & \\
+immersed submanifold & & submanifold \\
+weakly embedded submanifold & submanifold &  \\
+embedded submanifold & regular submanifold & imbedding \\
+\end{tabular}
+\end{table}
+
+These definitions are given in terms of a smooth map into $M$.
+So the question from the other perspective is whether the manifold structure of $N$ is determined or can be recovered solely from the image $\phi[N]$.
+There are simple examples that show that not even the topology of $N$ is determined for an immersed submanifold: consider the subset $\{x^2 = y^2\} \subset \bbR^2$.
 We can split this into a line and two rays in two ways.
+Therefore immersed submanifolds must always be given with the immersion $\phi$.
 
-Sharpe defines in~\cite[Definition~1.1.4]{Sharpe1997} a weak embedding as an injective immersion with the additional property that for every smooth map $f : S \to M$ with $f(S) \subset \iota(M)$ the induced map $\iota^{-1} \circ f$ is smooth.
-The inclusion map of a submanifold is a weak embedding.
-We propose to call submanifold in the sense of Sharpe weakly embedded submanifolds where necessary to distinguish them from other sorts.
+For weakly embedded submanifolds, we can determine $N$ from the image.
+Let $N' = \phi[N]$.
+Given a chart $\varphi: U \subset M \to \bbR^m$, the connected components of $N'\cap U$ are called plaques.
+The intersection of open sets of $M$ with plaques gives $N'$ the \emph{submanifold topology}.
+In general the submanifold topology is finer (has more open sets) than the subspace topology~\cite[Def~1.2.4]{Sharpe1997}.
+% TODO: picture
+For any plaque $W$, if $\varphi(W)$ lies in an $n$-dimensional affine subspace of $\bbR^m$ then we call the plaque $W$ flat and $\varphi|_W$ a plaque chart of $W$.
+If there is a collection of charts of $M$ that cover $\bar{N'}$ such that all plaques are flat, then we have constructed an atlas for $N'$.
+If $\phi$ is a weak embedding then this is always the case, and this manifold structure on $N'$ makes $\phi$ a diffeomorphism~\cite[Thm~1.2.7]{Sharpe1997}.
+For this reason, we tend to identify $N$ and $N'$ and treat $\phi$ as the inclusion map of the subset.
 
-If there are weakly embedded submanifolds, there are embedded submanifolds, which Sharpe calls regular submanifolds.
-They are submanifolds in which there is a covering such that each chart has a single plaque.
-For regular submanifolds the subspace and submanifold topologies coincide.
-In terms of an inclusion map $\iota$ should be a homeomorphism to its image (in the subspace topology).
-Maps with this property are called embeddings.
-The image of $\iota : (0,\infty) \to \bbR^2, \iota(t) = (1-e^{-t})(\cos t, \sin t)$ is a weakly embedded submanifold that is not an embedded submanifold, 
-TODO: I'm confused. Sharpe draws a picture of this spiral, but the definition of regular submanifold doesn't require the charts to cover $\bar{N}$, which is meant to be the main obstacle?
+The difference between weakly embedded and embedded is that there is a covering of $N'$ by open sets of $M$ such that each chart has a single flat plaque.
+For embedded submanifolds the subspace and submanifold topologies coincide~\cite[Prop~1.2.9]{Sharpe1997}.
+The image of $\phi : (0,\infty) \to \bbR^2, \phi(t) = (1-e^{-t})(\cos t, \sin t)$ is a weakly embedded submanifold that is not an embedded submanifold, 
+TODO: I'm confused. Sharpe draws a picture of this spiral, but the definition of regular submanifold doesn't require the charts to cover $\bar{N'}$, which is meant to be the main obstacle? Is there no flat plaque for this?
 
-Finally, a submanifold is proper if the intersection of $N$ and a compact set is compact in the submanifold topology.
-Equivalently if the inclusion map is proper (preimage of compact is compact).
-By \cite[Theorem~1.2.11]{Sharpe1997} proper submanifolds are automatically embedded, so we have a strict hierarchy of conditions.
-The standard example of a regular submanifold that is not regular is $(0,1) \subset \bbR$.
+Finally, by \cite[Thm~1.2.11]{Sharpe1997} proper submanifolds are automatically embedded, so we have a strict hierarchy of conditions.
+The standard example of an embedded submanifold that is not proper is $(0,1) \subset \bbR$.
 We see that a sequence in $N$ may converge to a point of $M\setminus N$.
 
-Here I am adding two statements from Warner on submanifolds whose analogue statements are proven for Lie subgroups: 
+These constructions, mostly from Sharpe, answer the question of how to endow a subset with a manifold structure.
+There is the possibility however that there are different constructions.
+Warner addresses these concerns with the following theorem: 
 \begin{theorem}\label{thm:submanifolds}
-\textup{\cite[1.33]{Warner1983}}
+\textup{\cite[Remark~1.33]{Warner1983}}
 \begin{enumerate}
-\item Let $M$ be a differentiable manifold and $A$ a subset of $M$. Fix a topology on $A$. Then there is at most one differentiable structure on $A$ s.t. $(A,\iota)$ is a submanifold of $M$, where $\iota$ is the inclusion map.
-\item Again let $A$ be a subset of $M$. If in the relative topology, $A$ has a differentiable structure s.t. $(A,\iota)$ is a submanifold of $M$, then $A$ has a unique manifold structure (meaning a unique manifold topology and a unique differentiable structure) such that $(A,\iota)$ is a submanifold of $M$.
+\item Let $M$ be a manifold and $A$ a subset of $M$. Fix a topology on $A$. Then there is at most one manifold structure on $A$ such that $(A,\iota)$ is an immersed submanifold of $M$, where $\iota$ is the inclusion map.
+\item Again let $A$ be a subset of $M$. If in the subspace topology, $A$ has a manifold structure such that $(A,\iota)$ is an immersed submanifold of $M$, then it is the unique such manifold structure.
 \end{enumerate}
 \end{theorem}
 
