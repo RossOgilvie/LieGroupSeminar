@@ -1,33 +1,19 @@
 \documentclass[twoside,11pt,a4paper,leqno]{article}
 % leqno put equations numbers on the left. this is not typical, but makes them easier to find because I number them in sequence with theorems.
 
-% \usepackage[utf8]{inputenc} % should be default anyhow
-% \usepackage[iso]{umlaute}
-% \usepackage{theorem}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{amsxtra}
-% \usepackage{german} % darf nicht weiter oben stehen
-% \usepackage[matrix,arrow]{xy}    % all
-% \usepackage{makeidx}
-\usepackage{fancyhdr}%  für die Seitenküpfe
-% \usepackage{epsfig}
-% \usepackage{curves,epic,eepic}% z.B. für groüe Kreise
-% \usepackage{boxedminipage}
-% \usepackage[T1]{fontenc}  % Suche in PDF, vgl. Mail von Viktor Bindewald vom 24.11.09
-% \usepackage{verbatim}
-% \usepackage{longtable}
+
+\usepackage{fancyhdr} % For manipulating page margins
+\usepackage{environ} % For making custom environments
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{mathrsfs} % \mathscr{...}: super-cursive letters
-% \usepackage{wasysym} % \smiley{}
-% \usepackage{framed}
 \usepackage{mdframed}
 \usepackage{graphicx}
 % \usepackage{enumitem}
-
-% \usepackage{desmos4ht}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -210,22 +196,29 @@
 \newcommand{\fry}{\mathfrak{y}}
 \newcommand{\frz}{\mathfrak{z}}
 
-%% This is a macro to put a desmos iframe in the webpage, but a picture in the doc
-\ifdefined\HCode 
-\newcommand\desmos[2]{% 
-\HCode{<iframe src="https://www.desmos.com/calculator/#1" style="width:800px; height:500px"></iframe> }% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% HTML Version
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% An environment that only displays in the webpage version.
+\NewEnviron{webonly}{
+\ifdefined\HCode
+\BODY
+\else\fi}
+\NewEnviron{pdfonly}{
+\ifdefined\HCode\else
+\BODY
+\fi}
+
+%% This is a command to put a desmos iframe in the webpage. Just give the id of the share link.
+\newcommand\includedesmos[1]{% 
+\HCode{<iframe src="https://www.desmos.com/calculator/#1" style="width:800px; height:500px"></iframe>}% 
 }% 
-\newcommand\desmosThreeD[2]{% 
-\HCode{<iframe src="https://www.desmos.com/3d/#1" style="width:800px; height:500px"></iframe> }% 
+
+\newcommand\includedesmosThreeD[1]{% 
+\HCode{<iframe src="https://www.desmos.com/3d/#1" style="width:800px; height:500px"></iframe>}% 
 }% 
-\else 
-\newcommand\desmos[2]{%
-TODO: Desmos picture here #2
-}% 
-\newcommand\desmosThreeD[2]{% 
-TODO: Desmos3D picture here #2
-}% 
-\fi 
+
 
 
 \begin{document}
