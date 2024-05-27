@@ -45,7 +45,7 @@ It is in fact a strict hierarchy: each type of submanifold is a subtype of the p
 \begin{tabular}{l|l|l}
  & Sharpe & Warner \\ \hline
 immersed manifold & immersed manifold & \\
-immersed submanifold & & submanifold \\
+immersed submanifold & immersed submanifold & submanifold \\
 weakly embedded submanifold &  &  \\
 plaque submanifold & submanifold &  \\
 embedded submanifold & regular submanifold & imbedding \\
@@ -59,9 +59,11 @@ There are simple examples that show that not even the topology of $N$ is determi
 We can split this into a line and two rays in two ways.
 Therefore immersed submanifolds must always be given with the immersion $\phi$.
 
-Let us give a construction that can construct an atlas on a subset $N' \subset M$.
+Let us give a construction that can construct an atlas on a subset $N' \subset M$. TODO: Why is it $N'$?
 
-\begin{definition}\textup{\cite[Def~1.2.1,1.2.2,Thm~1.2.7]{Sharpe1997}}
+\begin{definition}
+\label{def:plaque submanifold}
+\textup{\cite[Def~1.2.1,1.2.2,Thm~1.2.7]{Sharpe1997}}
 Given a chart $\varphi: U \subset M \to \bbR^m$, the connected components of $N'\cap U$ are called plaques.
 The intersection of open sets of $M$ with plaques gives $N'$ the \emph{submanifold topology}.
 In general the submanifold topology is finer (has more open sets) than the subspace topology~\cite[Def~1.2.4]{Sharpe1997}.
@@ -118,7 +120,24 @@ Warner addresses these concerns with the following theorem:
 \end{enumerate}
 \end{theorem}
 
+We can strengthen Warner's theorem in light of the definition of plaque submanifold from Sharpe.
+\begin{theorem}\label{thm:unique manifold structure}
+Let $A$ be a subset of $M$. If $A$ with the submanifold topology of Definition~\ref{def:plaque submanifold} has a manifold structure such that $(A,\iota)$ is an immersed submanifold of $M$, then it is the unique topology on $A$ such that there exits a manifold structure for which $(A,\iota)$ is an immersed submanifold of $M$.
+\end{theorem}
+\begin{proof}
+First we address the relationship between the manifold structure on $A$ and the plaque charts.
+For any function $A \hookrightarrow M$ that is an immersion at $p$ the constant rank theorem gives us a plaque chart of $A$ at $p$.
+Applying this to the inclusion $\iota$ and at every point we get that $A$ is a plaque submanifold.
+By Part (a) of the previous theorem this is the unique manifold structure on $A$ with the submanifold topology (the manifold structure supposed in this theorem and the plaque charts belong to the same maximal atlas).
 
+Now we move on to the statement in the theorem.
+For clarity, let $B$ the manifold that has the same points as $A$ but a different topology and manifold structure, and let its inclusion be $j : B \hookrightarrow M$.
+In terms of points, the composition $\iota^{-1} \circ j : B \to A$ is the identity map, so bijective.
+We know that $(A,\iota)$ is a plaque submanifold, so it is a weak embedding.
+Hence $\iota^{-1} \circ j$ is in fact a smooth map of manifolds.
+Since both are immersions
+At the corresponding step of the proof of Part (b) of the above theorem, Warner uses his Exercise~1.6
+\end{proof}
 
 
 \subsection{Distributions}
@@ -147,13 +166,17 @@ For a single vector field, the answer is affirmative, namely the integral curve.
 
 \begin{definition}
 An $r$-dimensional distribution $\mathcal{D}$ on $M$ is a choice of an $r$-dimensional subspace $\mathcal{D}_p$ of $T_p M$ at every point $p \in M$.
-It is called smooth if every point has a neighbourhood and smooth vector fields $\{X_1, \dots, X_r \}$ that span the subspaces. 
-It is called integrable if every point has a coordinate neighbourhood in which the distribution is spanned by coordinate vector fields.
-\\
+It is called smooth if every point has a neighbourhood and smooth vector fields $\{X_1, \dots, X_r \}$ that span the subspaces.
+This is called a local basis for $\mathcal{D}$.
+Equivalently, an $r$-dimensional distribution is an rank $r$ subbundle of $TM$.
+
 A set of vector fields is called algebraically involutive if their Lie brackets are contained in their span.
-Given two vector fields with the same span, either one is algebraically involutive if and only if the other is.
+Given two sets of vector fields with the same span, either one is algebraically involutive if and only if the other is.
 Therefore algebraically involutive is a property that is defined for distributions.\\
-A connected $r$-dimensional immersed submanifold $N$ is called an integral manifold of $\mathcal{D}$ if at every point $T_pN = \mathcal{D}_p$.
+
+A distribution is called integrable if every point has a coordinate neighbourhood in which the distribution is spanned by coordinate vector fields.
+\\
+A connected $r$-dimensional immersed submanifold $N$ is called an integral submanifold of $\mathcal{D}$ if at every point $T_pN = \mathcal{D}_p$.
 \\\textup{\cite[2.2.1,.2.2.2,2.3.2]{Sharpe1997}}
 \end{definition}
 
@@ -161,43 +184,48 @@ Consider the example of nested spheres centered at the origin in $\bbR^3\setminu
 Their tangent planes define a $2$-distribution.
 In a neighbourhood of any point, suitable polar coordinates show that it is smooth and integrable.
 However there are not global vector fields spanning this distribution, due to the hairy ball theorem (every vector field on a sphere vanishes at least once).
-By definition, any sphere is an integral manifold of this distribution.
+By definition, any of the spheres is an integral manifold of this distribution.
 
-The important example of a non-integrable distribution is given in $\bbR^3$ by the planes normal to the vector field $n(x,y,z)=(y,-x,1)$~\cite[Ex~3.1]{Sharpe1997}.
+The important example of a non-integrable distribution is given in $\bbR^3$ by the planes normal to the vector field $n(x,y,z)=(y,-x,1)$~\cite[Ex~2.3.1]{Sharpe1997}.
 There can be no integral manifold containing the origin.
 Suppose there were.
 Because the tangent plane at the origin is the $xy$-plane, we know that there is a neighbourhood where is a graph over $x$ and $y$.
 Now take a small loop in the integral manifold around the origin lying in this neighbourhood.
 It's height is monotonic, it doesn't close up.
 This is a contradiction.
+A local basis at the origin is given by $X_1 = \partial_x - y \partial_z$, $X_2 = \partial_y + x\partial z$.
+Observe that $[X_1,X_2] = 2\partial_z$, so that it is not algebraically involutive.
 
 
 If a distribution is integrable, then every point has an integral submanifold through it, just by taking a coordinate plane in an appropriate chart.
-The important theorem is Frobenius' theorem~\cite[2.4.1]{Sharpe1997}, which states a distribution is integrable if and only if it is algebraically involutive.
+And if there is an integral submanifold of the distribution at a point, the local basis of the distribution gives a vector field on it.
+So then the Lie bracket is again tangent to the integral submanifold, showing that the vector fields are algebraically involutive at that point.
+Hence algebraic involutive is a necessary condition to the existence of an integral submanifold.
+The important theorem is Frobenius' theorem~\cite[2.4.1]{Sharpe1997}\cite[Thm~1.60]{Warner1983}, which states a distribution is integrable at a point if and only if it is algebraically involutive at that point.
 The proof inductively applies the Picard-Lindelöff theorem.
 
+In fact around each point $p$ there is a chart $(U,x)$ such that the flat plaques $V(q) = \{q' \in U | x_j(q') = x_j(q) \text{ for } m - r < j \leq m \}$ are integral submanifolds of the distribution, and any integrable submanifold contained in the chart is a subset of one of these.
+In particular this is a plaque chart of any integral submanifold through $p$, hence it is a plaque submanifold.
+Note that an integral submanifold may meet this chart several times, which explains why we don't have equality of sets above.
+We can use uniqueness to unite integral submanifolds of a distribution into their maximal connected components.
+Each of these is called a leaf and the collection of leaves is a foliation.
 
-There is also a formulation of Frobenius' theorem in terms of differential forms.
-We can define the annihilator of a distribution as the algebraic ideal generated by the one-forms such that $\omega(v) = 0$ for all $v \in \mathcal{D}_p$.
-By this we mean all $C^\infty$-linear combinations and wedge products.
-Conversely, the kernel of an algebraic ideal of differential forms generated locally by $m-r$ independent one-forms is a distribution.
-The theorem then says that $\mathcal{D}$ is integrable if and only if the ideal contains all its exterior derivatives (it is a differential ideal).
-The proof comes down to the simple formula
-\[
-d\omega(X,Y) = X(\omega(Y)) - Y(\omega(X)) - \omega([X,Y]).
-\]
-
-TODO: Sharpe does foliations in general, and the argument look a lot like the arguments Warner uses for Lie subgroups.
-I think it might be advantageous to follow Sharpe here and separate what is truly manifold theory from Lie theory.
+Perhaps let us revisit the example from the previous section of a weakly embedded submanifold that is not a plaque submanifold, the shrinking spheres.
+There is no distribution on $\bbR^3$ with this as an integral submanifold. 
+If we take a sequence of corresponding points on the spheres, $p_n = c_n + r_n \omega$ for $\omega \in \bbS^2$ for $c_n,r_n$ the centers and radii of the spheres, the limit is the origin. 
+But all the tangent planes $T_{p_n}(\partial B(c_n,r_n))$ are parallel, so their limit is just any of them translated to the origin.
+Taking several such sequences, we see that the distribution cannot be continuous at the origin.
 
 
-TODO: I don't know where else to put this theorem. Ah, Sharpe's submanifolds implies weakly embedded, so have this property already.
-There is a concern that if we have a smooth map $\psi: N \to M$ that happens to lie in a submanifold $P$, then is the induced map $\psi : N \to P$ given by restriction on the codomain a smooth map with respect to the manifold structure ono the submanifold.
-The following theorem of Warner answers this affirmatively:
-\begin{theorem}\label{theorem:cinfty}
-\textup{\cite[1.62]{Warner1983}}\\
-Suppose that $\psi \colon N \to M^d$ is $C^{\infty}$, that $(P^c,\varphi)$ is an integral manifold of an involutive distribution $\mathcal{D}$ on $M$, and that $\psi$ factors through $(P,\varphi)$, that is, $\psi[N] \subset \varphi[P]$. Let $\psi_0 : N \to P$ be the (unique) mapping such that $\varphi\circ \psi_0 = \psi$. Then $\psi_0$ is continuous and therefore $C^{\infty}$.
-\end{theorem}
+% There is also a formulation of Frobenius' theorem in terms of differential forms.
+% We can define the annihilator of a distribution as the algebraic ideal generated by the one-forms such that $\omega(v) = 0$ for all $v \in \mathcal{D}_p$.
+% By this we mean all $C^\infty$-linear combinations and wedge products.
+% Conversely, the kernel of an algebraic ideal of differential forms generated locally by $m-r$ independent one-forms is a distribution.
+% The theorem then says that $\mathcal{D}$ is integrable if and only if the ideal contains all its exterior derivatives (it is a differential ideal).
+% The proof comes down to the simple formula
+% \[
+% d\omega(X,Y) = X(\omega(Y)) - Y(\omega(X)) - \omega([X,Y]).
+% \]
 
 \subsection{Eigenvalues and Weights}
 
