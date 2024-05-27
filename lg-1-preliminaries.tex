@@ -16,7 +16,7 @@ The alternative is to work with inclusion maps.
 Then different manifold structures of the subset are realised as inclusion maps from different manifolds with the same image.
 % Our two main sources for this section are Sharpe and Warner.
 
-\begin{definition}\textup{\cite[Def~1.27, Rem~1.33]{Warner1983},\cite[Defs~1.1.36,~1.1.40,~1.2.10]{Sharpe1997}} \\
+\begin{definition}\textup{\cite[Def~1.27, Rem~1.33]{Warner1983},\cite[Defs~1.1.36,~1.1.40,~1.2.10,~1.2.21]{Sharpe1997}} \\
 Let $\phi : N \to M$ be a smooth map of manifolds.
 \begin{enumerate}
 \item 
@@ -39,8 +39,6 @@ A proper immersion submanifold is called a \emph{proper submanifold}.
 \end{definition}
 
 This is a lot of terminology, but it harmonises the definitions in Sharpe and Warner, see below table.
-Note: Sharpe in Exercise~2.23 uses the term weakly embedded submanifold, but nowhere else explains it.
-We do not understand the difference.
 It is in fact a strict hierarchy: each type of submanifold is a subtype of the previous.
 
 \begin{table}[h]
@@ -48,8 +46,10 @@ It is in fact a strict hierarchy: each type of submanifold is a subtype of the p
  & Sharpe & Warner \\ \hline
 immersed manifold & immersed manifold & \\
 immersed submanifold & & submanifold \\
-weakly embedded submanifold & submanifold &  \\
+weakly embedded submanifold &  &  \\
+plaque submanifold & submanifold &  \\
 embedded submanifold & regular submanifold & imbedding \\
+proper submanifold & proper submanifold & proper submanifold \\
 \end{tabular}
 \end{table}
 
@@ -59,38 +59,71 @@ There are simple examples that show that not even the topology of $N$ is determi
 We can split this into a line and two rays in two ways.
 Therefore immersed submanifolds must always be given with the immersion $\phi$.
 
-For weakly embedded submanifolds, we can determine $N$ from the image.
-Let $N' = \phi[N]$.
+Let us give a construction that can construct an atlas on a subset $N' \subset M$.
+
+\begin{definition}\textup{\cite[Def~1.2.1,1.2.2,Thm~1.2.7]{Sharpe1997}}
 Given a chart $\varphi: U \subset M \to \bbR^m$, the connected components of $N'\cap U$ are called plaques.
 The intersection of open sets of $M$ with plaques gives $N'$ the \emph{submanifold topology}.
 In general the submanifold topology is finer (has more open sets) than the subspace topology~\cite[Def~1.2.4]{Sharpe1997}.
 % TODO: picture
-For any plaque $W$, if $\varphi(W)$ lies in an $n$-dimensional affine subspace of $\bbR^m$ then we call the plaque $W$ flat and $\varphi|_W$ a plaque chart of $W$.
-If there is a collection of charts of $M$ that cover $\bar{N'}$ such that all plaques are flat, then we have constructed an atlas for $N'$.
-If $\phi$ is a weak embedding then this is always the case, and this manifold structure on $N'$ makes $\phi$ a diffeomorphism~\cite[Thm~1.2.7]{Sharpe1997}.
-For this reason, we tend to identify $N$ and $N'$ and treat $\phi$ as the inclusion map of the subset.
+For any plaque $W$, if $\varphi(W)$ lies in an $n$-dimensional affine subspace of $\bbR^m$ then we call this plaque flat and $\varphi|_W$ a plaque chart of $W$.
+If there is a collection of charts $U_\alpha$ of $M$ that cover $\bar{N'}$ such that all components $U_\alpha\cap N'$ are flat plaques
+we call $N'$ a plaque submanifold of $M$; the plaque charts constitute a smooth atlas.
+\end{definition}
 
-The difference between weakly embedded and embedded is that there is a covering of $N'$ by open sets of $M$ such that each chart has a single flat plaque.
+\begin{figure}[h]
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  % Draw 10 vertical lines closely bunched together
+  \foreach \x in {0,1,2,...,18} {
+    \draw (0,\x/3) -- (10,\x/3);
+  }
+  
+  % Draw the circle
+  \draw[dashed,blue] (5,3) circle (2);
+  
+  % Highlight one of the line segments in the circle
+  \draw[red] (5-1.73,2) -- (5+1.73,2);
+\end{tikzpicture}
+\caption{$N'$ is the collection of black lines. The blue circle is an open subset of the plane, and the red segment is a plaque.}
+\end{center}
+\end{figure}
+
+The plaque manifold structure on $N'$ makes the inclusion map into a weak embedding~\cite[Thm~1.2.7]{Sharpe1997}.
+Unfortunately, the reverse is not true.
+Consider $N$ as a countable collection of spheres and take $\phi : N \to \bbR^3$ to be the map that embeds the $k$th sphere as $\partial B(k^{-1}, 0.5(k+1)^{-2})$.
+Overall one has a sequence of non-overlapping spheres decreasing in size with the origin as a limit point.
+In particular any neighbourhood $U$ of the origin must contain a sphere as a connected component of $U \cap N'$.
+But a sphere cannot be a flat plaque and therefore $N'$ is not a plaque submanifold.
+It would be interesting to consider relaxations of the conditions to be a plaque submanifold.
+% TODO: consider this.
+
+The difference between plaque submanifold and embedded submanifold is that there is a covering of $N'$ by open sets of $M$ such that each chart has a single flat plaque.
+This means that there can be no `strange' limits arising from the immersion.
 For embedded submanifolds the subspace and submanifold topologies coincide~\cite[Prop~1.2.9]{Sharpe1997}.
-The image of $\phi : (0,\infty) \to \bbR^2, \phi(t) = (1-e^{-t})(\cos t, \sin t)$ is a weakly embedded submanifold that is not an embedded submanifold, 
-TODO: I'm confused. Sharpe draws a picture of this spiral, but the definition of regular submanifold doesn't require the charts to cover $\bar{N'}$, which is meant to be the main obstacle? Is there no flat plaque for this?
+The example of the dense wrapping of the line around a torus is the classic example of a plaque submanifold that is not embedded.
 
 Finally, by \cite[Thm~1.2.11]{Sharpe1997} proper submanifolds are automatically embedded, so we have a strict hierarchy of conditions.
 The standard example of an embedded submanifold that is not proper is $(0,1) \subset \bbR$.
 We see that a sequence in $N$ may converge to a point of $M\setminus N$.
 
-These constructions, mostly from Sharpe, answer the question of how to endow a subset with a manifold structure.
+These constructions answer the question of how to endow a subset with a manifold structure.
 There is the possibility however that there are different constructions.
 Warner addresses these concerns with the following theorem: 
 \begin{theorem}\label{thm:submanifolds}
 \textup{\cite[Remark~1.33]{Warner1983}}
 \begin{enumerate}
 \item Let $M$ be a manifold and $A$ a subset of $M$. Fix a topology on $A$. Then there is at most one manifold structure on $A$ such that $(A,\iota)$ is an immersed submanifold of $M$, where $\iota$ is the inclusion map.
-\item Again let $A$ be a subset of $M$. If in the subspace topology, $A$ has a manifold structure such that $(A,\iota)$ is an immersed submanifold of $M$, then it is the unique such manifold structure.
+\item Again let $A$ be a subset of $M$. If $A$ with the subspace topology has a manifold structure such that $(A,\iota)$ is an immersed submanifold of $M$, then it is the unique topology on $A$ such that there exits a manifold structure for which $(A,\iota)$ is an immersed submanifold of $M$.
 \end{enumerate}
 \end{theorem}
 
+
+
+
 \subsection{Distributions}
+
+TODO: Revise this section, include proofs as necessary.
 
 It is common in a course on manifolds to study vector fields and their integral curves.
 The key local result is
@@ -118,17 +151,31 @@ It is called smooth if every point has a neighbourhood and smooth vector fields 
 It is called integrable if every point has a coordinate neighbourhood in which the distribution is spanned by coordinate vector fields.
 \\
 A set of vector fields is called algebraically involutive if their Lie brackets are contained in their span.
-Two vector fields with the same span are either both algebraically involutive of neither is.
-Therefore algebraically involutive is a property that is defined for Distributions.\\
-A connected $r$-dimensional submanifold $N$ is called an integral manifold of $\mathcal{D}$ if at every point $T_pN = \mathcal{D}_p$.
+Given two vector fields with the same span, either one is algebraically involutive if and only if the other is.
+Therefore algebraically involutive is a property that is defined for distributions.\\
+A connected $r$-dimensional immersed submanifold $N$ is called an integral manifold of $\mathcal{D}$ if at every point $T_pN = \mathcal{D}_p$.
 \\\textup{\cite[2.2.1,.2.2.2,2.3.2]{Sharpe1997}}
 \end{definition}
+
+Consider the example of nested spheres centered at the origin in $\bbR^3\setminus\{0\}$. 
+Their tangent planes define a $2$-distribution.
+In a neighbourhood of any point, suitable polar coordinates show that it is smooth and integrable.
+However there are not global vector fields spanning this distribution, due to the hairy ball theorem (every vector field on a sphere vanishes at least once).
+By definition, any sphere is an integral manifold of this distribution.
+
+The important example of a non-integrable distribution is given in $\bbR^3$ by the planes normal to the vector field $n(x,y,z)=(y,-x,1)$~\cite[Ex~3.1]{Sharpe1997}.
+There can be no integral manifold containing the origin.
+Suppose there were.
+Because the tangent plane at the origin is the $xy$-plane, we know that there is a neighbourhood where is a graph over $x$ and $y$.
+Now take a small loop in the integral manifold around the origin lying in this neighbourhood.
+It's height is monotonic, it doesn't close up.
+This is a contradiction.
+
 
 If a distribution is integrable, then every point has an integral submanifold through it, just by taking a coordinate plane in an appropriate chart.
 The important theorem is Frobenius' theorem~\cite[2.4.1]{Sharpe1997}, which states a distribution is integrable if and only if it is algebraically involutive.
 The proof inductively applies the Picard-Lindelöff theorem.
 
-TODO: Example of spheres in $\bbR^3\setminus\{0\}$ showing that you might not have global vector fields.
 
 There is also a formulation of Frobenius' theorem in terms of differential forms.
 We can define the annihilator of a distribution as the algebraic ideal generated by the one-forms such that $\omega(v) = 0$ for all $v \in \mathcal{D}_p$.
@@ -144,7 +191,7 @@ TODO: Sharpe does foliations in general, and the argument look a lot like the ar
 I think it might be advantageous to follow Sharpe here and separate what is truly manifold theory from Lie theory.
 
 
-TODO: I don't know where else to put this theorem.
+TODO: I don't know where else to put this theorem. Ah, Sharpe's submanifolds implies weakly embedded, so have this property already.
 There is a concern that if we have a smooth map $\psi: N \to M$ that happens to lie in a submanifold $P$, then is the induced map $\psi : N \to P$ given by restriction on the codomain a smooth map with respect to the manifold structure ono the submanifold.
 The following theorem of Warner answers this affirmatively:
 \begin{theorem}\label{theorem:cinfty}
