@@ -18,7 +18,7 @@ This holds exactly if $R^TR = I$, which gives us the orthogonal group
 \]
 We can understand the defining equation as saying that the columns of $R$ are an orthonormal basis of $\bbR^3$.
 Indeed they are the images of the standard basis of $\bbR^3$ under $R$.
-We were discussing proper rotations, which are by definition orientation preserving, so we want that the columns of $R$ are a right handed basis.
+By rotations we mean proper rotations, which are by definition orientation preserving, so we want that the columns of $R$ are a right handed basis.
 That leads to the special orthogonal group
 \[
 \lgSO(3) = \{ R \in \lgO(3) \mid \det R = 1 \}.
@@ -127,14 +127,16 @@ If there is more than one segment, we can move $\gamma_1$ and $\gamma_2$ such th
 Then $\gamma_2$ can be contracted to the constant map $\gamma_1(1) = -\gamma_2(0) = -\gamma_2(1) = \gamma_3(0)$.
 This means that we can eliminate $\gamma_2$ and fuse $\gamma_1$ and $\gamma_3$ into a single segment.
 In particular, the index has decreased by two.
-This argument has not quite proved that the parity of the index (even or odd) is a homotopy invariant, since there is still the possibility that some other tricky operation can decrease the index by an odd amount. 
-But it should convince you none-the-less that the fundamental group of $\RP^3$, and hence $\lgSO(3)$, is $\bbZ_2$:
+The act of moving part of an arc from one part of the boundary to the opposite side increases the index by two.
+Hence the parity of the index is a homotopy invariant.
+This has proven that the fundamental group of $\RP^3$, and hence $\lgSO(3)$, is $\bbZ_2$:
 any loop with an even number of segments can be contracted to a point, whereas any loop with an odd number of segments can be reduced to a diameter.
 
 
-\subsection{Definition}
+\subsection{Basic Notions}
 
 \begin{definition}
+\label{def:lie group}
 \textup{\cite[3.1]{Warner1983}\cite[Definition~1.20]{Hall2015}} \\
 A \emph{Lie Group} is a $G$ manifold with a group structure such that multiplication $\mu : (g,h) \mapsto gh$ and inversion $\iota : g \mapsto g^{-1}$ are smooth.
 \end{definition}
@@ -144,33 +146,46 @@ For example, the reals $\bbR$ under addition, the multiplicative group of the co
 The product of two Lie groups is a Lie group, using the product manifold and product group structures.
 This gives us euclidean space $\bbR^n$ with vector addition and the torus $\bbT^n = (\bbS^1)^n$ as further examples.
 
-Left and right actions.
-We can interchange left and right actions using inversion to make the opposite group.
-Convention is to work primarily with left actions.
-Hold off talking about general actions until quotients.
-
-Many definition carry over naturally by requiring both a manifold-theory and a group-theory property.
+Many definitions carry over naturally by requiring both a manifold-theory and a group-theory property.
 For example
 \begin{definition}
 \textup{\cite[3.13]{Warner1983}} \\
 A \emph{homomorphism of Lie groups} is a smooth map $\phi : G \to H$ that is also group homomorphism.
-If it is also a diffeomorphism, then we say $\phi$ is an \emph{isomorphism of Lie groups}.
+If $\phi$ is further a diffeomorphism, then we say it is an \emph{isomorphism of Lie groups}.
 \end{definition}
-On the other hand, sometimes a different concept is more appropriate for Lie theory.
+
+
+Given any Lie group $G$, we can construct the opposite group $G^{op}$.
+As a set and a manifold they are the same, but multiplication is given by $\mu^{op}(g,h) = \mu(h,g)$.
+Observe that inversion is an isomorphism of Lie groups between $G$ and $G^{op}$.
+By the definition of a Lie group, $\iota$ is a diffeomorphism.
+It is also a homomorphism of the group structure since
+\[
+\mu^{op}(\iota(g),\iota(h))
+= \mu(\iota(h),\iota(g))
+= h^{-1}g^{-1}
+= (gh)^{-1}
+= \iota(\mu(g,h)).
+\]
+
+It is often fruitful to fix an element of the group and look at its action.
+We have the left action $L_g = \mu(g,\cdot) : G \to G$ and the right action $R_g = \mu(\cdot,g)$.
+It is customary to primarily work with the left action.
+There is no loss of generality in doing so, because the right action in $G$ is the left action in $G^{op}$.
+
+Sometimes however a different concept is more appropriate for Lie theory.
 In manifold theory one is mostly concerned with embedded submanifolds, while in Lie theory immersed submanifolds are more useful:
 \begin{definition}
 \textup{\cite[3.17]{Warner1983}, contrast~\cite[\S{}7.1]{Fulton2004}}\\
 A \emph{Lie subgroup} $(H,\varphi)$ of a Lie group $G$ is a Lie group $H$ and injective immersion $\varphi : H \to G$ that is also a homomorphism.
 It is called a \emph{closed Lie subgroup} if $\varphi(H)$ is further closed.
 \end{definition}
-An immersed manifold that is closed is an embedded submanifold. 
 
-TODO: What is the proper order of material? 
-In particular, the order of introducing Lie algebras and subgroups. 
-Presumably you want to introduce examples early, which are mostly subgroups. 
-Do you introduce subgroups before the examples?
-Is it possible to introduce subgroups, quotients and covers without talking about the Lie algebra? Then introduce the Lie algebra and show how many of these it can grok.
-That is certainly a differential geometry supremacist approach.
+In fact later we will improve the regularity by showing that all Lie subgroups are weakly embedded and that a Lie subgroup is embedded if and only if it is closed.
+
+
+
+
 
 
 \subsection{Examples}
@@ -178,15 +193,18 @@ That is certainly a differential geometry supremacist approach.
 There are many interesting properties that Lie groups can possess, and we give a quick tour of them with examples.
 
 All finite groups are also Lie groups using the discrete topology to make them $0$-dimensional manifolds.
-These are not central examples of Lie groups, whose essential character is their `continuity', and they could reasonably be excluded by definition.
-However we do not do so because they arise naturally.
+These are not central examples of Lie groups, whose essential character is their `continuity', but they are useful to describe non-connected Lie groups.
 For example, we have seen that the $\lgSO(3)$ is the component of $\lgO(3)$ that contains the identity.
 In fact $\lgO(3)$ is the product of $\lgSO(3)$ and $C_2$ the group with two elements.
 Generalising, the identity component $G_0$ of a Lie group $G$ is a Lie group.
-To prove this, note that $II = I$ and $I^{-1} = I$, so the images of $G_0\times G_0$ under multiplication and $G_0$ under inversion are both contained in $G_0$.
+To prove this, note that $\mu(I,I) = I$ and $\iota(I) = I$, so the images of $G_0\times G_0$ under multiplication and $G_0$ under inversion, which are connected, are both contained in $G_0$.
 If $g$ belongs to another connected component $G_1$ then multiplication with $g$ is a diffeomorphism between $G_0$ and $G_1$.
 In this way, every Lie group with finitely many connected components is the product of its identity component and a finite group.
 For this reason we usually consider connected Lie groups of positive dimension.
+
+As in group theory, we have abelian and non-abelian groups.
+Abelian Lie groups include $\bbR^n$ and $\bbT^n$ and $\lgO(3)$ and $\lgSO(3)$ are examples of non-abelian groups.
+As we will see later, the abelian Lie groups are easy to classify.
 
 Perhaps the most important category of Lie group are the matrix Lie groups~\cite[Definition~1.4]{Hall2015}.
 First we have the general linear group $\lgGL(n,\bbC)$, the set of $n\times n$ invertible matrices with complex entries.
@@ -226,8 +244,16 @@ be a $2n\times 2n$ matrix in block form and define
 \end{align*}
 The notation around $\lgSp(n)$ is a bit confusing, but the point is to make a compact group.
 Indeed $\lgSp(n)$ is called the compact symplectic group.
-
 Together, these examples are called the classical groups and they will figure prominently in the classification of Lie groups.
+
+In Definition~\ref{def:lie group}, a Lie group is a real manifold.
+But some of the examples above are in fact complex manifolds: they admit an atlas whose charts map to subsets of $\bbC^n$ and whose transition functions are holomorphic.
+Naturally these are called \emph{complex Lie groups}.
+$\lgSL(n,\bbC)$ is a complex Lie group because $\det A$ is polynomial in the entries of $A$ and so holomorphic.
+The holomorphic version of the implicit function theorem then tells us that it is a complex manifold.
+On the other hand $\lgU(n)$ is a complex manifold even though it is a set of complex-valued matrices.
+
+
 There are of course many other matrix Lie groups.
 One could consider groups of matrices preserving other bilinear forms. 
 For a concrete example, the subset of diagonal matrices of any of the classical groups is again a matrix group.
@@ -242,25 +268,18 @@ Similarly $\bbR$ is a linear group because we can consider real matrices of the 
 0 & 1
 \end{pmatrix}.
 \]
-The result of multiplying two such matrices is the add the off-diagonal term.
+The result of multiplying two such matrices is to add the off-diagonal term.
 
-TODO: Complex Lie groups. $\lgSL(n,\bbC)$ is a complex Lie group but $\lgU(n)$ is not.
 A similar direction that we will not explore is linear algebraic groups.
-These are matrix groups whose defining equations are polynomial.
-This means that they can be defined over any field, not just $\bbC$ and $\bbR$.
+These are matrix groups that are algebraic varieties, in particular their defining equations are polynomial.
+All the matrix groups above are examples.
+Because they are defined by polynomials linear algebraic groups can be defined over any field, not just $\bbC$ and $\bbR$.
+However exploring other fields would take us away from the differential geometry point of view that is our focus.
+Indeed, many books downplay the differential geometric aspects of Lie theory because they have an eye on this algebraic extension.
 
 
-As in group theory, we have abelian and non-abelian groups.
-Abelian Lie groups include $\bbR^n$ and $\bbT^n$ and $\lgO(3)$ and $\lgSO(3)$ are examples of non-abelian groups.
-% Similarly, consider the Heisenberg group
-% \[
-% H = \begin{pmatrix}
-% 1 & a & b \\
-% 0 & 1 & c \\
-% 0 & 0 & 1
-% \end{pmatrix}
-% \]
-% for $a,b,c\in \bbR$.
+
+
 
 
 \subsection{Subgroups}
@@ -287,42 +306,48 @@ G \setminus H = \bigcup_{g \in G \setminus H} gH,
 \]
 a union of open sets.
 \end{proof}
-Next we have a theorem considering when an abstract subgroup of a Lie group is also a Lie subgroup. This is an analogy of \ref{thm:submanifolds}
+
+
+For general manifolds there are immersed submanifolds that are not weakly embedded. 
+The following theorem rules this out for Lie subgroups; though they are defined only as injective immersion they are in fact stronger.
+It also clearly has echos of Theorem~\ref{thm:submanifolds}.
+
 \begin{theorem}
 \textup{\cite[3.20]{Warner1983}}\\
-If an abstract subgroup $A$ of a Lie group $G$ has a manifold structure which makes $(A, \iota)$ into a submanifold of $G$, where $\iota$ is the inclusion map, then it has a unique manifold structure, and in this manifold structure, $A$ is a Lie group and hence, $(A, \iota)$, is a Lie subgroup of $G$.
+If a (abstract) subgroup $A$ of a Lie group $G$ has a manifold structure which makes the inclusion map $\phi: A \to G$ an immersion (and by definition it is injective), then it has a unique manifold structure, and in this manifold structure $A$ is a Lie group and $\phi$ is a weak embedding.
 \end{theorem}
 
-\begin{proof}
-Step 1: 
+\begin{proof}[Sketch of Proof]
 We define $\mathcal{D}$ to be the distribution on $G$ determined by left translations of the tangent space to $A$ at the identity $e$. 
-Then prove that $(A,\iota)$ is an integral manifold of $\mathcal{D}$ at $e$. 
-In particular, $\iota$ is a smooth immersion.
-
-Step 2:
-Likewise we know that for any $\sigma \in G$, $(A,l_{\sigma})$ is an integral manifold of $\mathcal{D}$ through $\sigma$. 
-% This we call being an involutive distribution. 
-Now the map $\beta \colon A\ \times A \to G$ sending $(\sigma,\tau) \to \iota(\sigma)\iota(\tau)^{-1} = \sigma\tau^{-1}$ is $C^{\infty}$ due to Theorem~\ref{theorem:cinfty}.
-Thus we have a manifold structure such that $A$ is a Lie group.
-
-Step 3:
-We show uniqueness.
-If there are two structures $(A_1,\iota)$ and $(A_2,\iota)$ then we can lift $\iota$ to a map $A_1 \to A_2$ and vice versa, giving a diffeomorphism.
+Then prove that $(A,\phi)$ is an integral manifold of $\mathcal{D}$. 
+It then follows that $\phi$ is a weak embedding and $A$ is a manifold using the submanifold topology.
+Theorem~\ref{thm:unique manifold structure} provides uniqueness.
 \end{proof}
-From this, we get the following result
+
+A consequence of this theorem is that the potential issues about multiple manifold structure on a subgroup are moot.
+We will therefore no longer use an inclusion map $\phi$ for subgroups if not necessary.
+We also have the following promised result.
 \begin{theorem}
 \textup{\cite[3.21]{Warner1983}}\\
-Let $(H^d,\varphi)$ be a Lie subgroup of $G^c$. Then $\varphi$ is an embedding (a homeomorphism of $H$ with $\varphi[H]$ in the relative topology) if and only if $(H,\varphi)$ is a closed subgroup of $G$ (meaning $\varphi[H]$ is closed in $G$).
+Let $(H,\phi)$ be a Lie subgroup of $G$. Then $\phi$ is an embedding if and only if $\phi[H]$ is closed in $G$.
 \end{theorem}
+
+
+
+
 
 \subsection{Quotients}
 
+I think there is an example of a non-matrix Lie group in FH.
 
 \subsection{Covers}
 
+Key example, $\lgSU(2)$ covering $\lgSO(3)$.
 
-\subsection{Mauer-Cartan forms}
-Should we have such a section? Sharpe and Ivey has it, but I don't think Warner puts as much emphasis on it.
+
+\subsection{Compact Lie groups}
+
+Here we should construct the bi-invariant metric.
 
 
 \subsection{Simple Lie groups}

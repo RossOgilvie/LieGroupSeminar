@@ -4,17 +4,13 @@
 \subsection{Submanifolds}
 
 Often in mathematics there is an obvious notion of a ``subobject'': given a structure on a set there is a simple way to restrict it to a subset, such that the subset can be said to have the same structure.
-For example, the structure on a group is the identity, inversion, and multiplication; if there is a subset containing the identity and which is preserved under inversion and multiplication, then we have a subgroup.
+For example, the structure on a group is the identity element, inversion, and multiplication; if there is a subset containing the identity element and which is preserved under inversion and multiplication, then we have a subgroup.
 Or for a topological space $X$, any subset $A$ has a topology given by intersection of open sets of $X$ with $A$.
 The structures on the subset can often be characterised by the fact that they make the inclusion map $A \hookrightarrow X$ a structure preserving map (group homomorphism and continuous map respectively for the two examples).
 
 In the case of manifolds however the definition of a submanifold is not as trivial and there are several notions that have strong claims for the title.
-To complicate matters, the notion that is the most widely taught and used (embedded submanifold) is not the one that is most appropriate for Lie group theory (immersed submanifold).
-Further, the two perspectives of the first paragraph, restriction and inclusion, each have their advantages.
-It is perhaps more intuitive to work directly with a subset, but a manifold structure is an atlas, and it unpleasant to consider different atlases on the same subset.
-The alternative is to work with inclusion maps.
-Then different manifold structures of the subset are realised as inclusion maps from different manifolds with the same image.
-% Our two main sources for this section are Sharpe and Warner.
+To complicate matters, the notion that is the most widely taught (embedded submanifolds) is not the one that is most appropriate for Lie group theory.
+Let us begin by summarising the common definitions.
 
 \begin{definition}\textup{\cite[Def~1.27, Rem~1.33]{Warner1983},\cite[Defs~1.1.36,~1.1.40,~1.2.10,~1.2.21]{Sharpe1997}} \\
 Let $\phi : N \to M$ be a smooth map of manifolds.
@@ -35,6 +31,8 @@ If an immersion $\phi$ is a homeomorphism from $N$ to $\phi(N)$, the latter with
 \item
 A continuous function between Hausdorff spaces is called \emph{proper} if the preimage of a compact set is always a compact set.
 A proper immersion submanifold is called a \emph{proper submanifold}.
+\item
+When we say \emph{submanifold}, we generally mean a weakly embedded submanifold.
 \end{enumerate}
 \end{definition}
 
@@ -47,30 +45,34 @@ It is in fact a strict hierarchy: each type of submanifold is a subtype of the p
 immersed manifold & immersed manifold & \\
 immersed submanifold & immersed submanifold & submanifold \\
 weakly embedded submanifold &  &  \\
-plaque submanifold & submanifold &  \\
+ & submanifold &  \\
 embedded submanifold & regular submanifold & imbedding \\
 proper submanifold & proper submanifold & proper submanifold \\
 \end{tabular}
 \end{table}
 
-These definitions are given in terms of a smooth map into $M$.
-So the question from the other perspective is whether the manifold structure of $N$ is determined or can be recovered solely from the image $\phi[N]$.
-There are simple examples that show that not even the topology of $N$ is determined for an immersed submanifold: consider the subset $\{x^2 = y^2\} \subset \bbR^2$.
+To return to the discussion of the first paragraph, restriction vs inclusion, these definitions are given in terms of a smooth map into $M$, which is to say the perspective of inclusion.
+So the question from the perspective of restriction is whether the manifold structure of $N$ is determined or can be recovered solely from the image $\phi[N]$.
+There is a simple example that shows that not even the topology of $N$ is determined for an immersed submanifold: consider the subset $\{x^2 = y^2\} \subset \bbR^2$.
 We can split this into a line and two rays in two ways.
 Therefore immersed submanifolds must always be given with the immersion $\phi$.
 
-Let us give a construction that can construct an atlas on a subset $N' \subset M$. TODO: Why is it $N'$?
+On the other hand, by using the implicit function theorem the preimage of a regular value is an embedded submanifold.
+The idea is to take the construction of charts in the implicit function theorem and generalise it to weakly embedded submanifolds.
 
 \begin{definition}
-\label{def:plaque submanifold}
-\textup{\cite[Def~1.2.1,1.2.2,Thm~1.2.7]{Sharpe1997}}
-Given a chart $\varphi: U \subset M \to \bbR^m$, the connected components of $N'\cap U$ are called plaques.
-The intersection of open sets of $M$ with plaques gives $N'$ the \emph{submanifold topology}.
+\label{def:plaques}
+\textup{\cite[Def~1.2.1,1.2.2,Thm~1.2.7]{Sharpe1997}} \\
+Any any subset $A$ let $C(A,x)$ be points that can be reached from $x$ by a continuous path through $A$.
+Let $N' \subset M$ be a subset.
+Given a chart $\varphi: U \subset M \to \bbR^m$ we say that $W = C(N'\cap U,x)$ is a \emph{flat plaque} if 
+\[
+\varphi(W) = \varphi[U] \cap (\bbR^n \times 0) \subset \bbR^n \times \bbR^{m-n},
+\]
+an open subset of an $n$-dimensional affine subspace of $\bbR^m$.
+In that case $\varphi|_W$ is called a plaque chart of $W$.
+The \emph{submanifold topology} on $N'$ is the topology such that flat plaques are open.
 In general the submanifold topology is finer (has more open sets) than the subspace topology~\cite[Def~1.2.4]{Sharpe1997}.
-% TODO: picture
-For any plaque $W$, if $\varphi(W)$ lies in an $n$-dimensional affine subspace of $\bbR^m$ then we call this plaque flat and $\varphi|_W$ a plaque chart of $W$.
-If there is a collection of charts $U_\alpha$ of $M$ that cover $\bar{N'}$ such that all components $U_\alpha\cap N'$ are flat plaques
-we call $N'$ a plaque submanifold of $M$; the plaque charts constitute a smooth atlas.
 \end{definition}
 
 \begin{figure}[h]
@@ -87,23 +89,76 @@ we call $N'$ a plaque submanifold of $M$; the plaque charts constitute a smooth 
   % Highlight one of the line segments in the circle
   \draw[red] (5-1.73,2) -- (5+1.73,2);
 \end{tikzpicture}
-\caption{$N'$ is the collection of black lines. The blue circle is an open subset of the plane, and the red segment is a plaque.}
+\caption{$N'$ is the collection of black lines. The interior of the blue disc is an open subset of the plane $U$, and the red segment is a plaque.}
 \end{center}
 \end{figure}
 
-The plaque manifold structure on $N'$ makes the inclusion map into a weak embedding~\cite[Thm~1.2.7]{Sharpe1997}.
-Unfortunately, the reverse is not true.
-Consider $N$ as a countable collection of spheres and take $\phi : N \to \bbR^3$ to be the map that embeds the $k$th sphere as $\partial B(k^{-1}, 0.5(k+1)^{-2})$.
-Overall one has a sequence of non-overlapping spheres decreasing in size with the origin as a limit point.
-In particular any neighbourhood $U$ of the origin must contain a sphere as a connected component of $U \cap N'$.
-But a sphere cannot be a flat plaque and therefore $N'$ is not a plaque submanifold.
-It would be interesting to consider relaxations of the conditions to be a plaque submanifold.
-% TODO: consider this.
-
-The difference between plaque submanifold and embedded submanifold is that there is a covering of $N'$ by open sets of $M$ such that each chart has a single flat plaque.
-This means that there can be no `strange' limits arising from the immersion.
+Some commentary before we slot this into our hierarchy.
+The definition of submanifold in~\cite{Sharpe1997} requires a collection of charts $(U_\alpha, \varphi_\alpha)$ of $M$ covering $\overline{N'}$ such that the connected components of $U_\alpha \cap N'$ are all flat plaques.
+This has the effect of excluding the following example.
+Consider $N$ as a countable collection of spheres and take $\phi : N \to \bbR^3$ to be the map that embeds the $k$th sphere as $\partial B(k^{-1}, 0.5(k+1)^{-2})$; one has a sequence of non-overlapping spheres decreasing in size with the origin as a limit point.
+In particular any neighbourhood $U$ of the origin must contain a sphere as a connected component of $U \cap N' = \phi[N]$, but a sphere cannot be a flat plaque.
+Sharpe calls this an `odd limit point', but it seems no more odd than a collection of lines immersed as $\{n^{-1}\} \times \bbR \subset \bbR^2$, which is allowed by the definition.
+If one truly wishes to avoid odd limits, an embedded submanifold is the correct notion.
+Instead, it would be better to say that Sharpe is concerned with foliations, and this shrinking chain of spheres cannot be part of a regular foliation.
 For embedded submanifolds the subspace and submanifold topologies coincide~\cite[Prop~1.2.9]{Sharpe1997}.
-The example of the dense wrapping of the line around a torus is the classic example of a plaque submanifold that is not embedded.
+The example of the dense wrapping of the line around a torus is the classic example of a submanifold in Sharpe's sense that is not embedded.
+
+It is also important that we use paracompact manifolds,which is equivalent to each connected component being second countable.
+This is because a subset of $M$ need not be second countable in the submanifold topology.
+Consider the example of the irrational numbers in the real line.
+The flat plaques are the sets $\{x\}$ for any irrational $x$.
+Thus the submanifold topology is the discrete topology, which is not second-countable.
+
+\begin{theorem}
+\label{thm:weakly embedded submanifold}
+\textup{\cite[Thm~1.2.7]{Sharpe1997}\cite[Lems~I.2.15--17]{Kolar1993}} \\
+Let $N' \subset M$ be a subset.
+Suppose for every point $x \in N'$ there is a chart making $C(N'\cap U,x)$ is a flat plaque of dimension $n$.
+Let $N$ be the set $N'$ with the submanifold topology and a smooth atlas comprised of the plaque charts.
+Then $N$ is a manifold and the inclusion map is a weak embedding.
+Conversely, if $\phi : N \to M$ is a weak embedding then this reconstructs the atlas of $N$.
+\end{theorem}
+\begin{proof}
+Because we have weakened the conditions, the proof in~\cite[Thm~1.2.7(i)]{Sharpe1997} no longer works.
+I am not completely convinced by~\cite[Lems~I.2.15--17]{Kolar1993} because it uses a Riemannian metric, but the usual proof that a Riemannian metric induces the topology of a space already assumes that you have a topological manifold.
+The arguments below attempt to add fill out the details on their idea.
+
+A subspace of a Hausdorff space is Hausdorff, and the submanifold topology is finer than the subspace topology.
+Hence $N$ is Hausdorff too.
+We can argue in the same way for the other separation axioms, and that $N$ is locally compact.
+
+To show that $N$ is paracompact, we need to show that each connected component $N_0 \subset N$ is second countable.
+Necessarily $N_0$ is contained in a connected component $M_0 \subset M$, which is second countable since $M$ is paracompact.
+We apply Urysohn's metrization theorem, which says that $M_0$ is metricizable, to get a distance function $d$.
+Now $N_0$ is a metric space using the restriction of $d$, but this induces the subspace topology, not necessarily the submanifold topology.
+Instead we use the intrinsic distance function $d'$, which is the infimum of path lengths in $N_0$ measured with $d$.
+
+In general, $d' > d$, and we may worry that although $N_0$ is path connected, some of the paths might be infinitely long, and hence $N_0$ would not be a metric space.
+To see that this is not the case, for any point $x \in N_0$ consider first a flat plaque $W \ni x$.
+We use $\varphi$ to move everything to $\bbR^m$.
+Shrinking the chart if necessary, we can assume that $U$ is convex.
+$d$ induces a distance function on $\bbR^n \supset W$.
+Therefore the intrinsic distance between any points of $W$ is finite, because the length of a chord is an upper bound.
+A path between two points of $N_0$ is compact, and therefore covered by finitely many `convex' flat plaques.
+The triangle equality now ensures that the path length is finite.
+
+In fact for any open set $V$ of $N_0$, choose any point $x \in V$.
+We consider the convex flat plaque centered at $x$ from the previous paragraph.
+The set $V \cap W$ is an open subset of the affine subspace, so there is an open set $\tilde{V} \subset U \subset \bbR^n$ with $\tilde{V} \cap W = V \cap W$.
+Because $d$ generates the topology of $U$, there is some ball $B_d(x,r) \subset \tilde{V}$.
+By a standard argument, any path that leaves $B_d(x,r) \cap W$ has length at least $r$, so $B_{d'}(x,r) \subset B_d(x,r) \cap W$. 
+Hence we have found an open ball with respect to $d'$ centered at $x$ contained in $V$.
+As we can do this for every point of $V$, $d'$ induces the submanifold topology.
+
+Lastly,~\href{https://math.stackexchange.com/questions/10885/non-separable-locally-compact-connected-metric-space}{MSE} tells us that a connected locally-compact metric space is second countable.
+By definition, the plaque charts form a smooth atlas.
+Therefore we have shown that $N_0$ is a manifold.
+
+That this is a weak embedding is~\cite[Thm~1.2.7(iii)]{Kolar1993}.
+
+The converse follows from~\cite[I.2.15~Lemma]{Kolar1993} (the construction can be carried out on the image of a weak embedding) and~\cite[Lemma~1.1.41]{Sharpe1997} (a weak embedding is compatible with a unique manifold structure).
+\end{proof}
 
 Finally, by \cite[Thm~1.2.11]{Sharpe1997} proper submanifolds are automatically embedded, so we have a strict hierarchy of conditions.
 The standard example of an embedded submanifold that is not proper is $(0,1) \subset \bbR$.
@@ -112,52 +167,103 @@ We see that a sequence in $N$ may converge to a point of $M\setminus N$.
 These constructions answer the question of how to endow a subset with a manifold structure.
 There is the possibility however that there are different constructions.
 Warner addresses these concerns with the following theorem: 
-\begin{theorem}\label{thm:submanifolds}
+\begin{theorem}
+\label{thm:submanifolds}
 \textup{\cite[Remark~1.33]{Warner1983}}
 \begin{enumerate}
-\item Let $M$ be a manifold and $A$ a subset of $M$. Fix a topology on $A$. Then there is at most one manifold structure on $A$ such that $(A,\iota)$ is an immersed submanifold of $M$, where $\iota$ is the inclusion map.
-\item Again let $A$ be a subset of $M$. If $A$ with the subspace topology has a manifold structure such that $(A,\iota)$ is an immersed submanifold of $M$, then it is the unique topology on $A$ such that there exits a manifold structure for which $(A,\iota)$ is an immersed submanifold of $M$.
+\item Let $M$ be a manifold and $A$ a subset of $M$. Fix a topology on $A$. Then there is at most one manifold structure on $A$ such that $(A,\phi)$ is an immersed submanifold of $M$, where $\phi$ is the inclusion map.
+\item Again let $A$ be a subset of $M$. If $A$ with the subspace topology has a manifold structure such that $(A,\phi)$ is an immersed submanifold of $M$, then it is the unique topology on $A$ such that there exits a manifold structure for which $(A,\phi)$ is an immersed submanifold of $M$.
 \end{enumerate}
 \end{theorem}
 
-We can strengthen Warner's theorem in light of the definition of plaque submanifold from Sharpe.
-\begin{theorem}\label{thm:unique manifold structure}
-Let $A$ be a subset of $M$. If $A$ with the submanifold topology of Definition~\ref{def:plaque submanifold} has a manifold structure such that $(A,\iota)$ is an immersed submanifold of $M$, then it is the unique topology on $A$ such that there exits a manifold structure for which $(A,\iota)$ is an immersed submanifold of $M$.
+We generalise Part (b) slightly below.
+This generalisation is stronger than~\cite[Lem~2.1.41]{Sharpe1997}, because we only require the inclusions to be injective immersions, not weak embeddings.
+
+\begin{theorem}
+\label{thm:unique manifold structure}
+Let $A$ be a subset of $M$. 
+If $A$ with the submanifold topology has a manifold structure such that $(A,\phi)$ is an immersed submanifold of $M$, then it is the unique topology on $A$ such that there exits a manifold structure for which $(A,\phi)$ is an immersed submanifold of $M$.
 \end{theorem}
 \begin{proof}
 First we address the relationship between the manifold structure on $A$ and the plaque charts.
 For any function $A \hookrightarrow M$ that is an immersion at $p$ the constant rank theorem gives us a plaque chart of $A$ at $p$.
-Applying this to the inclusion $\iota$ and at every point we get that $A$ is a plaque submanifold.
+Applying this to the inclusion $\phi$ and at every point we get that $A$ is a weakly embedded submanifold.
 By Part (a) of the previous theorem this is the unique manifold structure on $A$ with the submanifold topology (the manifold structure supposed in this theorem and the plaque charts belong to the same maximal atlas).
 
 Now we move on to the statement in the theorem.
-For clarity, let $B$ the manifold that has the same points as $A$ but a different topology and manifold structure, and let its inclusion be $j : B \hookrightarrow M$.
-In terms of points, the composition $\iota^{-1} \circ j : B \to A$ is the identity map, so bijective.
-We know that $(A,\iota)$ is a plaque submanifold, so it is a weak embedding.
-Hence $\iota^{-1} \circ j$ is in fact a smooth map of manifolds.
-Since both are immersions
-At the corresponding step of the proof of Part (b) of the above theorem, Warner uses his Exercise~1.6
+For clarity, let $B$ the manifold that has the same points as $A$ but a different topology and manifold structure, and let its inclusion be $\psi : B \hookrightarrow M$.
+In terms of points, the composition $\phi^{-1} \circ \psi : B \to A$ is the identity map, so bijective.
+We know that $(A,\phi)$ is a weak embedding.
+Hence $\phi^{-1} \circ \psi$ is in fact a smooth map of manifolds.
+It must also be an immersion: if there is a smooth path $\alpha$ in $B$ such that $\phi^{-1} \circ \psi \circ \alpha$ represents the zero vector then $\psi \circ \alpha$ represents the zero vector in $M$ by applying $\phi$ and so $\alpha$ represents the zero vector using that $\psi$ is an immersion. 
+At the final step of the proof of Part (b) of the above theorem, Warner uses his Exercise~1.6 to conclude that a smooth bijective immersion is a diffeomorphism.
+We do the same.
 \end{proof}
 
 
-\subsection{Distributions}
-
-TODO: Revise this section, include proofs as necessary.
+\subsection{Lie Brackets and Distributions}
 
 It is common in a course on manifolds to study vector fields and their integral curves.
 The key local result is
 \begin{theorem}[Picard-Lindelöff]
+\textup{\cite[Theorem~2.1.1]{Sharpe1997}}\cite[Theorem~1.2.1]{Ivey} \\
 Let $F : J \times U \subset \bbR\times\bbR^n \to \bbR^n$ be a smooth time-dependent vector field. 
 Assume $0 \in J$. 
 Consider $u : \bbR \to U$ the system of ODEs $u'(t) = F(t,u(t))$.
 For any $c \in U$ there exists a $\varepsilon > 0$ such that there is a unique solution smooth solution on $(-\varepsilon,\varepsilon)$ with $u(0) = c$.
-Moreover, for any $p \in U$ there is an open neighbourhood $p \in V \subset U$, $\varepsilon > 0$ and smooth map $u : (-\varepsilon,\varepsilon) \times V \to U$ such that $u(\dot,c)$ is the unique solution with initial condition $c$.
-\\\textup{\cite[Theorem~2.1.1]{Sharpe1997}}\cite[Theorem~1.2.1]{Ivey}
+Moreover, for any $p \in U$ there is an open neighbourhood $p \in V \subset U$, $\varepsilon > 0$ and smooth map $u : (-\varepsilon,\varepsilon) \times V \to U$ such that $u(\cdot,c)$ is the unique solution with initial condition $c$.
 \end{theorem}
 
-If one has a smooth vector field on a manifold, then this theorem provides for the existence of integral curves of the vector field in every coordinate chart, and uniqueness means that they can be patched together to give unique maximal integral curves through every point.
+If one has a smooth vector field on a manifold, then we can ask for a curve $\gamma$ through $p = \gamma(0)$, called an integral curve, such that the tangent vectors of $\gamma$ are equal to the vector field.
+In other words, the integral curve is a solution to the time-independent ODE $\gamma'(t) = X(\gamma(t))$.
+this theorem provides for the existence of integral curves of the vector field in every coordinate chart, and uniqueness means that they can be patched together to give unique maximal integral curves through every point.
 
-We will need a generalisation of this result that deals with multiple vector fields.
+The set of integral curves of a vector field $X$ define a flow of the manifold: $\tilde{X}_t(p)$ is defined to be equal to the integral curve of $X$ through $p$ at time $t$ (ie $t \mapsto \tilde{X}_t(p)$ is the integral curve).
+This is a smooth function defined on a subset of $\bbR \times M$ (treating the subscript as the first variable here), in particular containing some neighbourhood $(-\varepsilon,\varepsilon) \times U$ of any point $(0,p)$.
+Uniqueness of the integral curves means that this flow is reversible.
+Moreover, if the vector field is nonzero at a point, there is a chart containing that point where the vector field is the first coordinate vector $\partial_1$ and the flow is translation.
+In the other direction, the derivative of the flow with respect to $t$ at $t=0$ gives back the vector field $X$.
+
+The flow provides a way to connect points of a manifold with neighbouring points, and so can be used to define a derivative, called the Lie derivative.
+For example, for a function $f$
+\[
+\mathcal{L}_X f
+= \lim_{h \to 0} h^{-1} \left( f \circ \tilde{X}_h - f \right)
+= \left.\frac{d}{dt}\right|_{t=0} f \circ \tilde{X}_t
+\]
+is, by the chain rule, equal to $\langle X, f\rangle$.
+The Lie derivative of a vector field is likewise defined by
+\[
+\mathcal{L}_X Y
+= \lim_{h \to 0} h^{-1} \left( d\tilde{X}_{-h}(Y \circ \tilde{X}_h) - Y \right)
+= \left.\frac{d}{dt}\right|_{t=0} d\tilde{X}_{-t} \circ Y \circ \tilde{X}_t
+\]
+which is well-defined since $d\tilde{X}_{-h}$ takes $T_{\tilde{X}_h(p)}M$ to $T_pM$.
+Most importantly, the Lie derivative of a vector field is a type of commutator.
+This is easiest to calculate in local coordinates, specifically the ones adapted to the flow of $X$~\cite[Thm~9.38]{Lee2012}.
+If $Y(p) = Y^i(p) \partial_i|_p$ then
+\begin{align*}
+d\tilde{X}_{-h}(Y \circ \tilde{X}_h) (p)
+&= d\tilde{X}_{-h} \left( Y^i(p + (h,0,\ldots)) \partial_i|_{\tilde{X}_h(p)} \right)
+= Y^i(p + (h,0,\ldots)) \partial_i|_{p} \\
+\mathcal{L}_X Y (p)
+&= \lim_{h \to 0} h^{-1} \left( Y^i(p + (h,0,\ldots)) - Y^i(p) \right) \partial_i|_{p}
+= \frac{\partial Y^i}{\partial x_1} \partial_i|_{p}.
+\end{align*}
+On the other hand, this is the commutator of $X$ and $Y$
+\begin{align*}
+[X,Y]
+= \frac{\partial Y^i}{\partial x_1} \partial_i - Y^i\frac{\partial 1}{\partial x_i} \partial_1
+= \frac{\partial Y^i}{\partial x_1} \partial_i.
+\end{align*}
+One can check that the commutator of two vector fields is a well-defined vector field, independent of the coordinates.
+Therefore $\mathcal{L}_X Y = [X,Y]$.
+
+From this commutator formula, most of the properties of the Lie derivative of vector fields easily follow.
+For us, the most important are anti-symmetry $[X,Y] = -[Y,X]$ and the Jacobi identity $[X,[Y,Z]] = [[X,Y],Z] + [Y, [X,Z]]$.
+There is also a generalisation of adapted coordinates to sets of linearly-independent commuting vector fields: around each point there is a chart whose coordinates vector fields are the given vector fields.
+
+We will need a generalisation that deals with vector fields that are not commuting.
 To motivate why this is geometrically interesting and not just generalisation for its own sake, consider a submanifold $N$ inside $M$.
 At each point $p \in N$ we can consider the vector subspace $T_pN \subset T_pM$.
 At least locally, we can describe these subspaces as the span of independent vector fields.
@@ -165,19 +271,19 @@ The natural question is the converse: given a set of independent vector fields o
 For a single vector field, the answer is affirmative, namely the integral curve.
 
 \begin{definition}
+\textup{\cite[2.2.1,.2.2.2,2.3.2]{Sharpe1997}} \\
 An $r$-dimensional distribution $\mathcal{D}$ on $M$ is a choice of an $r$-dimensional subspace $\mathcal{D}_p$ of $T_p M$ at every point $p \in M$.
 It is called smooth if every point has a neighbourhood and smooth vector fields $\{X_1, \dots, X_r \}$ that span the subspaces.
 This is called a local basis for $\mathcal{D}$.
 Equivalently, an $r$-dimensional distribution is an rank $r$ subbundle of $TM$.
 
 A set of vector fields is called algebraically involutive if their Lie brackets are contained in their span.
-Given two sets of vector fields with the same span, either one is algebraically involutive if and only if the other is.
-Therefore algebraically involutive is a property that is defined for distributions.\\
+Given two sets of vector fields with the same span, one is algebraically involutive if and only if the other is.
+Therefore algebraically involutive is a property that is defined for distributions.
 
 A distribution is called integrable if every point has a coordinate neighbourhood in which the distribution is spanned by coordinate vector fields.
 \\
 A connected $r$-dimensional immersed submanifold $N$ is called an integral submanifold of $\mathcal{D}$ if at every point $T_pN = \mathcal{D}_p$.
-\\\textup{\cite[2.2.1,.2.2.2,2.3.2]{Sharpe1997}}
 \end{definition}
 
 Consider the example of nested spheres centered at the origin in $\bbR^3\setminus\{0\}$. 
@@ -201,16 +307,37 @@ If a distribution is integrable, then every point has an integral submanifold th
 And if there is an integral submanifold of the distribution at a point, the local basis of the distribution gives a vector field on it.
 So then the Lie bracket is again tangent to the integral submanifold, showing that the vector fields are algebraically involutive at that point.
 Hence algebraic involutive is a necessary condition to the existence of an integral submanifold.
-The important theorem is Frobenius' theorem~\cite[2.4.1]{Sharpe1997}\cite[Thm~1.60]{Warner1983}, which states a distribution is integrable at a point if and only if it is algebraically involutive at that point.
-The proof inductively applies the Picard-Lindelöff theorem.
 
-In fact around each point $p$ there is a chart $(U,x)$ such that the flat plaques $V(q) = \{q' \in U | x_j(q') = x_j(q) \text{ for } m - r < j \leq m \}$ are integral submanifolds of the distribution, and any integrable submanifold contained in the chart is a subset of one of these.
-In particular this is a plaque chart of any integral submanifold through $p$, hence it is a plaque submanifold.
-Note that an integral submanifold may meet this chart several times, which explains why we don't have equality of sets above.
+\begin{theorem}[Frobenius' theorem]
+\textup{\cite[Thm~2.4.1,~Cor~2.4.2]{Sharpe1997}\cite[Thm~1.60]{Warner1983}\cite[Thm~19.2]{Lee2012}} \\
+A distribution is integrable if and only if it is algebraically involutive.
+An integral submanifold is weakly embedded.
+\end{theorem}
+\begin{proof}
+It suffices to show that locally every distribution can be spanned by linearly-independent commuting vector fields.
+If it can be, then by the discussion above there is an adapted coordinate system, and the connected component of the integral submanifold in this chart through a given point is a coordinate plane, thus a flat plaque.
+
+Since this is a local question, we will work in a local coordinate.
+Let $\mathcal{D}$ be rank $r$ and take any local basis $X_1, \dots, X_r$.
+By rotating coordinates, assume that at $p$ the basis is complementary to $\partial_{r+1},\dots,\partial_{m}$.
+Let $\pi$ be the projection onto the first $r$ coordinates.
+$d\pi|_D : D \to TU$ is a smooth bundle homomorphism, and it is an isomorphism at $p$ by our set-up.
+Hence there is a neighborhood of $p$ where it is invertible.
+Hence $Y_i = (d\pi|_D)^{-1} \partial_i$ is also a local basis of $\mathcal{D}$ at $p$.
+But by the naturality of the Lie bracket 
+\[
+[Y_i, Y_j] 
+= [(d\pi|_D)^{-1} \partial_i, (d\pi|_D)^{-1} \partial_j]
+= (d\pi|_D)^{-1} [\partial_i, \partial_j]
+= 0.
+\qedhere
+\]
+\end{proof}
+
 We can use uniqueness to unite integral submanifolds of a distribution into their maximal connected components.
 Each of these is called a leaf and the collection of leaves is a foliation.
 
-Perhaps let us revisit the example from the previous section of a weakly embedded submanifold that is not a plaque submanifold, the shrinking spheres.
+Perhaps let us revisit the example from the previous section of a weakly embedded submanifold that is not a submanifold in the sense of Sharpe, the shrinking spheres.
 There is no distribution on $\bbR^3$ with this as an integral submanifold. 
 If we take a sequence of corresponding points on the spheres, $p_n = c_n + r_n \omega$ for $\omega \in \bbS^2$ for $c_n,r_n$ the centers and radii of the spheres, the limit is the origin. 
 But all the tangent planes $T_{p_n}(\partial B(c_n,r_n))$ are parallel, so their limit is just any of them translated to the origin.
@@ -272,7 +399,7 @@ Understood in this way, it is more common to call $\lambda$ a \emph{weight} of t
 
 As an aside, the descriptor ``weight'' should probably replace ``eigen-'' even in the single operator case.
 Consider an operator $A$ with a $2$-weight vector $v$ and a $3$-weight vector $w$.
-Then of course $A(av+bw) = 2v + 3w$, which is a weighted sum.
+Then of course $A(v+w) = 2v + 3w$, which is a weighted sum.
 
 We finish with an example.
 Let $\mathcal{A}$ be the set of diagonal $n\times n$ matrices.
