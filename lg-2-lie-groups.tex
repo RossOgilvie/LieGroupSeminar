@@ -158,9 +158,9 @@ If it is also a diffeomorphism, then we say $\phi$ is an \emph{isomorphism of Li
 \end{definition}
 On the other hand, sometimes a different concept is more appropriate for Lie theory.
 In manifold theory one is mostly concerned with embedded submanifolds, while in Lie theory immersed submanifolds are more useful:
-\begin{definition}
+\begin{definition}\label{Def:subgroup}
 \textup{\cite[3.17]{Warner1983}, contrast~\cite[\S{}7.1]{Fulton2004}}\\
-A \emph{Lie subgroup} $(H,\varphi)$ of a Lie group $G$ is a Lie group $H$ and injective immersion $\varphi : H \to G$ that is also a homomorphism.
+A \emph{Lie subgroup} $(H,\varphi)$ of a Lie group $G$ is a Lie group $H$ and an injective immersion $\varphi : H \to G$ that is also a homomorphism.
 It is called a \emph{closed Lie subgroup} if $\varphi(H)$ is further closed.
 \end{definition}
 An immersed manifold that is closed is an embedded submanifold. 
@@ -264,7 +264,7 @@ Abelian Lie groups include $\bbR^n$ and $\bbT^n$ and $\lgO(3)$ and $\lgSO(3)$ ar
 
 
 \subsection{Subgroups}
-First, we remind ourselves of Definition 3.3 to see what a Lie subgroup is. 
+First, we remind ourselves of definition \ref{Def:subgroup} to see what a Lie subgroup is. 
 First we start with a Proposition that is used quite often:
 \begin{Prop}
 \textup{\cite[3.18]{Warner1983}}\\
@@ -290,7 +290,7 @@ a union of open sets.
 Next we have a theorem considering when an abstract subgroup of a Lie group is also a Lie subgroup. This is an analogy of \ref{thm:submanifolds}
 \begin{theorem}
 \textup{\cite[3.20]{Warner1983}}\\
-If an abstract subgroup $A$ of a Lie group $G$ has a manifold structure which makes $(A, \iota)$ into a submanifold of $G$, where $\iota$ is the inclusion map, then it has a unique manifold structure, and in this manifold structure, $A$ is a Lie group and hence, $(A, \iota)$, is a Lie subgroup of $G$.
+If an abstract subgroup $A$ of a Lie group $G$ has a manifold structure which makes $(A, \iota)$ into an immersed (sub-)manifold of $G$, where $\iota$ is the inclusion map, then it has a unique manifold structure, and in this manifold structure, $A$ is a Lie group and hence, $(A, \iota)$, is a Lie subgroup of $G$.
 \end{theorem}
 
 \begin{proof}
@@ -315,9 +315,51 @@ From this, we get the following result
 Let $(H^d,\varphi)$ be a Lie subgroup of $G^c$. Then $\varphi$ is an embedding (a homeomorphism of $H$ with $\varphi[H]$ in the relative topology) if and only if $(H,\varphi)$ is a closed subgroup of $G$ (meaning $\varphi[H]$ is closed in $G$).
 \end{theorem}
 
+\begin{proof}
+Step 1: We want to construct an embedding $\varphi$ from $H$ onto $\varphi[H]$.\\
+By Frobenius theorem we can choose a cubic-centered coordinate system $(U,\tau)$ for $e \in G$ s.t. $\varphi[H]\cap U$ is an at most countable union of slices 
+\begin{align*}
+\tau_i \equiv const \text{ for all } i \in \{d+1,\dots,c\},
+\end{align*} 
+which includes the slice through $e$. So we define $C \subset U$ tp be the subset containing $e$ and whose image under $\tau$ is a cube. Then $S \subset C$ is the slice $\tau_1 = \dots = \tau_d = 0$. So we have constructed $\tau[\varphi[H]\cap S]$ to be a non-empty, closed and countable subset of $\mathbb{R}^{c-d}$. Since the set is countable, it has at least one isolated point. So there is an isolated slice $S_0$ included in $\varphi[H]\cap U$. But then the pre-image $\varphi^{-1}[S_0]$ needs to be open in $H$ and hence $\varphi$ gives an embedding into $\varphi[H]$.
+
+
+Step 2: Now we assume that $\varphi$ is an embedding and prove that $\varphi[H]$ is closed. \\
+So let $\{x_n\}_{n \in \mathbb{N}} \subset \varphi[H]$ be a sequence converging to $x \in G$. Since $\varphi$ now is an embedding we choose a cubic coordinate system $(U,\tau)$ including $e \in G$ s.t. $\varphi[H] \cap U$ is a single slice $S$. We again choose cubic neighborhoods $V \subset W \subset U$ s.t. $V^{-1}V \subset \bar{W} \subset U$. By convergence of $x_n$ to $x$ we choose $N \in \mathbb{N}$ s.t. $x_n \in xV$ for all $n \geq N$. That implies $x_N^{-1}x_n \in \bar{W}$ for $n \geq N$. Since $x_N^{-1}x_n \in \varphi[H]$ holds as well, $x_N^{-1}x_n \in S \cap \bar{W}$ too. By construction, this converges to $x_N^{-1}x$ which therefore again lies in $S \cap \bar{W}$. Therefore $x_N^{-1}x \in \varphi[H]$ as well. But that implies $x \in \varphi[H]$, proving closedness.
+
+\end{proof}
+
 \subsection{Quotients}
-
-
+We start with a defining theorem:
+\begin{theorem}\label{Thm:homogeneous}
+Let $H$ be a closed subgroup of a Lie Group $G$ and let $G/H$ be defined to be the set $\{\sigma H \colon \sigma \in G\}$ of left cosets modulo $H$. Let $\pi \colon G \to G/H$ denote the natural projection $pi(\sigma) = \sigma H$. Then $G/H$ has a unique manifold structure s.t.
+\begin{itemize}
+\item $\pi$ is $C^{\infty}$
+\item There exist local smooth sections of $G/H$ in $G$, meaning that if $\sigma H \in G/H$, there is a neighborhood $W$ of $\sigma H$ and a $C^{\infty}$ map $\tau \colon W \to G$ s.t. $\pi \circ \tau = id\vert_W$.
+\end{itemize}
+\end{theorem}
+This gives us the following definition:
+\begin{definition}
+Manifolds of the form $G/H$, where $G$ is a closed Lie group, $H$ is a closed subgroup of $H$ and the manifold structure of $G/H$ is as in theorem \ref{Thm:homogeneous} are called \textbf{homogeneous manifolds}.
+\end{definition}
+\begin{definition}
+Let $\eta \colon G \times M \to M$ be an action of $G$ on $M$ on the left and let $\eta_{\sigma}(m) := \eta(\sigma,m)$. The action map is called \textbf{effective} if $e$ is the only element of $G$ for which $\eta_e$ is the identity map on $M$. The action is called \textbf{transitive} if whenever $m$ and $n$ belong to $M$ there exists a $\sigma \in G$ s.t. $\eta_{\sigma}(m) = n$. Let $m_0 \in M$ and let 
+\begin{align*}
+H = \{\sigma \in G \, \vert \, \eta_{\sigma}(m_0) = m_0\}.
+\end{align*}
+$H$ is a closed subgroup of $G$ called \textbf{isotropy group at} $m_0$.
+\end{definition}
+\begin{theorem}
+Let $\eta \colon G \times M \to M$ be a transitive action of the Lie group $G$ on the manifold $M$ on the left. Let $m_0 \in M$, and let $H$ be the isotropy group at $m_0$. Define a mapping
+\begin{align*}
+\tilde{\beta} \colon G/H \to M \text{ by } \tilde{\beta}(\sigma H) = \eta_{\sigma}(m_0).
+\end{align*}
+Then $\tilde{\beta}$ is a diffeomorphism.
+\end{theorem}
+We finally arrive at a statement that tells us when quotients of Lie groups are again Lie groups.
+\begin{theorem}
+Let $G$ be a Lie group and $H$ a closed normal subgroup of $G$. Then the homogeneous manifold $G/H$ with its natural group structure is a Lie group.
+\end{theorem}
 \subsection{Covers}
 
 
