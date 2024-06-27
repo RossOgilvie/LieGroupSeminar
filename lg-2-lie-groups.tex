@@ -337,6 +337,7 @@ Let $(H,\phi)$ be a Lie subgroup of $G$. Then $\phi$ is an embedding if and only
 
 
 \begin{proof}
+% TODO: Ross put into same language as earlier.
 Step 1: We want to construct an embedding $\varphi$ from $H$ onto $\varphi[H]$.\\
 By Frobenius theorem we can choose a cubic-centered coordinate system $(U,\tau)$ for $e \in G$ s.t. $\varphi[H]\cap U$ is an at most countable union of slices 
 \begin{align*}
@@ -352,11 +353,22 @@ So let $\{x_n\}_{n \in \mathbb{N}} \subset \varphi[H]$ be a sequence converging 
 
 \subsection{Quotients}
 
-I think there is an example of a non-matrix Lie group in FH.
+\begin{definition}
+TODO: What is a group action on a manifold.
+
+Let $\eta \colon G \times M \to M$ be an action of $G$ on $M$ on the left and let $\eta_{\sigma}(m) := \eta(\sigma,m)$. The action map is called \textbf{effective} if $e$ is the only element of $G$ for which $\eta_e$ is the identity map on $M$. The action is called \textbf{transitive} if whenever $m$ and $n$ belong to $M$ there exists a $\sigma \in G$ s.t. $\eta_{\sigma}(m) = n$. Let $m_0 \in M$ and let 
+\begin{align*}
+H = \{\sigma \in G \, \vert \, \eta_{\sigma}(m_0) = m_0\}.
+\end{align*}
+$H$ is a closed subgroup of $G$ called \textbf{isotropy group at} $m_0$.
+\end{definition}
 
 We start with a defining theorem:
 \begin{theorem}\label{Thm:homogeneous}
-Let $H$ be a closed subgroup of a Lie Group $G$ and let $G/H$ be defined to be the set $\{\sigma H \colon \sigma \in G\}$ of left cosets modulo $H$. Let $\pi \colon G \to G/H$ denote the natural projection $pi(\sigma) = \sigma H$. Then $G/H$ has a unique manifold structure s.t.
+\textup{\cite[3.58]{Warner1983}}
+TODO: Generalise this theorem: when is the quotient by a group action again a manifold? Then this is a special case of $H$ acting on $G$.
+
+Let $H$ be a closed subgroup of a Lie Group $G$ and let $G/H$ be defined to be the set $\{\sigma H \colon \sigma \in G\}$ of left cosets modulo $H$. Let $\pi \colon G \to G/H$ denote the natural projection $\pi(\sigma) = \sigma H$. Then $G/H$ has a unique manifold structure s.t.
 \begin{itemize}
 \item $\pi$ is $C^{\infty}$
 \item There exist local smooth sections of $G/H$ in $G$, meaning that if $\sigma H \in G/H$, there is a neighborhood $W$ of $\sigma H$ and a $C^{\infty}$ map $\tau \colon W \to G$ s.t. $\pi \circ \tau = id\vert_W$.
@@ -364,15 +376,11 @@ Let $H$ be a closed subgroup of a Lie Group $G$ and let $G/H$ be defined to be t
 \end{theorem}
 This gives us the following definition:
 \begin{definition}
-Manifolds of the form $G/H$, where $G$ is a closed Lie group, $H$ is a closed subgroup of $H$ and the manifold structure of $G/H$ is as in theorem \ref{Thm:homogeneous} are called \textbf{homogeneous manifolds}.
+Manifolds of the form $G/H$, where $G$ is a closed Lie group, $H$ is a closed subgroup of $H$ and the manifold structure of $G/H$ is as in Theorem~\ref{Thm:homogeneous} are called \textbf{homogeneous manifolds}.
 \end{definition}
-\begin{definition}
-Let $\eta \colon G \times M \to M$ be an action of $G$ on $M$ on the left and let $\eta_{\sigma}(m) := \eta(\sigma,m)$. The action map is called \textbf{effective} if $e$ is the only element of $G$ for which $\eta_e$ is the identity map on $M$. The action is called \textbf{transitive} if whenever $m$ and $n$ belong to $M$ there exists a $\sigma \in G$ s.t. $\eta_{\sigma}(m) = n$. Let $m_0 \in M$ and let 
-\begin{align*}
-H = \{\sigma \in G \, \vert \, \eta_{\sigma}(m_0) = m_0\}.
-\end{align*}
-$H$ is a closed subgroup of $G$ called \textbf{isotropy group at} $m_0$.
-\end{definition}
+
+TODO: Can we give a theorem, if we have a group action $G$ on a manifold $M$, when do we have an action of $G/H$ on $M$?
+
 \begin{theorem}
 Let $\eta \colon G \times M \to M$ be a transitive action of the Lie group $G$ on the manifold $M$ on the left. Let $m_0 \in M$, and let $H$ be the isotropy group at $m_0$. Define a mapping
 \begin{align*}
@@ -384,8 +392,13 @@ We finally arrive at a statement that tells us when quotients of Lie groups are 
 \begin{theorem}
 Let $G$ be a Lie group and $H$ a closed normal subgroup of $G$. Then the homogeneous manifold $G/H$ with its natural group structure is a Lie group.
 \end{theorem}
+
+TODO: Nicolas. I think there is an example of a non-matrix Lie group in FH. Also in Hall.
+
+
 \subsection{Covers}
 
+TODO: Ross
 Key example, $\lgSU(2)$ covering $\lgSO(3)$.
 
 
