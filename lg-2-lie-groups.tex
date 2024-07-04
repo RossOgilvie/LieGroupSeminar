@@ -348,8 +348,14 @@ which includes the slice through $e$. So we define $C \subset U$ tp be the subse
 
 Step 2: Now we assume that $\varphi$ is an embedding and prove that $\varphi[H]$ is closed. \\
 So let $\{x_n\}_{n \in \mathbb{N}} \subset \varphi[H]$ be a sequence converging to $x \in G$. Since $\varphi$ now is an embedding we choose a cubic coordinate system $(U,\tau)$ including $e \in G$ s.t. $\varphi[H] \cap U$ is a single slice $S$. We again choose cubic neighborhoods $V \subset W \subset U$ s.t. $V^{-1}V \subset \bar{W} \subset U$. By convergence of $x_n$ to $x$ we choose $N \in \mathbb{N}$ s.t. $x_n \in xV$ for all $n \geq N$. That implies $x_N^{-1}x_n \in \bar{W}$ for $n \geq N$. Since $x_N^{-1}x_n \in \varphi[H]$ holds as well, $x_N^{-1}x_n \in S \cap \bar{W}$ too. By construction, this converges to $x_N^{-1}x$ which therefore again lies in $S \cap \bar{W}$. Therefore $x_N^{-1}x \in \varphi[H]$ as well. But that implies $x \in \varphi[H]$, proving closedness.
-
 \end{proof}
+
+TODO: Ross, extended example of 1-dim subgroups of GLnC, in particular developing etX
+
+\subsection{Homomorphisms}
+
+TODO: Ross. uniqueness based on tangent map at identity. Example and argument about non-matrix Lie group.
+
 
 \subsection{Quotients}
 \begin{definition}
@@ -365,17 +371,6 @@ H = \{\sigma \in G \, \vert \, \eta_{\sigma}(m_0) = m_0\}.
 $H$ is a closed subgroup of $G$ called \textbf{isotropy group at} $m_0$.
 \end{definition}
 
-We start with a defining theorem:
-\begin{theorem}\label{Thm:homogeneous}
-\textup{\cite[3.58]{Warner1983}}
-TODO: Generalise this theorem: when is the quotient by a group action again a manifold? Then this is a special case of $H$ acting on $G$.
-
-Let $H$ be a closed subgroup of a Lie Group $G$ and let $G/H$ be defined to be the set $\{\sigma H \colon \sigma \in G\}$ of left cosets modulo $H$. Let $\pi \colon G \to G/H$ denote the natural projection $\pi(\sigma) = \sigma H$. Then $G/H$ has a unique manifold structure s.t.
-\begin{itemize}
-\item $\pi$ is $C^{\infty}$
-\item There exist local smooth sections of $G/H$ in $G$, meaning that if $\sigma H \in G/H$, there is a neighborhood $W$ of $\sigma H$ and a $C^{\infty}$ map $\tau \colon W \to G$ s.t. $\pi \circ \tau = id\vert_W$.
-\end{itemize}
-\end{theorem}
 \begin{definition}
 A group action on a manifold is called proper if the map $\varphi \colon G \times M \to M \times M$ defined by $(g,m) \mapsto (m, \eta(g,m))$ is proper. That means that for compact sets $K,K'$ the set of $g \in G$ s.t. $g \cdot K \cap K' \neq \emptyset$ is compact. 
 \end{definition}
@@ -390,13 +385,27 @@ Let $G$ be a Lie group acting smoothly, freely and properly on a smooth manifold
 \item $M/G$ admits a unique smooth structure for which the natural quotient mapp $\pi \colon M \to M/G$ is a smooth submersion.
 \end{itemize}
 \end{theorem}
+
+
+\begin{example}\label{Thm:homogeneous}
+\textup{\cite[3.58]{Warner1983}}
+TODO: Rewrite this as an example/application of the above theorem.
+
+Let $H$ be a closed subgroup of a Lie Group $G$ and let $G/H$ be defined to be the set $\{\sigma H \colon \sigma \in G\}$ of left cosets modulo $H$. Let $\pi \colon G \to G/H$ denote the natural projection $\pi(\sigma) = \sigma H$. Then $G/H$ has a unique manifold structure s.t.
+\begin{itemize}
+\item $\pi$ is $C^{\infty}$
+\item There exist local smooth sections of $G/H$ in $G$, meaning that if $\sigma H \in G/H$, there is a neighborhood $W$ of $\sigma H$ and a $C^{\infty}$ map $\tau \colon W \to G$ s.t. $\pi \circ \tau = id\vert_W$.
+\end{itemize}
+\end{example}
+
+
 This gives us the following definition:
 \begin{definition} 
 \textup{\cite[3.59]{Warner1983}}
-Manifolds of the form $G/H$, where $G$ is a closed Lie group, $H$ is a closed subgroup of $H$ and the manifold structure of $G/H$ is as in Theorem~\ref{Thm:homogeneous} are called \textbf{homogeneous manifolds}.
+Manifolds of the form $G/H$, where $G$ is a Lie group, $H$ is a closed subgroup of $H$ and the manifold structure of $G/H$ is as in Theorem~\ref{Thm:homogeneous} are called \textbf{homogeneous manifolds}.
 \end{definition}
 
-TODO: Can we give a theorem, if we have a group action $G$ on a manifold $M$, when do we have an action of $G/H$ on $M$?
+The idea of the following theorem is that a homogeneous manifold is the same thing as a transitive action.
 
 \begin{theorem}
 \textup{\cite[3.62]{Warner1983}}
