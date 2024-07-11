@@ -1,7 +1,7 @@
 
-\section{Preliminaries}
+\chapter{Preliminaries}
 
-\subsection{Submanifolds}
+\section{Submanifolds}
 
 Often in mathematics there is an obvious notion of a ``subobject'': given a structure on a set there is a simple way to restrict it to a subset, such that the subset can be said to have the same structure.
 For example, the structure on a group is the identity element, inversion, and multiplication; if there is a subset containing the identity element and which is preserved under inversion and multiplication, then we have a subgroup.
@@ -201,7 +201,7 @@ We do the same.
 \end{proof}
 
 
-\subsection{Lie Brackets and Distributions}
+\section{Lie Brackets and Distributions}
 
 It is common in a course on manifolds to study vector fields and their integral curves.
 The key local result is
@@ -355,7 +355,107 @@ Taking several such sequences, we see that the distribution cannot be continuous
 % d\omega(X,Y) = X(\omega(Y)) - Y(\omega(X)) - \omega([X,Y]).
 % \]
 
-\subsection{Eigenvalues and Weights}
+
+\section{Covers}
+
+In this section we summarise covering maps.
+To avoid some technical topological issues, we only give the definition in the smooth case.
+\begin{definition}
+\label{def:covering map}
+Let $X$ and $Y$ be smooth manifolds and $\pi : X \to Y$ a smooth surjection.
+An open set $V \subset N$ is called \emph{evenly covered} if the connected components of $\pi^{-1}[V]$ are each diffeomorphic to $V$ under $\pi$.
+The map $\pi$ is called a \emph{covering} if every point has an evenly covered neighbourhood.
+The connected components of an evenly covered set are called \emph{sheets}, and the preimage of a point of $Y$ is called its fibre.
+$X$ is called the \emph{covering space} and $Y$ the \emph{base space}.
+\end{definition}
+
+It is easy to see that every covering is a surjective local diffeomorphism, but the converse is not true.
+
+\begin{example}
+Consider $\gamma : (-2\pi, 2\pi) \to \bbS^1$ given by $t \mapsto e^{it}$.
+This is surjective local diffeomorphism.
+But the point $1 \in \bbS^1$ does not have an evenly covered neighbourhood.
+To prove this, notice that open subsets of evenly covered sets are themselves evenly covered.
+So if there exists an evenly covered neighbourhood, there exists one of the form $V = \{ e^{it} \mid t \in (-\varepsilon,\varepsilon) \}$.
+But 
+\[
+\gamma^{-1}[V] = (-\varepsilon,\varepsilon) \cup (2\pi - \varepsilon,2\pi) \cup (-2\pi,-2\pi+\varepsilon).
+\]
+But clearly $(2\pi - \varepsilon,2\pi)$ is not diffeomorphic to $V$ under $\pi$, it is not even surjective.
+Therefore $\gamma$ is not a covering map.
+
+However the map $\gamma_n : \bbS^1 \to \bbS^1$ given by $z \mapsto z^n$ is a covering map with $n$ sheets.
+And $\gamma_\infty : \bbR \to \bbS^1$ given by $t \mapsto e^{it}$ is a covering map with infinitely many sheets.
+\end{example}
+
+The most important property of covering maps is that maps into the base space can often be `lifted' to the covering space.
+
+\begin{theorem}
+\label{thm:lift}
+\textup{\cite[Thm~3.23]{Warner1983}}\\
+Suppose that $\pi : X \to Y$ is a covering map and $Z$ is a connected and simply connected space.
+Then for any map $\alpha: Z \to Y$, point $z \in Z$, and point $x \in \pi^{-1}[\alpha(z)]$ there is a map $\tilde{\alpha} : Z \to X$ with $\alpha = \pi \circ \tilde{\alpha}$ and $\tilde{\alpha}(z) = x$.
+We say that $\tilde{\alpha}$ is the lift of $\alpha$ through $x$.
+\end{theorem}
+\begin{proof}[Sketch of proof.]
+The proof of uniqueness only requires connectedness of $Z$.
+Suppose there were two lifts and consider the set of points of $Z$ on which they agree.
+By definition they agree at $z$.
+Then one uses continuity to argue that it is closed, and the covering property to argue that it is open.
+Hence it is all of $Z$.
+
+The proof of existence is usually carried out in three stages.
+In the first stage we take $Z$ to be a closed interval.
+The image is compact, so can be covered by finitely many evenly covered open sets of $Y$.
+Starting with the evenly covered set containing $\alpha(z)$, we know that there is a diffeomorphic neighbourhood $U$ of $x$.
+Then $(\pi|_U)^{-1} \circ \alpha$ defines a local lift of $\alpha$.
+Repeating this along the path gives $\tilde{\alpha}$ and proves the result in this case.
+
+In the second step, we take $Z$ to be a product of closed intervals.
+Now we use the same idea as the first stage. 
+The difference is that there is no clear order in which to proceed, so this is finicky.
+
+In the third and final stage, we let $Z$ be any simply connected space.
+For any point $z'\in Z$, take a path $p$ from $z$ to $z'$.
+From the first stage, we know that $\alpha \circ p$ has a lift $\tilde{p}$.
+Define $\tilde{\alpha}(z') = \tilde{p}(z')$.
+It remains to show that this is independent of the chosen path $p$.
+But if there is another path, then because $Z$ is simply connected, there is a homotopy between the two paths.
+But this is just a fancy name for a map $h : [0,1]\times[0,1] \to Z$ with $h(0,\cdot)$ equal to the first path, $h(1,\cdot)$ equal to the second path, $h(\cdot,0) = z$, and $h(\cdot,1) = z'$.
+Lifting $\alpha \circ h$ shows that the lifts of the two paths have the same endpoint in $X$.
+\end{proof}
+
+For any space, there is essentially a unique simply connected covering space.
+
+\begin{theorem}
+Let $X$ be a connected smooth manifold.
+Then there exists a smooth manifold $\tilde{X}$, called the \emph{universal cover} of $X$, and smooth covering map $\pi : \tilde{X} \to X$.
+\end{theorem}
+\begin{proof}[Sketch of proof.]
+Remarkably the proof is constructive.
+Fix a base point of $X$.
+The universal cover $\tilde{X}$ is the set of paths originating at the base point, up to homotopy equivalence.
+The covering map sends a path to its endpoint.
+For any path $\gamma$ take a simply connected open neighbourhood $V$ of its endpoint $y = \pi(\gamma) = \gamma(1)$.
+Then concatenation of $\gamma$ with a path in $U$ from $x$ to any point of $U$ is a bijection from $U$ to a subset of $\tilde{X}$.
+Declaring these bijections to be homeomorphisms makes $\tilde{X}$ into a topological space, and declaring further that they are diffeomorphisms makes $\tilde{X}$ into a manifold.
+\end{proof}
+
+The reason for the epitaph `universal' is that if $\pi : X \to Y$ is a covering map, and $\pi_Y : \tilde{Y} \to Y$ is the universal cover, then the lifting property tells us that $\pi_Y$ lifts to a covering map $\pi_X$ of $X$, with $\pi_Y = \pi \circ \pi_X$.
+
+\begin{corollary}
+The universal cover is unique in the following sense:
+If $X,X'$ are simply connected and $\pi : X \to Y, \pi': X'\to Y$ are covering maps, then for any points $y \in Y$, $x \in \pi^{-1}[y]$, and $x' \in \pi^{-1}[y]$ there is a diffeomorphism from $X$ to $X'$ that takes $x$ to $x'$
+\end{corollary}
+
+We can apply this corollary to the universal cover itself.
+Given two points $x,x' \in \pi^{-1}[Y]$ there is an automorphism of $\tilde{X}$ taking $x$ to $x'$.
+These automorphisms are called deck transformations of $\pi$.
+The set of deck transformations of the universal cover acts transitively on the fibre of any point.
+
+
+
+\section{Eigenvalues and Weights}
 
 Eigenvalues and eigenvectors are ubiquitous in linear algebra.
 If we are working over $\bbC$, then every linear endomorphism (linear map from a vector space $V$ to itself) has an eigenvalue (root of the characteristic polynomial) and every eigenvalue has an eigenvector $Av_\lambda = \lambda v_\lambda$.

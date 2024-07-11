@@ -1,8 +1,8 @@
 % !TEX root = lie-groups.tex
-\section{Lie Groups}
+\chapter{Lie Groups}
 
 Historically and in practice, Lie groups arise first as the study of the transformation of geometric objects.
-Let us consider the example of a sphere in euclidean space.
+Let us consider the example of a sphere $\bbS^2$ in euclidean space $\bbR^3$.
 There are in a sense three ways to rotate a sphere.
 Choose a point on the equator of a sphere.
 You can rotate the sphere so that this point moves towards a pole (y-axis rotation), so that this point moves along the equator (z-axis rotation), or so that the point is stationary (x-axis rotation).
@@ -32,7 +32,7 @@ Moreover the sign of the determinant can be used to distinguish a proper rotatio
 
 Heuristically, we have nine choices for the matrix of $R$ subject to the restriction each of the three columns must be unit length and the restriction that pairs of columns must be orthogonal (six restrictions total).
 This agrees with the three degrees of freedom we argued for above.
-To see this is a manifold however we consider a function $f$ from $\Mat(3,\bbR)$ to the symmetric matrices given by $f(R) = R^TR$.
+To formally prove this is a manifold however, we consider a function $f$ from $\Mat(3,\bbR)$ to the symmetric matrices given by $f(R) = R^TR$.
 The orthogonal matrices are exactly $\lgO(3) = f^{-1}(I)$.
 The derivative at $R$ in the direction $S$ is $f'(R)(S) = R^TS + S^T R = R^T S + (R^T S)^T$.
 At a point $R \in \lgO(3)$ this is surjective in $S$: for any symmetric matrix $Y$ let $S = \frac{1}{2}RY$.
@@ -133,7 +133,7 @@ This has proven that the fundamental group of $\RP^3$, and hence $\lgSO(3)$, is 
 any loop with an even number of segments can be contracted to a point, whereas any loop with an odd number of segments can be reduced to a diameter.
 
 
-\subsection{Basic Notions}
+\section{Basic Notions}
 
 \begin{definition}
 \label{def:lie group}
@@ -187,7 +187,7 @@ It is called a \emph{closed Lie subgroup} if $\varphi(H)$ is further closed.
 
 
 
-\subsection{Examples}
+\section{Examples}
 \label{sec:examples}
 
 There are many interesting properties that Lie groups can possess, and we give a quick tour of them with examples.
@@ -220,14 +220,14 @@ We have the following families of matrix groups
 \begin{align*}
 \lgSL(n,\bbC) &= \{ A \in \lgGL(n,\bbC) \mid \det A = 1 \} \\
 \lgSL(n,\bbR) &= \{ A \in \lgGL(n,\bbR) \mid \det A = 1 \} \\
-\lgU(n) &= \{ A \in \lgGL(n,\bbC) \mid \bar{A}^T A = I \} \\
+\lgU(n) &= \{ A \in \lgGL(n,\bbC) \mid A^\ast A = I \} \\
 \lgSU(n) &= \{ A \in \lgU(n) \mid \det A = 1 \} \\
 \lgO(n) &= \{ A \in \lgGL(n,\bbR) \mid A^T A = I \} \\
 \lgSO(n) &= \{ A \in \lgO(n) \mid \det A = 1 \}.
 \end{align*}
-If we give $\bbC^n$ the standard inner product $\langle v,w \rangle = \bar{v}^Tw$ then unitary matrices are exactly the linear transformations that preserve it.
+If we give $\bbC^n$ the standard inner product $\langle v,w \rangle = v^\ast w$, where $\ast$ means conjugate transpose, then unitary matrices are exactly the linear transformations that preserve it.
 In this way the orthogonal groups are the real counterparts to the unitary groups.
-The following trick shows that $\lgU(n)$ is compact: As a vector in $\bbC^{n^2}$ the square of the norm of $A \in \lgU(n)$ is $\tr(\bar{A}^T A) = \tr I = n$, thus $\lgU(n)$ is bounded.
+The following trick shows that $\lgU(n)$ is compact: As a vector in $\bbC^{n^2}$ the square of the norm of $A \in \lgU(n)$ is $\tr(A^\ast A) = \tr I = n$, thus $\lgU(n)$ is bounded.
 Thus all closed subsets, such as $\lgSU(n), \lgO(n),\lgSO(n)$, are also compact.
 
 There are also the symplectic groups.
@@ -284,7 +284,7 @@ Indeed, many books downplay the differential geometric aspects of Lie theory bec
 
 
 
-\subsection{Subgroups and Homomorphisms}
+\section{Subgroups and Homomorphisms}
 \label{sec:subgroups}
 In Definition \ref{Def:subgroup} we defined a Lie subgroup.
 Now we explore some of the technical issues of that definition.
@@ -376,6 +376,7 @@ The limit $g_1^{-1}g$ therefore lies in $\phi[H] \cap \bar{W} \subset \phi[H] \c
 \end{proof}
 
 \begin{corollary}
+\label{cor:kernel of hom}
 \textup{\cite[Prop~3.31]{Hall2015}} \\
 Let $\Phi : G \to H$ be a homomorphism of Lie groups.
 The kernel $\ker \Phi$ is a closed normal subgroup of $G$, and so is embedded.
@@ -488,33 +489,23 @@ Now the matrix exponential is not a finite series, but rather $Y^2 = -I$ creates
 which is the rotation group $\lgSO(2,\bbR)$.
 \end{example}
 
+% TODO: Is there sense in either introducing a notational calculus for Lie groups that matches the matrix case? ie gX instead of dL_g(X).
 
-The proof that one parameter subgroups are uniquely determined by their tangent vectors at the identity is generalised in the following theorem.
-This is an important idea: homomorphisms between Lie groups can be classified by the differential at the identity.
-It leads to the concept of a Lie algebra, which is developed in the next chapter.
-
-\begin{theorem}
-\textup{\cite[Thm~3.16]{Warner1983}} \\
-Let $G$ be a connected Lie group and $\varphi,\psi : G \to H$ homomorphisms.
-If $d\varphi|_e = d\psi|_e$ then $\varphi \equiv \psi$.
-\end{theorem}
-\begin{proof}
-We try to generalise the proof of paths in $\lgGL(n,\bbC)$.
-If the working below is opaque, place the two proofs side-by-side, because they really are the same.
-The rigorous way to write the usual rules of calculus in Lie groups is to work on the level of maps.
+How much of this example holds in general?
+First, many of the rule of calculus in the matrices carry over to Lie groups, however at the level of maps.
 Recall the left translation map $L_g : G \to G, t \mapsto gt$ and right translation map $R_g : G \to G, t \mapsto tg$.
-The fact that $\varphi$ is a homomorphism can be expressed as $\varphi \circ L_g = L_{\varphi(g)} \circ \varphi$.
-The chain rule now gives
+The differentials of these maps give maps tangent spaces of $G$,
 \[
-d\varphi|_g \circ dL_g|_e 
-= dL_{\varphi(g)}|_e \circ d\varphi|_e,
-\] 
-allowing us to calculate $d\varphi$ at any point in terms of translations of $d\varphi|_e$.
+dL_g|_h : T_hG \to T_{gh}G
+\qquad\text{and}\qquad
+dR_g|_h : T_hG \to T_{hg}G.
+\]
+Further, because $L_g$ is a diffeomorphisms with inverse $L_{g^{-1}}$, the differential is an isomorphism with inverse $(dL_g)^{-1} = dL_{g^{-1}}$ (and similarly for $R_g$).
 The analogy of the product rule is the following property of the multiplication map $\mu : G \times G \to G$:
 \[
-d\mu|_{(a,b)}(X,Y)
-= d\mu|_{(a,b)}(X,0) + d\mu|_{(a,b)}(0,Y)
-= dR_b|_a(X) + dL_a|_b(Y).
+d\mu|_{(g,h)}(X,Y)
+= d\mu|_{(g,h)}(X,0) + d\mu|_{(g,h)}(0,Y)
+= dR_h|_g(X) + dL_g|_h(Y).
 \]
 From the identities $\iota = R_{g^{-1}} \circ \iota \circ L_{g^{-1}}$ and $d\iota|_e = - \id$ we get the analogue of the rule $(\beta(t)^{-1})' = - \beta^{-1} \beta' \beta^{-1}$:
 \[
@@ -522,7 +513,33 @@ d\iota_g
 = dR_{g^{-1}}|_e \circ d\iota|_e \circ dL_{g^{-1}}|_g 
 = - dR_{g^{-1}}|_e \circ dL_{g^{-1}}|_g.
 \]
-Now consider $f(t) = \varphi(t)\psi(t)^{-1} = \mu(\varphi(t), \iota(\psi(t)))$.
+At the level of maps, the fact that $\varphi : G \to H$ is a homomorphism can be expressed as $\varphi \circ L_g = L_{\varphi(g)} \circ \varphi$, where $L_g$ is left translation in $G$ and $L_{\varphi(g)}$ is left translation in $H$.
+The chain rule now gives
+\[
+d\varphi|_g  
+= dL_{\varphi(g)}|_e \circ d\varphi|_e \circ (dL_g|_e)^{-1}
+= dL_{\varphi(g)}|_e \circ d\varphi|_e \circ dL_{g^{-1}}|_g.
+\] 
+Thus the differential $d\varphi$ at any point is completely determined  in terms of translations of $d\varphi|_e$.
+This is an important idea and it leads to the concept of a Lie algebra, which is developed in the next chapter.
+But for the moment it gives us the following useful lemma
+\begin{lemma}
+\label{lem:injective differential}
+Let $\varphi : G \to H$ be a homomorphism of Lie groups.
+Then $\varphi$ is an immersion (resp submersion) if and only if $d\varphi|_e$ is injective (resp surjective).
+\end{lemma}
+% TODO: Does submersion imply varphi is surjective to H_0?
+
+We can use these tools to generalise the proof that one parameter subgroups are uniquely determined by their tangent vectors at the identity.
+
+\begin{theorem}
+\textup{\cite[Thm~3.16]{Warner1983}} \\
+Let $G$ be a connected Lie group and $\varphi,\psi : G \to H$ homomorphisms.
+If $d\varphi|_e = d\psi|_e$ then $\varphi \equiv \psi$.
+\end{theorem}
+\begin{proof}
+If the working below is opaque, place this proof side-by-side with the proof in $\lgGL(n,\bbC)$ because they really are the same.
+Consider $f(t) = \varphi(t)\psi(t)^{-1} = \mu(\varphi(t), \iota(\psi(t)))$.
 \begin{align*}
 df|_g
 &= dR_{\iota(\psi(t))}|_{\varphi(g)} \circ d\varphi|_g + dL_{\varphi(g)}|_{\iota(\psi(g))} \circ d\iota|_{\psi(g)} \circ d\psi|_g \\
@@ -533,6 +550,28 @@ df|_g
 \end{align*}
 Because $G$ is connected, $f$ is constant and equal to $e \in H$.
 Therefore $\varphi \equiv \psi$ as claimed.
+\end{proof}
+
+In group theory, there are a number of constructions that give important subgroups and many of these carry over to Lie groups.
+The center $Z(G)$ of a group is the set of element of $G$ that commute with every element of $G$.
+A typical example is that the center of $\lgGL(n,\bbC)$ or $\lgGL(n,\bbR)$ are the scalar multiples of the identity matrix.
+The center is an abelian subgroup.
+In fact it is a closed Lie subgroup, although we do not yet have the tools to prove this.
+% TODO: prove this, probably in Lie algebra correspondence section.
+Instead we prove something about $0$-dimensional subgroups.
+
+\begin{theorem}
+\label{thm:discrete in center}
+For a connected Lie group $G$, any discrete normal subgroup $N$ is contained in the center of $G$.
+\end{theorem}
+\begin{proof}
+Normality means that for any elements $n \in N$ and $g \in G$ the conjugation $gng^{-1}$ lies in $N$.
+Fix some $n\in N$ and consider the continuous function $f: G \to N$ given by $g \mapsto gng^{-1}$.
+Clearly $n = ene^{-1} \in f[G]$.
+But $f[G]$ is connected and $N$ is discrete.
+Therefore $f[G] = \{n\}$.
+In other words, for all $g \in G$ we have $gn = ng$, showing that $n \in Z(G)$.
+As $n$ was arbitrary, $N \subset Z(G)$.
 \end{proof}
 
 
@@ -596,33 +635,34 @@ Hence, as claimed, $\gamma$ lies in the kernel of $\varphi$.
 
 
 % TODO: I think this Prop should probably go with the Lie algebra stuff, because it is about local to global?
-% First we start with a Proposition that is used quite often:
-% \begin{Prop}
-% \textup{\cite[3.18]{Warner1983}}\\
-% Let $G$ be a connected Lie group, and let $U$ be a neighbourhood of the identity $e$. Then 
-% \begin{align*}
-% G= \bigcup_{n=1}^{\infty} U^n
-% \end{align*}
-% where $U^n$ consists of all $n$-fold products of elements of $U$.
-% \end{Prop}
+Finally we have another result that knowledge of a Lie group near the identity is sufficient to determine the group.
+\begin{theorem}
+\label{thm:local generation}
+\textup{\cite[3.18]{Warner1983}}\\
+Let $G$ be a connected Lie group, and let $U$ be a neighbourhood of the identity $e$. Then 
+\begin{align*}
+G= \bigcup_{n=1}^{\infty} U^n
+\end{align*}
+where $U^n$ consists of all $n$-fold products of elements of $U$.
+\end{theorem}
 
-% \begin{proof}
-% We will outline the idea of the proof. We consider an open subset $V \subset U$ s.t. $V=V^{-1}$, for example choosing $V = U\cap U^{-1}$. Then we define 
-% \begin{align*}
-% H = \bigcup_{n=1}^{\infty} V^n \subset \bigcup_{n=1}^{\infty} U^n.
-% \end{align*}
-% By choice of $V$, $H$ satisfies the subgroup condition. Further $H$ is an open subset of $G$ as a union of open sets. In fact for any $g \in G$ the coset $gH$ is open in $G$, since it preimage of $H$ under $(g^{-1} \cdot) : G \to G$.
-% Now we want to prove that $H$ is also closed. But the complement of $H$ can be written
-% \[
-% G \setminus H = \bigcup_{g \in G \setminus H} gH,
-% \]
-% a union of open sets.
-% \end{proof}
+\begin{proof}
+We will outline the idea of the proof. We consider an open subset $V \subset U$ s.t. $V=V^{-1}$, for example choosing $V = U\cap U^{-1}$. Then we define 
+\begin{align*}
+H = \bigcup_{n=1}^{\infty} V^n \subset \bigcup_{n=1}^{\infty} U^n.
+\end{align*}
+By choice of $V$, $H$ satisfies the subgroup condition. Further $H$ is an open subset of $G$ as a union of open sets. In fact for any $g \in G$ the coset $gH$ is open in $G$, since it preimage of $H$ under $(g^{-1} \cdot) : G \to G$.
+Now we want to prove that $H$ is also closed. But the complement of $H$ can be written
+\[
+G \setminus H = \bigcup_{g \in G \setminus H} gH,
+\]
+a union of open sets.
+\end{proof}
 
 
 
 
-\subsection{Quotients}
+\section{Quotients}
 \begin{definition}
 Let $\eta \colon G \times M \to M, (g,x) \mapsto g \cdot x$ be a (left) group action on a manifold $M$. A smooth group action on a manifold is called a Lie group action.
 \end{definition}
@@ -637,10 +677,10 @@ $H$ is a closed subgroup of $G$ called \emph{isotropy group at} $m_0$.
 \end{definition}
 
 \begin{definition}
-A group action on a manifold is called proper if the map $\varphi \colon G \times M \to M \times M$ defined by $(g,m) \mapsto (m, \eta(g,m))$ is proper. That means that for compact sets $K,K'$ the set of $g \in G$ s.t. $g \cdot K \cap K' \neq \emptyset$ is compact. 
+A group action on a manifold is called \emph{proper} if the map $\varphi \colon G \times M \to M \times M$ defined by $(g,m) \mapsto (m, \eta(g,m))$ is proper. That means that for compact sets $K,K'$ the set of $g \in G$ s.t. $g \cdot K \cap K' \neq \emptyset$ is compact. 
 \end{definition}
 \begin{definition}
-A group action on a manifold is called free if, for all $m \in M$, $g \cdot m = m$ implies $g = e_G$. That is equivalent to the map $\varphi \colon G \times M \to M \times M$ defined by $(\eta(g,m),m)$ being injective.
+A group action on a manifold is called \emph{free} if, for all $m \in M$, $g \cdot m = m$ implies $g = e_G$. That is equivalent to the map $\varphi \colon G \times M \to M \times M$ defined by $(\eta(g,m),m)$ being injective.
 \end{definition}
 A more general version of the statement in Warner is the following theorem:
 \begin{theorem}
@@ -673,17 +713,36 @@ Manifolds of the form $G/H$, where $G$ is a Lie group, $H$ is a closed subgroup 
 The idea of the following theorem is that a homogeneous manifold is the same thing as a transitive action.
 
 \begin{theorem}
-\textup{\cite[3.62]{Warner1983}}
+\label{thm:transitive action homogeneous manifold}
+\textup{\cite[3.62]{Warner1983}}\\
 Let $\eta \colon G \times M \to M$ be a transitive action of the Lie group $G$ on the manifold $M$ on the left. Let $m_0 \in M$, and let $H$ be the isotropy group at $m_0$. Define a mapping
 \begin{align*}
 \tilde{\beta} \colon G/H \to M \text{ by } \tilde{\beta}(\sigma H) = \eta_{\sigma}(m_0).
 \end{align*}
 Then $\tilde{\beta}$ is a diffeomorphism.
 \end{theorem}
+
 We finally arrive at a statement that tells us when quotients of Lie groups are again Lie groups.
+
 \begin{theorem}
+\label{thm:Lie group quotient}
 Let $G$ be a Lie group and $H$ a closed normal subgroup of $G$. Then the homogeneous manifold $G/H$ with its natural group structure is a Lie group.
 \end{theorem}
+
+An important special case of this theorem is if $H$ is a discrete normal subgroup.
+Then the quotient $G/H$ is a Lie group of the same dimension as $G$, but typically its topology is more complicated.
+
+\begin{theorem}[First isomorphism theorem of Lie groups]
+\label{thm:first iso}
+Suppose that $\varphi: G \to H$ is a surjective homomorphism of Lie groups.
+Then $G / \ker \varphi \cong H$.
+\end{theorem}
+\begin{proof}
+Due to Corollary~\ref{cor:kernel of hom}, we know that $\ker \varphi$ is a closed normal subgroup of $G$.
+Hence Theorem~\ref{thm:Lie group quotient} tells us that $G/\ker \varphi$ is a Lie group.
+Group theory tells us the induced map $\tilde{\varphi}(g\ker\varphi) = \varphi(g)$ is an isomorphism of groups; it remains to prove it is a diffeomorphism.
+But this is precisely the conclusion of Theorem~\ref{thm:transitive action homogeneous manifold}: we have a group action $\eta : G \times H \to H$ given by $\eta(g,h) = \varphi(g)h$, whose isotropy group at $e \in H$ is $\ker\varphi$.
+\end{proof}
 
 TODO: Nicolas. 
 Use R not C.
@@ -716,20 +775,173 @@ We now define the Lie group $H = G / \mathbb{Z}$. We want to prove that $H$ is a
 
 
 
-\subsection{Covers}
-
-TODO: Ross
-Key example, $\lgSU(2)$ covering $\lgSO(3)$.
+\section{Covers}
 
 Let us begin this section with an important example: the double cover of $\lgSO(3)$ by $\lgSU(2)$.
 We gave quite a detailed description of $\lgSO(3)$ earlier in the chapter, so let us now give $\lgSU(2)$ the same treatment.
 It is the group of unitary rotations of $\bbC^2$.
+It is not too difficult to work out the explicit form such matrices must take:
+\begin{align*}
+\begin{pmatrix}
+\bar{\alpha} & \bar{\gamma} \\ \bar{\beta} & \bar{\delta}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\alpha & \beta \\ \gamma & \delta
+\end{pmatrix}^\ast
+= \begin{pmatrix}
+\alpha & \beta \\ \gamma & \delta
+\end{pmatrix}^{-1}
+= \begin{pmatrix}
+\delta & - \beta \\ - \gamma & \alpha
+\end{pmatrix},
+\end{align*}
+where we have used that the determinant is one, implies that 
+\[
+\lgSU(2) 
+= \left\{ \begin{pmatrix} \alpha & -\bar{\beta} \\ \beta & \bar{\alpha} \end{pmatrix} \;\middle|\; \alpha,\beta \in \bbC,\; |\alpha|^2 + |\beta|^2 = 1 \right\}.
+\]
+In particular we see that as a manifold it is diffeomorphic to $\bbS^3$.
+So like $\lgSO(3)$, the Lie group $\lgSU(2)$ is connected, compact, and has dimension 3.
+What then is the difference between these Lie groups?
+Well, the $3$-sphere is simply connected, but we have seen that $\lgSO(3)$ is not.
+
+In essence, this is the only difference between these groups, as we will now prove.
+Let us construct a Lie group homomorphism from $\lgSU(2)$ to $\lgSO(3)$.
+There is a more principled construction that uses the quaternions, but that would take us too far afield. 
+So instead we will find a copy of $\bbR^3$ on which $\lgSU(2)$ acts in a natural way.
+Consider the tangent space $T_I\lgSU(2)$.
+We may describe the tangent vector using paths $\gamma$ in $\lgSU(2)$ with $\gamma(0) = I$:
+\[
+\gamma(t) = \begin{pmatrix} \alpha(t) & -\overline{\beta(t)} \\ \beta(t) & \overline{\alpha(t)} \end{pmatrix}.
+\]
+Since $\alpha(0) = 1$ and $\beta(0) = 0$, differentiating the relation $|\alpha|^2 + |\beta|^2 = 1$ tells us that $1\overline{\alpha'(0)} + \alpha'(0)1 + 0 + 0 = 0$.
+In other words, $\alpha'(0)$ is purely imaginary.
+Thus
+\[
+T_I\lgSU(2) 
+= \left\{ \begin{pmatrix} i x_1 & -x_2 + i x_3 \\ x_2 + i x_3 & -ix_1 \end{pmatrix} \;\middle|\; x_1,x_2,x_3 \in \bbR \right\}
+= \{ X \in \Mat(2,\bbC) \mid X^\ast = - X\}.
+\]
+This tangent space inherits the Hilbert-Schmidt norm, which in fact makes it an inner product space with inner product
+\begin{align*}
+\langle X, Y \rangle
+&= \tr \begin{pmatrix} i x_1 & -x_2 + i x_3 \\ x_2 + i x_3 & -ix_1 \end{pmatrix}^\ast\begin{pmatrix} i y_1 & -y_2 + i y_3 \\ y_2 + i y_3 & -iy_1 \end{pmatrix} \\
+&= \tr \begin{pmatrix}
+x_1y_1 + (x_2 - i x_3)(y_2 + i y_3) & \cdots \\
+\cdots & x_1y_1 + (x_2 + i x_3)(y_2 - i y_3)
+\end{pmatrix} \\
+&= 2\left(x_1y_1 + x_2y_2 + x_3y_3\right).
+\end{align*}
+Up to the factor of $2$, this is just the euclidean inner product on $\bbR^3$.
+
+Is there then an action of $\lgSU(2)$ on $T_I\lgSU(2)$?
+Consider again a path $\gamma$ through the identity.
+For any $g \in \lgSU(2)$, the path $t \mapsto g\gamma(t)g^{-1}$ is also a path in $\lgSU(2)$ with $g\gamma(0)g^{-1} = gg^{-1} = I$.
+Hence if $X \in T_I\lgSU(2)$ so is $gXg^{-1}$.
+Moreover this preserves the inner product
+\[
+\langle gXg^{-1}, gYg^{-1} \rangle
+= \tr (gXg^{-1})^\ast gYg^{-1}
+= \tr (g^\ast)^{-1}X^\ast g^\ast g Y g^{-1}
+= \tr g X^\ast Y g^{-1}
+= \langle X, Y \rangle.
+\]
+Therefore for every $g \in \lgSU(2)$ we have an inner product preserving transformation of $\bbR^3 = T_I\lgSU(2)$, i.e.\ an element of $\lgSO(3)$.
+This gives us a map $\pi : \lgSU(2) \to \lgSO(3)$ (It is a map to $\lgO(3)$, and $\lgSU(2)$ is connected so $\pi[\lgSU(2)] \subset \lgSO(3)$).
+This map is a homomorphism:
+\[
+\pi(gh)(X)
+= (gh)X(gh)^{-1}
+= g(hXh^{-1})g^{-1}
+= \pi(g)\circ \pi(h)(X).
+\]
+It is tedious but not complicated to compute the matrix of $\pi(g)$ with respect to the basis of $T_I\lgSU(2)$ given by $x_1,x_2,x_3$:
+\[
+\pi(g)
+= \begin{pmatrix}
+|\alpha|^2 - |\beta|^2 &  2\Imag (\alpha\beta) & -2\Real(\alpha\beta) \\
+2\Imag (\alpha\bar{\beta}) & \Real(\alpha^2 + \beta^2) & -\Imag(\alpha^2 - \beta^2) \\
+2\Real(\alpha\bar{\beta}) & \Imag(\alpha^2 + \beta^2) & \Real(\alpha^2 - \beta^2)
+\end{pmatrix}.
+\]
+From this we can compute $d\pi|_I$:
+\[
+d\pi|_I(X)
+= \begin{pmatrix}
+\alpha'(0) + \overline{\alpha'(0)} &  2\Imag \beta'(0) & -2\Real\beta'(0) \\
+2\Imag \overline{\beta'(0)} & 2\Real\alpha'(0) & -2\Imag\alpha'(0) \\
+2\Real \overline{\beta'(0)} & 2\Imag\alpha'(0) & 2\Real\alpha'(0)
+\end{pmatrix}
+= \begin{pmatrix}
+0 &  2x_3 & -2x_2 \\
+-2x_3 & 0 & -2x_1 \\
+2x_2 & 2x_1 & 0
+\end{pmatrix}.
+\]
+Clearly this is injective.
+Because it is a linear map between two $3$-dimensional vector spaces, it is also surjective.
+It follows from Lemma~\ref{lem:injective differential} that $\pi$ is a local diffeomorphism.
+In fact $\pi$ is surjective.
+Because $\pi$ is a local diffeomorphism, $\pi[\lgSU(2)]$ is open.
+Because $\lgSU(2)$ is compact, $\pi[\lgSU(2)]$ is closed.
+Because $\lgSO(3)$ is connected, the only non-empty open and closed subset is the whole set.
+
+Now that we know that $\pi$ is surjective, we can be sure that the following method for finding a preimage will succeed.
+Take first the $2\times2$ minor in bottom right of $\pi(g)$.
+From this we can easily solve for $\alpha^2$ and $\beta^2$.
+Hence we have four candidate solutions, given by the four sign choices of the square roots.
+But the sign of $\alpha\beta$ is determined from the top row of $\pi(g)$.
+Hence the preimage of any point of $\lgSO(3)$ consists of two antipodal points $g$ and $-g$ of $\lgSU(2) = \bbS^3$.
+This explains the name ``double cover''.
+In particular $\ker \pi = \{I, -I\}$.
+Using Theorem~\ref{thm:first iso}, we get another example of a quotient of Lie groups, $\lgSU(2)/\ker\pi \cong \lgSO(3)$.
+
+But let us turn to the theme of this section. 
+This is an example of a covering, as per Definition~\ref{def:covering map}.
+We know that it is surjective.
+Given an point $h \in \lgSO(3)$ there are two points $g,-g \in \lgSU(2)$ in the preimage.
+We know that $\pi$ is a local diffeomorphism, so there are neighbourhoods $U^\pm$ of $\pm g$ that map diffeomorphically to $V^\pm = \pi[U^\pm]$.
+Then $V = V^+ \cap V^-$ is evenly covered.
+
+Generally, what can be said about the covering of Lie groups?
+\begin{theorem}
+The universal cover of a Lie group can itself be given a Lie group structure.
+\end{theorem}
+\begin{proof}
+Let $\tilde{G}$ be the smooth manifold that is the universal cover of $G$.
+Choose any element $\tilde{e} \in \pi^{-1}[e]$ to be its identity.
+The map $m : \tilde{G}\times\tilde{G} \to G$ given by $(g,h) \mapsto \pi(g)\pi(h)$ has a unique lift to $\tilde{m} : \tilde{G}\times\tilde{G} \to \tilde{G}$ with $\tilde{m}(\tilde{e},\tilde{e}) = \tilde{e}$, since $\tilde{G}\times\tilde{G}$ is simply connected.
+Likewise we can lift $\iota \circ \pi$.
+These lifted operations make $\tilde{G}$ into a Lie group.
+Let us give an example of how to check the necessary properties, that $\tilde{e}g = g$.
+Observe that $\tilde{m}(\tilde{e},\cdot)$ and $\id_{\tilde{G}}$ are both lifts of $\pi$ since
+\[
+\pi \circ \tilde{m}(\tilde{e},g) 
+= m(e,\pi(g))
+= \pi(g)
+= \pi \circ \id_{\tilde{G}}(g).
+\]
+By uniqueness of lifts, they are equal.
+\end{proof}
+
+TODO: the covering map is a hom
+
+TODO: Deck transformations are left translations by elements over the identity. They belong to the center. Discrete. Conversely, quotient by discrete normal subgroup is a covering map.
+
+TODO: I separated out covering theory for manifolds into the prerequite section. But it is possible to simplify the proofs using that loops at the identity homotopically commute with paths? Or that you can do things in a neighborhood of identity and move it along paths to any other point?
+
+\begin{example}
+TODO: universal cover of SL2R is not linear.
+\end{example}
 
 
-\subsection{Compact Lie groups}
+
+
+\section{Compact Lie groups}
 
 Here we should construct the bi-invariant metric.
 
 
-\subsection{Simple Lie groups}
+\section{Simple Lie groups}
 We should give a refined version of the classification problem: to find simply-connected simple compact Lie groups.
