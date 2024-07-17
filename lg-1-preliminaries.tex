@@ -362,8 +362,9 @@ In this section we summarise covering maps.
 To avoid some technical topological issues, we only give the definition in the smooth case.
 \begin{definition}
 \label{def:covering map}
-Let $X$ and $Y$ be smooth manifolds and $\pi : X \to Y$ a smooth surjection.
-An open set $V \subset N$ is called \emph{evenly covered} if the connected components of $\pi^{-1}[V]$ are each diffeomorphic to $V$ under $\pi$.
+\textup{\cite[p.~56]{Hatcher}}
+Let $X$ and $\tilde{X}$ be smooth manifolds and $\pi : \tilde{X} \to X$ a smooth surjection.
+An open set $V \subset X$ is called \emph{evenly covered} if $\pi^{-1}[V]$ is a disjoint union of open sets, each diffeomorphic to $V$ under $\pi$.
 The map $\pi$ is called a \emph{covering} if every point has an evenly covered neighbourhood.
 The connected components of an evenly covered set are called \emph{sheets}, and the preimage of a point of $Y$ is called its fibre.
 $X$ is called the \emph{covering space} and $Y$ the \emph{base space}.
@@ -373,7 +374,7 @@ It is easy to see that every covering is a surjective local diffeomorphism, but 
 
 \begin{example}
 Consider $\gamma : (-2\pi, 2\pi) \to \bbS^1$ given by $t \mapsto e^{it}$.
-This is surjective local diffeomorphism.
+This is a surjective local diffeomorphism.
 But the point $1 \in \bbS^1$ does not have an evenly covered neighbourhood.
 To prove this, notice that open subsets of evenly covered sets are themselves evenly covered.
 So if there exists an evenly covered neighbourhood, there exists one of the form $V = \{ e^{it} \mid t \in (-\varepsilon,\varepsilon) \}$.
@@ -381,7 +382,7 @@ But
 \[
 \gamma^{-1}[V] = (-\varepsilon,\varepsilon) \cup (2\pi - \varepsilon,2\pi) \cup (-2\pi,-2\pi+\varepsilon).
 \]
-But clearly $(2\pi - \varepsilon,2\pi)$ is not diffeomorphic to $V$ under $\pi$, it is not even surjective.
+Clearly $(2\pi - \varepsilon,2\pi)$ is not diffeomorphic to $V$ under $\pi$, it is not even surjective.
 Therefore $\gamma$ is not a covering map.
 
 However the map $\gamma_n : \bbS^1 \to \bbS^1$ given by $z \mapsto z^n$ is a covering map with $n$ sheets.
@@ -389,67 +390,151 @@ And $\gamma_\infty : \bbR \to \bbS^1$ given by $t \mapsto e^{it}$ is a covering 
 \end{example}
 
 The most important property of covering maps is that maps into the base space can often be `lifted' to the covering space.
+A function $\tilde{f} : Y \to \tilde{X}$ is called the \emph{lift} of $f : Y \to X$ if $f = \pi \circ \tilde{f}$.
+To state the following theorem we also need the concept of homotopy.
+Given two functions $f,g : Y \to X$ a homotopy relative $K \subset Y$ is a function $H : Y \times [0,1] \to X$ such that $H(y,0) = f(y)$ and $H(y,1) = g(y)$ for all $y \in Y$, and $H(k,t) = f(k) = g(k)$ for all $k\in K, t\in[0,1]$.
+We say that the paths are homotopic relative $K$.
+A typical example is if $Y = [a,b]$ and $K = \{a,b\}$.
+A map $f : [a,b] \to X$ is a path into $X$.
+If it is homotopic to $g$ relative $K$ then there is deformation of $f$ into $g$ such that the endpoints of the curves are not moved.
 
-\begin{theorem}
-\label{thm:lift}
-\textup{\cite[Thm~3.23]{Warner1983}}\\
-Suppose that $\pi : X \to Y$ is a covering map and $Z$ is a connected and simply connected space.
-Then for any map $\alpha: Z \to Y$, point $z \in Z$, and point $x \in \pi^{-1}[\alpha(z)]$ there is a map $\tilde{\alpha} : Z \to X$ with $\alpha = \pi \circ \tilde{\alpha}$ and $\tilde{\alpha}(z) = x$.
-We say that $\tilde{\alpha}$ is the lift of $\alpha$ through $x$.
+\begin{theorem}[Homotopy Lifting Property]
+\label{thm:homotopy lifting property}
+\textup{\cite[Thm~3.23]{Warner1983}\cite[Thm~1.7(c)]{Hatcher}}\\
+Let $\pi : \tilde{X} \to X$ be a covering map.
+Given a map $F : Y \times [0,1] \to X$ and a map $\tilde{F}_0 : Y \times \{0\} \to \tilde{X}$ lifting $F|_{Y \times \{0\}}$ there is a unique map $\tilde{F} : Y \times [0,1] \to \tilde{X}$ lifting $F$ such that $\tilde{F}|_{Y \times \{0\}} = \tilde{F}_0$.
+% Suppose that $\pi : X \to Y$ is a covering map and $Z$ is a connected and simply connected space.
+% Then for any map $\alpha: Z \to Y$, point $z \in Z$, and point $x \in \pi^{-1}[\alpha(z)]$ there is a map $\tilde{\alpha} : Z \to X$ with $\alpha = \pi \circ \tilde{\alpha}$ and $\tilde{\alpha}(z) = x$.
+% We say that $\tilde{\alpha}$ is the lift of $\alpha$ through $x$.
 \end{theorem}
-\begin{proof}[Sketch of proof.]
-The proof of uniqueness only requires connectedness of $Z$.
-Suppose there were two lifts and consider the set of points of $Z$ on which they agree.
-By definition they agree at $z$.
-Then one uses continuity to argue that it is closed, and the covering property to argue that it is open.
-Hence it is all of $Z$.
+\begin{proof}
+As a first step, we will construct local lifts.
+Every point $(y,s) \in Y \times [0,1]$ has a connected open neighborhood $N_s \times (a_s,b_s)$ such that the image under $F$ is contained in an evenly covered neighborhood of $F(y,s)$.
+These neighborhoods cover $\{y\} \times [0,1]$, a compact set, so there exists a finite subcover index by $s_i$.
+Set $N = \cap N_{s_i}$, also open and connected, and choose a partition $0 = t_0 < t_1 < \dots < t_n = 1$ of $[0,1]$ so that each $[t_j, t_{j+1}]$ belongs to an interval $(a_{s_i},b_{s_i})$.
+Thus we have a finite cover $N \times [t_j, t_{j+1}]$ of $\{y_0\} \times [0,1]$ such that the image of each is contained in an evenly covered subset $U_j$ (we cannot say that the image itself is evenly covered, because it might not be open in $X$).
+\begin{center}
+\begin{tikzpicture}
+% Draw the horizontal line
+\draw (0,0) -- (10,0) node[right]{$\{y_0\} \times [0,1]$};
 
-The proof of existence is usually carried out in three stages.
-In the first stage we take $Z$ to be a closed interval.
-The image is compact, so can be covered by finitely many evenly covered open sets of $Y$.
-Starting with the evenly covered set containing $\alpha(z)$, we know that there is a diffeomorphic neighbourhood $U$ of $x$.
-Then $(\pi|_U)^{-1} \circ \alpha$ defines a local lift of $\alpha$.
-Repeating this along the path gives $\tilde{\alpha}$ and proves the result in this case.
+% Draw the overlapping rectangles
+\fill[gray, opacity=0.5] (0,-1) rectangle (2,1);
+\fill[gray, opacity=0.5] (1,-0.8) rectangle (6,1.5);
+\draw (3.5,1.5) node[below]{$N_i\times(a_i,b_i)$};
+\fill[gray, opacity=0.5] (5,-1.5) rectangle (8,1);
+\fill[gray, opacity=0.5] (7,-0.5) rectangle (10,0.5);
 
-In the second step, we take $Z$ to be a product of closed intervals.
-Now we use the same idea as the first stage. 
-The difference is that there is no clear order in which to proceed, so this is finicky.
+% Draw the intersection N
+\fill[gray, opacity=0.5] (-1,-0.5) rectangle (-0.8,0.5);
+\draw (-1,0) node[left]{$N \subset Y$};
 
-In the third and final stage, we let $Z$ be any simply connected space.
-For any point $z'\in Z$, take a path $p$ from $z$ to $z'$.
-From the first stage, we know that $\alpha \circ p$ has a lift $\tilde{p}$.
-Define $\tilde{\alpha}(z') = \tilde{p}(z')$.
-It remains to show that this is independent of the chosen path $p$.
-But if there is another path, then because $Z$ is simply connected, there is a homotopy between the two paths.
-But this is just a fancy name for a map $h : [0,1]\times[0,1] \to Z$ with $h(0,\cdot)$ equal to the first path, $h(1,\cdot)$ equal to the second path, $h(\cdot,0) = z$, and $h(\cdot,1) = z'$.
-Lifting $\alpha \circ h$ shows that the lifts of the two paths have the same endpoint in $X$.
+% Draw the partition
+\draw (0,-2) -- (10,-2);
+\fill (0, -2) circle (2pt) node[below]{$t_0$};
+\fill (1.5, -2) circle (2pt) node[below]{$t_1$};
+\fill (5.5, -2) circle (2pt) node[below]{$t_2$};
+\fill (7.5, -2) circle (2pt) node[below]{$t_3$};
+\fill (10, -2) circle (2pt) node[below]{$t_4$};
+\end{tikzpicture}
+\end{center}
+
+
+For clarity, set $\tilde{F}_j(y) = \tilde{F}(y,t_j)$ and $F_j(y) = F(y,t_j)$.
+Assume inductively that we have constructed the lift $\tilde{F}$ on $M_j \times [0,t_j]$, for some neighborhood $M_j \subset Y$ of $y$.
+This means $\pi \circ \tilde{F}_j(y) = F_j(y)$, or in other words $\tilde{F}_j(y) \in \pi^{-1}[F_j(y)]$.
+Let $\tilde{U}_j \subset \tilde{X}$ be the sheet of $U_j$ that contains $\tilde{F}(y,t_j)$.
+It might be necessary to shrink $M_j$, by setting $M_{j+1}$ to be the connected component of $M_{j} \cap (\tilde{F}_j |_{M_{j}})^{-1}[\tilde{U}_j]$ that contains $\tilde{F}(y,t_j)$.
+This guarantees that $\tilde{F}_j[M_{j+1}] \subset \tilde{U}_j$.
+Now we extend the definition of $\tilde{F}$ by using the local inverse $\pi^{-1} : U_j \to \tilde{U}_j$:
+\[
+\tilde{F}(y', t') = \pi^{-1} \circ F(y',t') \text{ for } y' \in M_{j+1},\; t' \in [t_j,t_{j+1}].
+\]
+The base case of the induction $j=0$ is trivial: we set $M_0 = N$ and already have $\tilde{F}_0$ given to us in the theorem.
+
+Next we prove uniqueness by adding to the induction proof above, in particular we will use the thus-far unused property of connectedness of $M_j$.
+Suppose that $\tilde{F}'$ is another lift of $F$ fitting the conditions of the theorem.
+Suppose that we have already established that $\tilde{F}$ and $\tilde{F}'$ are equal on $M_j \times [0,t_j]$.
+Because $M_{j+1} \times [t_j, t_{j+1}]$ is connected, both $\tilde{F}$ and $\tilde{F}'$ must map it to the same component of $\tilde{U}_j$.
+But on $\tilde{U}_j$, $\pi$ is injective.
+Hence the lifting property $\pi \circ \tilde{F} = F = \pi \circ \tilde{F'}$ implies the equality $\tilde{F} = \tilde{F}'$ on $M_{j+1} \times [0,t_{j+1}] \subset (M_{j} \times [0,t_{j}]) \cup (M_{j+1} \times [t_j,t_{j+1}])$.
+Since they are equal at $j=0$, the induction is complete.
+
+Finally, we use local existence and uniqueness to patch these together into a global function.
 \end{proof}
 
-For any space, there is essentially a unique simply connected covering space.
+Note that $\tilde{F}$ is define essentially as the composite of $\pi^{-1}$ and $F$ on suitable patches.
+In particular, this shows us its regularity.
+For instance, if $\pi$ and $F$ are smooth then so is $\tilde{F}$.
+
+There are two special cases of this theorem that are used more than any others.
+The first is the case that $Y$ is a one point space.
+Then we can interpret $F$ as a path $[0,1] \to X$.
+The initial lift $\tilde{F}_0$ is nothing other than a choice of point in $\pi^{-1}[F(0)]$.
+Thus every curve has a lift, unique up to choice of starting point in $\tilde{X}$ lying over the starting point in $X$.
+
+The second use is when $F$ is the homotopy of two curves relative their endpoints.
+Formally $Y = [0,1]$.
+Each of the curves can be lifted with the same starting points.
+The fact that the homotopy can be lifted tells us that the two curves are homotopic in the covering space.
+In particular, they have the same finishing points. 
+
+An application is the construction of lifts of other maps.
+\begin{corollary}[Lifting Property]
+\textup{\cite[Prop~1.33]{Hatcher}}
+Let $\pi : \tilde{X} \to X$ be a covering.
+Suppose that $Y$ is simply connected.
+This means that any two paths in $Y$ with the same endpoints are homotopic.
+Then for any map $f : Y \to X$ and any points $y_0 \in Y$ and $\tilde{x}_0 \in \pi^{-1}[f(y_0)]$, there exists a unique lift $\tilde{f}$ of $f$ with $\tilde{f}(y_0) = \tilde{x}_0$.
+\[\begin{tikzcd}
+(\tilde{X},\tilde{x}_0) \arrow{d}{\pi} & \\
+(X,x_0) & (Y,y_0) \arrow{l}{f} \arrow[dashed]{lu}{\tilde{f}}
+\end{tikzcd}\]
+\end{corollary}
+\begin{proof}
+For any point $y \in Y$, let $\gamma : [0,1] \to Y$ be a path between $y_0$ and $y$.
+Then by the discussion above, the path $f \circ \gamma$ has a lift $\tilde{\gamma} : [0,1] \to \tilde{X}$ with $\tilde{\gamma}(0) = \tilde{x}_0$.
+Define $\tilde{f}(y) = \tilde{\gamma}(1)$.
+This is well-defined, because if there is any other path $\gamma$ to $y$, then by assumption there is a homotopy $H$ between the two paths.
+Then $f\circ H$ is a homotopy of $f\circ\gamma$ and $f\circ\gamma'$.
+But we know, again from the discussion above, that the lifts of homotopic paths have the same finishing point.
+\end{proof}
+
+For any space, there is a simply connected covering space.
+The idea is to expand on the idea of the above corollary, that the points of the covering space can be described as the endpoints of paths.
 
 \begin{theorem}
+\textup{\cite[p.63]{Hatcher}}
 Let $X$ be a connected smooth manifold.
-Then there exists a smooth manifold $\tilde{X}$, called the \emph{universal cover} of $X$, and smooth covering map $\pi : \tilde{X} \to X$.
+Then there exists a simply connected smooth manifold $\tilde{X}$ and smooth covering map $\pi : \tilde{X} \to X$.
+$\tilde{X}$ is called the \emph{universal cover} of $X$. 
 \end{theorem}
 \begin{proof}[Sketch of proof.]
 Remarkably the proof is constructive.
 Fix a base point of $X$.
-The universal cover $\tilde{X}$ is the set of paths originating at the base point, up to homotopy equivalence.
-The covering map sends a path to its endpoint.
-For any path $\gamma$ take a simply connected open neighbourhood $V$ of its endpoint $y = \pi(\gamma) = \gamma(1)$.
+Define the universal cover $\tilde{X}$ to be the set of paths originating at the base point, up to homotopy equivalence.
+The covering map $\pi$ sends a path to its endpoint.
+For any path $\gamma$ take a simply connected open neighbourhood $V$ of its endpoint $x = \pi(\gamma) = \gamma(1)$.
 Then concatenation of $\gamma$ with a path in $U$ from $x$ to any point of $U$ is a bijection from $U$ to a subset of $\tilde{X}$.
 Declaring these bijections to be homeomorphisms makes $\tilde{X}$ into a topological space, and declaring further that they are diffeomorphisms makes $\tilde{X}$ into a manifold.
 \end{proof}
 
-The reason for the epitaph `universal' is that if $\pi : X \to Y$ is a covering map, and $\pi_Y : \tilde{Y} \to Y$ is the universal cover, then the lifting property tells us that $\pi_Y$ lifts to a covering map $\pi_X$ of $X$, with $\pi_Y = \pi \circ \pi_X$.
+The reason for the epitaph `universal' is that if $\pi_X : Y \to X$ is any covering map, and $\pi : \tilde{X} \to X$ is the universal cover, then the lifting property tells us that $\tilde{\pi}$ lifts to a covering map $\pi_Y$ of $Y$, with $\pi_X = \pi_Y \circ \pi$.
+\[\begin{tikzcd}
+\tilde{X} \arrow{d}{\pi} \arrow[dashed]{rd}{\pi_Y} & \\
+X & Y \arrow{l}{\pi_X}
+\end{tikzcd}\]
+
+
 
 \begin{corollary}
 The universal cover is unique in the following sense:
-If $X,X'$ are simply connected and $\pi : X \to Y, \pi': X'\to Y$ are covering maps, then for any points $y \in Y$, $x \in \pi^{-1}[y]$, and $x' \in \pi^{-1}[y]$ there is a diffeomorphism from $X$ to $X'$ that takes $x$ to $x'$
+If $\tilde{X},\tilde{X}'$ are simply connected and $\pi : \tilde{X} \to X, \pi': \tilde{X}'\to X$ are covering maps, then for any points $x \in X$, $\tilde{x} \in \pi^{-1}[x]$, and $\tilde{x}' \in \pi^{-1}[x]$ there is a diffeomorphism from $\tilde{X}$ to $\tilde{X}'$ that takes $\tilde{x}$ to $\tilde{x}'$.
+\qed
 \end{corollary}
 
 We can apply this corollary to the universal cover itself.
-Given two points $x,x' \in \pi^{-1}[Y]$ there is an automorphism of $\tilde{X}$ taking $x$ to $x'$.
+Given two points $\tilde{x},\tilde{x}' \in \pi^{-1}[x]$ there is an automorphism of $\tilde{X}$ taking $\tilde{x}$ to $\tilde{x}'$.
 These automorphisms are called deck transformations of $\pi$.
 The set of deck transformations of the universal cover acts transitively on the fibre of any point.
 
