@@ -693,28 +693,47 @@ Show that this quotient is the non-matrix Lie group.
 
 \begin{definition}
 \textup{\cite[10.2]{Fulton2004}, \cite[4.8]{Hall2015}}
-We define the Heisenberg group as the set
+We define the (real) Heisenberg group as the set
 \begin{align*}
 G = \Bigg\{\begin{pmatrix}
 1 &a &b\\
 0 &1 &c\\
 0 &0 &1
-\end{pmatrix}, \; a,b,c \in \mathbb{C} \Bigg\}
+\end{pmatrix}, \; a,b,c \in \mathbb{R} \Bigg\}
 \end{align*} 
-The center of this group is 
+\end{definition}
+Now let $X = \begin{pmatrix}
+1 &x &y\\
+0 &1 &z\\
+0 &0 &1
+\end{pmatrix} \in Z(G)$ and $Y= \begin{pmatrix}
+1 &a &b\\
+0 &1 &c\\
+0 &0 &1
+\end{pmatrix} \in G$. Then we see that 
+\begin{align*}
+XY - YX = \begin{pmatrix}
+0 &0 &az-cx\\
+0 &0 &0\\
+0 &0 &0
+\end{pmatrix}
+\end{align*} holds. Now since $Y \in G$ is arbitrary, we see that for $a=0$ $x=0$ needs to hold and for $c=0$ $z=0$ needs to hold. Therefore we see that 
 \begin{align*}
 Z(G) = \Bigg\{\begin{pmatrix}
 1 &0 &b\\
 0 &1 &0\\
 0 &0 &1
-\end{pmatrix}, \quad b \in \mathbb{C}\Bigg\} \cong \mathbb{C}.
+\end{pmatrix}, \; b \in \mathbb{R}\Bigg\} \cong \mathbb{R}.
 \end{align*}
-Therefore the discrete subgroups of $Z(G)$ are just lattices of rank $1$ or $2$.
-\end{definition}
-We now define the Lie group $H = G / \mathbb{Z}$. We want to prove that $H$ is a non-matrix Lie group, so there is no homeomorphism between $H$ and a matrix group. Since the center of $G$ is isomorphic to $\mathbb{C}$, one can see that $Z(H) \cong \mathbb{C} / \mathbb{Z} \cong \mathbb{S}^1$. 
-
-
-
+We now denote the discrete normal subgroup $N$ of $H$ by 
+\begin{align*}
+N = \Bigg\{\begin{pmatrix}
+1 &0 &n\\
+0 &1 &0\\
+0 &0 &1
+\end{pmatrix}, \; n \in \mathbb{Z}\Bigg\}.
+\end{align*}
+Now assume that $\Phi \colon G \to H$ us an arbitrary group homomorphism. 
 
 \subsection{Covers}
 
