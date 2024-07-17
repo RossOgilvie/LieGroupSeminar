@@ -682,6 +682,124 @@ A group action on a manifold is called \emph{proper} if the map $\varphi \colon 
 \begin{definition}
 A group action on a manifold is called \emph{free} if, for all $m \in M$, $g \cdot m = m$ implies $g = e_G$. That is equivalent to the map $\varphi \colon G \times M \to M \times M$ defined by $(\eta(g,m),m)$ being injective.
 \end{definition}
+
+\begin{example}
+\label{eg:sl2r action on half plane}
+Let's examine $\lgSL(2,\bbR)$ through its action on the upper half plane $\bbH = \{ z = x + iy \in \bbC \mid y > 0\}$ as the Möbius transformation
+\[
+\begin{pmatrix}
+a & b \\ c & d
+\end{pmatrix} \cdot z 
+= \frac{az + b}{cz + d}, \qquad \text{where } ad - bc = 1.
+\]
+We should first check that this is even a transformation from $\bbH$ to itself.
+The formula is well-defined, because the denominator cannot vanish, and the image is in $\bbH$ because
+\[
+|cz+d|^2 \Imag \frac{az + b}{cz + d}
+= \Imag (az + b)(c\bar{z} + d)
+= \Imag (ad z + bc \bar{z})
+= (ad-bc)\Imag z
+= \Imag z
+> 0.
+\]
+It is a left group action because
+\begin{align*}
+\left(\begin{pmatrix}
+a' & b' \\ c' & d'
+\end{pmatrix}\begin{pmatrix}
+a & b \\ c & d
+\end{pmatrix} \right) \cdot z
+&= \begin{pmatrix}
+aa' + cb' & a'b+db' \\ ac'+cd' & bd'+dd'
+\end{pmatrix} \cdot z
+= \frac{(aa' + cb')z + a'b+db'}{(ac'+cd')z + bd'+dd'}, \\
+\begin{pmatrix}
+a' & b' \\ c' & d'
+\end{pmatrix} \cdot \begin{pmatrix}
+a & b \\ c & d
+\end{pmatrix} \cdot z
+&= \begin{pmatrix}
+a' & b' \\ c' & d'
+\end{pmatrix} \cdot \frac{az + b}{cz + d}
+= \frac{a'\frac{az + b}{cz + d} + b'}{c'\frac{az + b}{cz + d} + d'} \\
+&= \frac{a'(az + b) + b'(cz + d)}{c'(az + b) + d'(cz + d)}
+\end{align*}
+are equal.
+
+To find the isotropy subgroup of $i$, we must solve
+\[
+\begin{pmatrix}
+a & b \\ c & d
+\end{pmatrix} \cdot i = i
+\quad\Leftrightarrow\quad
+ai + b = i(ci + d) = di - c
+\quad\Leftrightarrow\quad
+a = d,\, b = - c.
+\]
+Since additionally we have $ad - bc = 1$, this tells us that $a^2 + c^2 = 1$.
+Hence
+\[
+H_i = \left\{ \begin{pmatrix}
+\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
+\end{pmatrix} \right\}.
+\]
+We see that this is a closed subgroup of $\lgSL(2,\bbR)$ as expected.
+Already we can say that the action is not free, because there are many $g \in H_i$ not equal to the identity such that $g\cdot i = i$.
+Further, it is not effective because both $I$ and $-I$ fix every point.
+
+Next we can show that this action is transitive.
+Observe
+\[
+\begin{pmatrix}
+\sqrt{y} & x/\sqrt{y} \\ 0 & 1/\sqrt{y}
+\end{pmatrix} \cdot i
+= \frac{i\sqrt{y} + x/\sqrt{y}}{1/\sqrt{y}}
+= x + iy,
+\]
+so $i$ can be sent to any element.
+Applying the inverse element brings any point to $i$.
+Chaining these together enables us to send any point to any other.
+This gives us a way to decompose $\lgSL(2,\bbR)$.
+Take any element $g$ of the group and consider how it acts on $i$, $g(i) = x + iy$.
+Let $\tilde{g}$ be the matrix above that acts the same way.
+Then $\tilde{g}^{-1}g (i) = \tilde{g}^{-1}(x+iy) = i$ shows that $\tilde{g}^{-1}g \in H_i$, so
+\[
+g 
+= \begin{pmatrix}
+\sqrt{y} & x/\sqrt{y} \\ 0 & 1/\sqrt{y}
+\end{pmatrix}\begin{pmatrix}
+\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
+\end{pmatrix}
+= \begin{pmatrix}
+1 & x \\ 0 & 1
+\end{pmatrix}\begin{pmatrix}
+\sqrt{y} & 0 \\ 0 & 1/\sqrt{y}
+\end{pmatrix}\begin{pmatrix}
+\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
+\end{pmatrix}.
+\]
+This factorisation is unique; if $nak = n'a'k'$, apply it to the point $i$ and solve.
+The Iwasawa decomposition of a Lie group exhibits it as the product of a compact Lie group and a euclidean space (here one might make the substitution $y = e^{2t}$ to make this clearer).
+The standard convention is to take the inverse, so that the factorisation is in the reverse order, in which case it is also known as KAN decomposition (Compact-Abelian-Nilpotent, although not nilpotent in the matrix sense of the term).
+
+The only property defined above that we have not yet checked is properness.
+Consider a hyperbolic disc $K \subset \bbH$ centered at $i$. 
+We need to shows that the set 
+\[
+\{ g \in \lgSL(2,\bbR) \mid \exists z \in K : g \cdot z \in K\}
+\]
+is compact.
+It is the the preimage of a closed set, so closed, and thus the difficulty is boundedness.
+We will apply the Iwasawa decomposition.
+The three factors act on $\bbH$ by horizontal translation, scaling, and hyperbolic rotation.
+As $\Real K$ is compact, there is a bound on how far it can be horizontally translated such that it still overlaps.
+Hence $x$ is bounded.
+Likewise, $\Imag K$ is compact, there is a bound on how much it can be rescaled and still overlap.
+Hence $y$ is bounded.
+And the circle factor is always bounded.
+Therefore this set is bounded.
+\end{example}
+
 A more general version of the statement in Warner is the following theorem:
 \begin{theorem}
 Let $G$ be a Lie group acting smoothly, freely and properly on a smooth manifold $M$. Then:
@@ -732,6 +850,30 @@ Let $G$ be a Lie group and $H$ a closed normal subgroup of $G$. Then the homogen
 An important special case of this theorem is if $H$ is a discrete normal subgroup.
 Then the quotient $G/H$ is a Lie group of the same dimension as $G$, but typically its topology is more complicated.
 
+\begin{example}
+\label{eg:psl2r}
+The subgroup $\{I,-I\}$ of $\lgSL(2,\bbR)$ is closed and normal.
+Therefore Theorem~\ref{thm:Lie group quotient} tells us that $\lgSL(2,\bbR)/ \{I,-I\}$ is a three dimensional Lie group, called the projective special linear group $\lgPSL(2,\bbR)$.
+We saw in Example~\ref{eg:sl2r action on half plane} that both $I$ and $-I$ act trivially on $\bbH$, and so the action of $\lgSL(2,\bbR)$ on $\bbH$ descends to an effective action of $\lgPSL(2,\bbR)$.
+By way of proof, suppose that $g$ acts trivially on $\bbH$.
+Then in particular it lies in $H_i$.
+These elements act on some point $it$ with $t>1$ as 
+\[
+\begin{pmatrix}
+\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
+\end{pmatrix} \cdot it
+= \frac{it \cos\theta - \sin\theta}{it \sin\theta + \cos\theta}
+= \frac{(t^2-1) \sin\theta\cos\theta + it}{\cos^2\theta + t^2 \sin^2\theta}
+= \frac{\tfrac{1}{2}(t^2-1) \sin2\theta + it}{1 + (t^2-1) \sin^2\theta}.
+\]
+From this, we see that the imaginary part is unchanged only if $\theta = 0,\pi$.
+Conversely the elements corresponding to $\theta$ and $\theta + \pi$ act the same. 
+
+$\lgPSL(2,\bbR)$ is exactly the group of orientation and angle preserving transformations of $\bbH$.
+Thus we can identity $\lgPSL(2,\bbR)$ with the bundle $M = S\bbH$ of unit length tangent vectors of $\bbH$: choose one point and vector as the base point $m_0$ of $M$ and identify each element of the group with where it sends the base point.
+This is the idea of Theorem~\ref{thm:transitive action homogeneous manifold} and this identification is $\tilde{\beta}$.
+\end{example}
+
 \begin{theorem}[First isomorphism theorem of Lie groups]
 \label{thm:first iso}
 Suppose that $\varphi: G \to H$ is a surjective homomorphism of Lie groups.
@@ -780,7 +922,8 @@ We now define the Lie group $H = G / \mathbb{Z}$. We want to prove that $H$ is a
 Let us begin this section with an important example: the double cover of $\lgSO(3)$ by $\lgSU(2)$.
 We gave quite a detailed description of $\lgSO(3)$ earlier in the chapter, so let us now give $\lgSU(2)$ the same treatment.
 It is the group of unitary rotations of $\bbC^2$.
-It is not too difficult to work out the explicit form such matrices must take:
+It is not too difficult to work out the explicit form such matrices must take.
+The unitary condition $gg^\ast = I$ implies
 \begin{align*}
 \begin{pmatrix}
 \bar{\alpha} & \bar{\gamma} \\ \bar{\beta} & \bar{\delta}
@@ -796,7 +939,7 @@ It is not too difficult to work out the explicit form such matrices must take:
 \delta & - \beta \\ - \gamma & \alpha
 \end{pmatrix},
 \end{align*}
-where we have used that the determinant is one, implies that 
+where we have used that the determinant is one, which means that
 \[
 \lgSU(2) 
 = \left\{ \begin{pmatrix} \alpha & -\bar{\beta} \\ \beta & \bar{\alpha} \end{pmatrix} \;\middle|\; \alpha,\beta \in \bbC,\; |\alpha|^2 + |\beta|^2 = 1 \right\}.
@@ -882,7 +1025,7 @@ d\pi|_I(X)
 Clearly this is injective.
 Because it is a linear map between two $3$-dimensional vector spaces, it is also surjective.
 It follows from Lemma~\ref{lem:injective differential} that $\pi$ is a local diffeomorphism.
-In fact $\pi$ is surjective.
+In fact $\pi$ is surjective, for the following reasons.
 Because $\pi$ is a local diffeomorphism, $\pi[\lgSU(2)]$ is open.
 Because $\lgSU(2)$ is compact, $\pi[\lgSU(2)]$ is closed.
 Because $\lgSO(3)$ is connected, the only non-empty open and closed subset is the whole set.
@@ -895,7 +1038,7 @@ But the sign of $\alpha\beta$ is determined from the top row of $\pi(g)$.
 Hence the preimage of any point of $\lgSO(3)$ consists of two antipodal points $g$ and $-g$ of $\lgSU(2) = \bbS^3$.
 This explains the name ``double cover''.
 In particular $\ker \pi = \{I, -I\}$.
-Using Theorem~\ref{thm:first iso}, we get another example of a quotient of Lie groups, $\lgSU(2)/\ker\pi \cong \lgSO(3)$.
+Using Theorem~\ref{thm:first iso}, we get another example of a quotient of Lie groups, $\lgSU(2)/\{I, -I\} \cong \lgSO(3)$.
 
 But let us turn to the theme of this section. 
 This is an example of a covering, as per Definition~\ref{def:covering map}.
@@ -903,18 +1046,22 @@ We know that it is surjective.
 Given an point $h \in \lgSO(3)$ there are two points $g,-g \in \lgSU(2)$ in the preimage.
 We know that $\pi$ is a local diffeomorphism, so there are neighbourhoods $U^\pm$ of $\pm g$ that map diffeomorphically to $V^\pm = \pi[U^\pm]$.
 Then $V = V^+ \cap V^-$ is evenly covered.
+In fact, because $\lgSU(2)$ is simply connected, it is the universal cover of $\lgSO(3)$.
 
 Generally, what can be said about the covering of Lie groups?
 \begin{theorem}
-The universal cover of a Lie group can itself be given a Lie group structure.
+The universal cover of a Lie group can itself be given a Lie group structure, such that the projection map is a homomorphism.
 \end{theorem}
 \begin{proof}
 Let $\tilde{G}$ be the smooth manifold that is the universal cover of $G$.
 Choose any element $\tilde{e} \in \pi^{-1}[e]$ to be its identity.
 The map $m : \tilde{G}\times\tilde{G} \to G$ given by $(g,h) \mapsto \pi(g)\pi(h)$ has a unique lift to $\tilde{m} : \tilde{G}\times\tilde{G} \to \tilde{G}$ with $\tilde{m}(\tilde{e},\tilde{e}) = \tilde{e}$, since $\tilde{G}\times\tilde{G}$ is simply connected.
 Likewise we can lift $\iota \circ \pi$.
-These lifted operations make $\tilde{G}$ into a Lie group.
-Let us give an example of how to check the necessary properties, that $\tilde{e}g = g$.
+That $\tilde{m}$ is a lift of $\pi(g)\pi(h)$ means precisely that $\pi(\tilde{m}(g,h)) = \pi(g)\pi(h)$.
+So if $\tilde{m}$ is the mutliplcation of a Lie group, then $\pi$ will be a homomorphism.
+
+Indeed these lifted operations make $\tilde{G}$ into a Lie group.
+Let us use the example of $\tilde{e}g = g$ as a general demonstration of how to check the Lie group axioms.
 Observe that $\tilde{m}(\tilde{e},\cdot)$ and $\id_{\tilde{G}}$ are both lifts of $\pi$ since
 \[
 \pi \circ \tilde{m}(\tilde{e},g) 
@@ -922,19 +1069,34 @@ Observe that $\tilde{m}(\tilde{e},\cdot)$ and $\id_{\tilde{G}}$ are both lifts o
 = \pi(g)
 = \pi \circ \id_{\tilde{G}}(g).
 \]
-By uniqueness of lifts, they are equal.
+By uniqueness of lifts, $\tilde{m}(\tilde{e},g) = \id_{\tilde{G}}(g) = g$ for all $g$.
 \end{proof}
-
-TODO: the covering map is a hom
 
 TODO: Deck transformations are left translations by elements over the identity. They belong to the center. Discrete. Conversely, quotient by discrete normal subgroup is a covering map.
 
 TODO: I separated out covering theory for manifolds into the prerequite section. But it is possible to simplify the proofs using that loops at the identity homotopically commute with paths? Or that you can do things in a neighborhood of identity and move it along paths to any other point?
 
-\begin{example}
-TODO: universal cover of SL2R is not linear.
-\end{example}
 
+\begin{example}
+In this example we will construct the universal cover $\widetilde{\lgSL}(2,\bbR)$ of $\lgSL(2,\bbR)$.
+Recall Iwasawa decomposition from Example~\ref{eg:sl2r action on half plane}.
+This gives a diffeomorphism between $\lgSL(2,\bbR)$ and $(x,y,e^{i\theta}) \in \bbR \times \bbR^+ \times \bbS^1$.
+In particular, this shows that $\widetilde{\lgSL}(2,\bbR)$ is diffeomorphic to $(x,y,\theta) \in \bbR \times \bbR^+ \times \bbR$.
+Unfortunately, the none of the subgroups of the Iwasawa decomposition are normal subgroups.
+Consequently it is not easy to describe the group operation of $\lgSL(2,\bbR)$ in terms of $(x,y,e^{i\theta})$, and therefore the group operation on $\widetilde{\lgSL}(2,\bbR)$ in terms of $(x,y,\theta)$.
+
+Although it algebraically tricky to write down, it is straightforward to describe it geometrically using Example~\ref{eg:psl2r}.
+As $\lgPSL(2,\bbR) = \lgSL(2,\bbR)/\{I,-I\}$ is covered by $\lgSL(2,\bbR)$, its universal cover is also $\widetilde{\lgSL}(2,\bbR)$.
+$\lgPSL(2,\bbR)$ is diffeomorphic to the bundle $M$ of unit tangent vectors of $\bbH$ and the Iwasawa decomposition gives us a path to every element.
+Paths are a continuous transformation of $\bbH$.
+Two continuous transformations are homotopic if they act on a vector of $T_i\bbH$ to give the same result \emph{counting windings}.
+Thus the only difference between calculating a product in $\widetilde{\lgSL}(2,\bbR)$ and $\lgPSL(2,\bbR)$ is tracking the windings.
+\begin{webonly}
+Here is a visualisation of the process:
+\includedesmosThreeD{8r39rgxadu}
+\end{webonly}
+% TODO: I had originally intended to prove that ~SL2R is not a linear group. But the argument using simply connectedness to lift to SL2C might be better later.
+\end{example}
 
 
 
