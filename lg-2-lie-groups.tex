@@ -886,11 +886,11 @@ Group theory tells us the induced map $\tilde{\varphi}(g\ker\varphi) = \varphi(g
 But this is precisely the conclusion of Theorem~\ref{thm:transitive action homogeneous manifold}: we have a group action $\eta : G \times H \to H$ given by $\eta(g,h) = \varphi(g)h$, whose isotropy group at $e \in H$ is $\ker\varphi$.
 \end{proof}
 
-TODO: Nicolas. 
-Use R not C.
-Why is the center important.
-Why are discrete subgroups important.
-Show that this quotient is the non-matrix Lie group.
+TODO: Nicolas. Is converse of this true?
+Many examples come from discrete subgroups of the center.
+This is because any subgroup of the center is automatically normal: $gng^{-1} = gg^{-1}n = n \in N$.
+A discrete subgroup is a a closed $0$-dimensional Lie subgroup, so the quotient will have the same dimension.
+The following example illustrates this.
 
 \begin{definition}
 \textup{\cite[10.2]{Fulton2004}, \cite[4.8]{Hall2015}}
@@ -903,7 +903,8 @@ G = \Bigg\{\begin{pmatrix}
 \end{pmatrix}, \; a,b,c \in \mathbb{R} \Bigg\}
 \end{align*} 
 \end{definition}
-Now let $X = \begin{pmatrix}
+Let us compute the center.
+Suppose $X = \begin{pmatrix}
 1 &x &y\\
 0 &1 &z\\
 0 &0 &1
@@ -934,8 +935,24 @@ N = \Bigg\{\begin{pmatrix}
 0 &0 &1
 \end{pmatrix}, \; n \in \mathbb{Z}\Bigg\}.
 \end{align*}
-Now assume that $\Phi \colon G \to H$ us an arbitrary group homomorphism. 
+Because it is discrete, it is closed, and so Theorem~REF tells us that $G/N$ is again a Lie group of dimension three.
 
+Actually we have already encountered this group.
+It is the Lie group $G$ from Example~REF.
+TODO: Change Heisenberg to H
+To prove this, let us give a homomorphism of Lie groups from $H$ to $G$:
+\[
+\Phi\begin{pmatrix}
+1 &x &y\\
+0 &1 &z\\
+0 &0 &1
+\end{pmatrix}
+= (x,z,e^{2\pi i y})
+\]
+TODO: Check this is a surjective homomorphism.
+The kernel of this map is $x = 0,y=0, e^{2\pi i y} = 1$, which is exactly $N$.
+By the first isomorphism theorem of Lie groups~REF we conclude $H/N \cong G$.
+This shows that the quotient of a linear Lie group does not necessarily remain a linear group.
 \section{Covers}
 
 Let us begin this section with an important example: the double cover of $\lgSO(3)$ by $\lgSU(2)$.
