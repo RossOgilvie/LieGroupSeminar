@@ -896,7 +896,7 @@ The following example illustrates this.
 \textup{\cite[10.2]{Fulton2004}, \cite[4.8]{Hall2015}}
 We define the (real) Heisenberg group as the set
 \begin{align*}
-G = \Bigg\{\begin{pmatrix}
+H = \Bigg\{\begin{pmatrix}
 1 &a &b\\
 0 &1 &c\\
 0 &0 &1
@@ -908,20 +908,20 @@ Suppose $X = \begin{pmatrix}
 1 &x &y\\
 0 &1 &z\\
 0 &0 &1
-\end{pmatrix} \in Z(G)$ and $Y= \begin{pmatrix}
+\end{pmatrix} \in Z(H)$ and $Y= \begin{pmatrix}
 1 &a &b\\
 0 &1 &c\\
 0 &0 &1
-\end{pmatrix} \in G$. Then we see that 
+\end{pmatrix} \in H$. Then we see that 
 \begin{align*}
 XY - YX = \begin{pmatrix}
 0 &0 &az-cx\\
 0 &0 &0\\
 0 &0 &0
 \end{pmatrix}
-\end{align*} holds. Now since $Y \in G$ is arbitrary, we see that for $a=0$ $x=0$ needs to hold and for $c=0$ $z=0$ needs to hold. Therefore we see that 
+\end{align*} holds. Now since $Y \in H$ is arbitrary, we see that for $a=0$ $x=0$ needs to hold and for $c=0$ $z=0$ needs to hold. Therefore we see that 
 \begin{align*}
-Z(G) = \Bigg\{\begin{pmatrix}
+Z(H) = \Bigg\{\begin{pmatrix}
 1 &0 &b\\
 0 &1 &0\\
 0 &0 &1
@@ -939,7 +939,6 @@ Because it is discrete, it is closed, and so Theorem~REF tells us that $G/N$ is 
 
 Actually we have already encountered this group.
 It is the Lie group $G$ from Example~REF.
-TODO: Change Heisenberg to H
 To prove this, let us give a homomorphism of Lie groups from $H$ to $G$:
 \[
 \Phi\begin{pmatrix}
