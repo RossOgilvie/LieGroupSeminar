@@ -1,0 +1,88 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>5 Classification of Lie algebras</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='lie-groups.css' rel='stylesheet' type='text/css' /> 
+<meta content='lie-groups.tex' name='src' /> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js' type='text/javascript'></script>  
+</head><body>
+<!-- l. 3 --><div class='crosslinks'><p class='noindent'>[<a href='lie-groupsli1.html'>next</a>] [<a href='lie-groupsch4.html'>prev</a>] [<a href='lie-groupsch4.html#taillie-groupsch4.html'>prev-tail</a>] [<a href='#taillie-groupsch5.html'>tail</a>] [<a href='lie-groups.html#lie-groupsch5.html'>up</a>] </p></div>
+<h2 class='chapterHead' id='classification-of-lie-algebras'><span class='titlemark'>Chapter 5</span><br /><a id='x6-200005'></a>Classification of Lie algebras</h2>
+<!-- l. 5 --><p class='noindent'>TODO: make sections.
+</p><!-- l. 7 --><p class='noindent'>I would like to gather up at the start all the structure that we need. I am thinking here in particular of
+inner products and Weyl reflections.
+</p><!-- l. 9 --><p class='noindent'>The introduction of <a class='url' href='https://terrytao.wordpress.com/2013/04/27/notes-on-the-classification-of-complex-lie-algebras/'><span class='cmtt-10x-x-109'>https://terrytao.wordpress.com/2013/04/27/notes-on-the-classification-of-complex-lie-algebras/</span></a>
+is nice.
+</p><!-- l. 11 --><p class='noindent'>From <a class='url' href='https://en.wikipedia.org/wiki/Killing_form'><span class='cmtt-10x-x-109'>https://en.wikipedia.org/wiki/Killing_form</span></a> there seems to be a close connection between
+the Killing form and decompositions of Lie algebras: </p>
+     <ul class='itemize1'>
+     <li class='itemize'>On a simple Lie algebra any invariant symmetric bilinear form is a scalar multiple of the
+     Killing form.
+     </li>
+     <li class='itemize'>The Killing form is also invariant under automorphisms of the Lie algebra
+     </li>
+     <li class='itemize'>The Cartan criterion states that a Lie algebra is semisimple if and only if the Killing form
+     is non-degenerate.
+     </li>
+     <li class='itemize'>The Killing form of a nilpotent Lie algebra is identically zero.
+     </li>
+     <li class='itemize'>Ideals that intersect only trivially are orthogonal.</li></ul>
+<!-- l. 19 --><p class='noindent'>This paper <a class='url' href='https://math.uchicago.edu/~may/REU2012/REUPapers/Bosshardt.pdf'><span class='cmtt-10x-x-109'>https://math.uchicago.edu/~may/REU2012/REUPapers/Bosshardt.pdf</span></a> from Uchicago
+undergrad summer projects 2012 seems to go hard on the Killing form.
+</p><!-- l. 21 --><p class='noindent'>If we are focused on simple Lie algebras, then can we avoid the other types?
+</p><!-- l. 23 --><p class='noindent'>I don’t want to build representation theory. I think we only really need the adjoint representation and
+<!-- l. 24 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi mathvariant='italic'>𝔰𝔩</mi><mo class='MathClass-open' stretchy='false'>(</mo><mn>2</mn><mo class='MathClass-punc' stretchy='false'>,</mo> <mi>ℂ</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>-representations.
+Maybe we can understand them as a special type of subspace.
+</p>
+                                                                                       
+
+                                                                                       
+<h3 class='sectionHead' id='cartan-subalgebra'><span class='titlemark'>5.1   </span> <a id='x6-210005.1'></a>Cartan subalgebra</h3>
+<!-- l. 29 --><p class='noindent'>A point of difficulty seems to be Cartan subalgebras. In fact there are several, somewhat incompatible
+definitions in the literature (in different cases) to suit different circumstances. Hall takes the simplest
+definition: a maximal commuting subalgebra of diagonalizable elements. This immediately gives you a
+root space decomposition, commuting implies simultaneously diagonalizable. The existence is rather
+easy too, but only because he begins with a real compact form for the complex semisimple
+algebra. FH takes the same definition, but in Appendix D proves existence through regular
+elements.
+</p><!-- l. 36 --><p class='noindent'>Knapp takes a more principled approach, asking what we should require of a subalgebra to get a
+decomposition like we see in the standard examples, p83. It takes the more general starting point of a
+nilpotent subalgebra h. Not all of them lead to a really nice decomposition, but somehow maximal ones
+do, and these we call Cartan subalgebras. The drawback is that we don’t have diagonalizability at the
+start, so we have to work with generalised eigenspaces, see Prop 2.5 p88. Here too the existence relies
+on regular elements Theorem 2.9.
+</p><!-- l. 42 --><p class='noindent'>Knapp Chapter 4 comes back to Hall’s point: Cor 4.26 a compact Lie group has negative definite
+Killing form. Prop 4.27, gives an argument for the converse!
+</p><!-- l. 44 --><p class='noindent'>What drew me to Knapp though was the discussion of real simple Lie algebras. In particular, how
+complex Lie algebras can arise from real ones. The two extremes are the split real form and the
+compact real form. These are constructed explicitly Cor 6.10 and Thm 6.11, but they require
+the root decomposition. Other real forms (and these ones too) are described by a Cartan
+involution. It is a vector space sum on which the Killing form is resp pos and neg definite (6.26)
+and the brackets are behaved (6.24). Perhaps this could be the basis of a direct proof of a
+compact real form. After some googling, this was suggested by Cartan 1929 to simplify the
+proof, and there’s a paper by Richardson (?) that carries it out. But it’s not as simple as it
+sounds.
+</p><!-- l. 54 --><p class='noindent'>Another thing to consider would be to only classify compact lie groups. This has the advantage that
+then the compact real form is a natural part of the set-up. You get basically the same list at the end. It
+has most of the features you want to consider. And then maybe you can carry the classification all the
+way back to the level of real Lie groups, without so much of the messy involution stuff at the end. Go
+deeper on compact Lie groups; apparently their universal covers are compact, you can understand the
+quotient theory well. It does feel like a limitation, when we are so close to getting all complex
+semisimple Lie algebras.
+</p><!-- l. 65 --><p class='noindent'><iframe src='https://www.desmos.com/3d/e275919fe1' style='width:800px; height:500px'></iframe>
+                                                                                       
+
+                                                                                       
+                                                                                       
+
+                                                                                       
+                                                                                       
+
+                                                                                       
+</p>
+<!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='lie-groupsli1.html'>next</a>] [<a href='lie-groupsch4.html'>prev</a>] [<a href='lie-groupsch4.html#taillie-groupsch4.html'>prev-tail</a>] [<a href='lie-groupsch5.html'>front</a>] [<a href='lie-groups.html#lie-groupsch5.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='noindent'><a id='taillie-groupsch5.html'></a> </p> 
+</body> 
+</html>

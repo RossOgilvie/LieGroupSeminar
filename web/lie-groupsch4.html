@@ -1,0 +1,72 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>4 Lie algebra</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='lie-groups.css' rel='stylesheet' type='text/css' /> 
+<meta content='lie-groups.tex' name='src' /> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js' type='text/javascript'></script>  
+</head><body>
+<!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='lie-groupsch5.html'>next</a>] [<a href='lie-groupsch3.html'>prev</a>] [<a href='lie-groupsch3.html#taillie-groupsch3.html'>prev-tail</a>] [<a href='#taillie-groupsch4.html'>tail</a>] [<a href='lie-groups.html#lie-groupsch4.html'>up</a>] </p></div>
+<h2 class='chapterHead' id='lie-algebra'><span class='titlemark'>Chapter 4</span><br /><a id='x5-150004'></a>Lie algebra</h2>
+<!-- l. 3 --><p class='noindent'>TODO: maybe the angle here should be that Lie groups are homogeneous manifolds, so it makes sense to
+focus on neighbourhoods of the identity. Maybe the result that a neighbourhood of the identity generates a
+connected Lie group <span class='cite'>[<a href='lie-groupsli1.html#XWarner1983'>War83</a>, 3.18]</span>. Then talk about the exponential map which is a local diffeomorphism
+from <!-- l. 5 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>𝔤</mi></math> to
+<!-- l. 5 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>G</mi></math> at
+<!-- l. 5 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>e</mi></math>. This
+frames the section: we have the internal generation of a Lie group, how do we externally generate it
+from the tangent space?
+</p>
+<h3 class='sectionHead' id='lie-bracket'><span class='titlemark'>4.1   </span> <a id='x5-160004.1'></a>Lie Bracket</h3>
+<!-- l. 9 --><p class='noindent'>Lie bracket coming from the adjoint action. There are lots of names for conjugation, eg the power notation, Sharpe
+uses <!-- l. 10 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mstyle mathvariant='bold'><mi>Ad</mi></mstyle></math>, Warner
+<!-- l. 10 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi>a</mi></math>. I think a two letter
+operator, eg <!-- l. 10 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mtext class='qopname'>Cn(g)</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --></mrow></math> would be
+best. Wikipedia uses <!-- l. 10 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mi mathvariant='normal'>Ψ</mi></math>.
+There’s also the question of <!-- l. 10 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mtext class='qopname'>ad</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --><mo class='MathClass-open' stretchy='false'>(</mo><mi>x</mi><mo class='MathClass-close' stretchy='false'>)</mo></mrow></math>
+or <!-- l. 10 --><math display='inline' xmlns='http://www.w3.org/1998/Math/MathML'><msub><mrow><mtext class='qopname'>ad</mtext><mo> ⁡<!-- FUNCTION APPLICATION --> </mo><!-- nolimits --></mrow><mrow><mi>x</mi></mrow></msub></math>. I
+think this one shows most clearly how the bracket is encodes some infinitesimal information of the
+group operation.
+</p><!-- l. 13 --><p class='noindent'>This is Lie bracket of left-invariant vector fields.
+</p><!-- l. 16 --><p class='noindent'>
+</p>
+<h3 class='sectionHead' id='examples1'><span class='titlemark'>4.2   </span> <a id='x5-170004.2'></a>Examples</h3>
+<!-- l. 17 --><p class='noindent'>Matrix vs abstract Lie algebras Bracket of matrix Lie algebras is commutator
+</p><!-- l. 20 --><p class='noindent'>Lie algebras of all the classical groups.
+</p><!-- l. 23 --><p class='noindent'>
+</p>
+<h3 class='sectionHead' id='correspondences'><span class='titlemark'>4.3   </span> <a id='x5-180004.3'></a>Correspondences</h3>
+                                                                                       
+
+                                                                                       
+<!-- l. 25 --><p class='noindent'>Stuff like Lie group homomorphisms inducing Lie algebra homomorphisms. ideals and subalgebras
+</p><!-- l. 28 --><p class='noindent'>I found this pdf <a class='url' href='https://www.cis.upenn.edu/~cis6100/cis610-15-sl17.pdf'><span class='cmtt-10x-x-109'>https://www.cis.upenn.edu/~cis6100/cis610-15-sl17.pdf</span></a> that connects metrics
+on the Lie group with inner products on the Lie algebra.
+</p><!-- l. 31 --><p class='noindent'>
+</p>
+<h3 class='sectionHead' id='ados-theorem'><span class='titlemark'>4.4   </span> <a id='x5-190004.4'></a>Ado’s theorem</h3>
+<!-- l. 32 --><p class='noindent'><a class='url' href='https://terrytao.wordpress.com/2011/05/10/ados-theorem/'><span class='cmtt-10x-x-109'>https://terrytao.wordpress.com/2011/05/10/ados-theorem/</span></a> This seems elementary, and
+introduces all the important classes of Lie algebras: sovlable, nilpotent, etc. But it defines complex Lie
+algebras at the outset? Maybe we already need to consider real vs complex Lie algebras,
+complexifications, etc.
+</p><!-- l. 35 --><p class='noindent'>Maybe we only need a weaker version, that all simple Lie algebras are matrix? Indeed, the adjoint
+representation works for centerless Lie algebras.
+                                                                                       
+
+                                                                                       
+                                                                                       
+
+                                                                                       
+                                                                                       
+
+                                                                                       
+                                                                                       
+
+                                                                                       
+</p>
+<!-- l. 3 --><div class='crosslinks'><p class='noindent'>[<a href='lie-groupsch5.html'>next</a>] [<a href='lie-groupsch3.html'>prev</a>] [<a href='lie-groupsch3.html#taillie-groupsch3.html'>prev-tail</a>] [<a href='lie-groupsch4.html'>front</a>] [<a href='lie-groups.html#lie-groupsch4.html'>up</a>] </p></div>
+<!-- l. 3 --><p class='noindent'><a id='taillie-groupsch4.html'></a> </p> 
+</body> 
+</html>
