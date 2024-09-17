@@ -1,4 +1,3 @@
-
 \chapter{Preliminaries}
 
 \section{Submanifolds}
@@ -39,7 +38,7 @@ When we say \emph{submanifold}, we generally mean a weakly embedded submanifold.
 This is a lot of terminology, but it harmonizes the definitions in Sharpe and Warner, see below table.
 It is in fact a strict hierarchy: each type of submanifold is a subtype of the previous.
 
-\begin{table}[h]
+\begin{table}[ht]
 \begin{tabular}{l|l|l}
  & Sharpe & Warner \\ \hline
 immersed manifold & immersed manifold & \\
@@ -75,7 +74,7 @@ The \emph{submanifold topology} on $N'$ is the topology such that flat plaques a
 In general the submanifold topology is finer (has more open sets) than the subspace topology~\cite[Def~1.2.4]{Sharpe1997}.
 \end{definition}
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \begin{center}
 \begin{tikzpicture}[scale=0.5]
   % Draw 10 vertical lines closely bunched together
@@ -206,7 +205,7 @@ We do the same.
 It is common in a course on manifolds to study vector fields and their integral curves.
 The key local result is
 \begin{theorem}[Picard-Lindelöff]
-\textup{\cite[Theorem~2.1.1]{Sharpe1997}}\cite[Theorem~1.2.1]{Ivey} \\
+\textup{\cite[Theorem~2.1.1]{Sharpe1997}}\cite[Theorem~1.2.1]{Ivey2016} \\
 Let $F : J \times U \subset \bbR\times\bbR^n \to \bbR^n$ be a smooth time-dependent vector field. 
 Assume $0 \in J$. 
 Consider $u : \bbR \to U$ the system of ODEs $u'(t) = F(t,u(t))$.
@@ -356,19 +355,26 @@ Taking several such sequences, we see that the distribution cannot be continuous
 % \]
 
 
-\section{Covers}
+\section{Coverings}
 
 In this section we summarize covering maps.
 To avoid some technical topological issues, we only give the definition in the smooth case.
 \begin{definition}
 \label{def:covering map}
-\textup{\cite[p.~56]{Hatcher}}
+\textup{\cite[p.~56]{Hatcher2002}}
 Let $X$ and $\tilde{X}$ be smooth manifolds and $\pi : \tilde{X} \to X$ a smooth surjection.
 An open set $V \subset X$ is called \emph{evenly covered} if $\pi^{-1}[V]$ is a disjoint union of open sets, each diffeomorphic to $V$ under $\pi$.
 The map $\pi$ is called a \emph{covering} if every point has an evenly covered neighborhood.
-The connected components of an evenly covered set are called \emph{sheets}, and the preimage of a point of $Y$ is called its fibre.
-$X$ is called the \emph{covering space} and $Y$ the \emph{base space}.
+The connected components of an evenly covered set are called \emph{sheets}, and the preimage of a point of $X$ is called its fibre.
+$\tilde{X}$ is called the \emph{covering space} and $X$ the \emph{base space}.
 \end{definition}
+
+A simple example of a covering space is $X \times D$ where $D$ is a discrete space with a covering map $\pi : (x,d) \mapsto x$.
+Here the entire space $X$ is evenly covered, with sheets being $X \times \{d\}$ for each $d \in D$.
+This is called a trivial covering.
+A more interesting example is $\pi : \bbR \to \bbS^1$ given by $t \mapsto e^{i t}$.
+Any arc of the circle is evenly covered. For example, the upper semicircle $\bbS^1 \cap \{ \Imag z > 0 \}$ has sheets $(n,n+ \pi) \subset \bbR$ for any $n \in \bbZ$.
+Similarly the map $\gamma_n : \bbS^1 \to \bbS^1$ given by $z \mapsto z^n$ is a covering map with $n$ sheets.
 
 It is easy to see that every covering is a surjective local diffeomorphism, but the converse is not true.
 
@@ -384,50 +390,141 @@ But
 \]
 Clearly $(2\pi - \varepsilon,2\pi)$ is not diffeomorphic to $V$ under $\pi$, it is not even surjective.
 Therefore $\gamma$ is not a covering map.
-
-However the map $\gamma_n : \bbS^1 \to \bbS^1$ given by $z \mapsto z^n$ is a covering map with $n$ sheets.
-And $\gamma_\infty : \bbR \to \bbS^1$ given by $t \mapsto e^{it}$ is a covering map with infinitely many sheets.
 \end{example}
 
 The most important property of covering maps is that maps into the base space can often be `lifted' to the covering space.
 A function $\tilde{f} : Y \to \tilde{X}$ is called the \emph{lift} of $f : Y \to X$ if $f = \pi \circ \tilde{f}$.
-To state the following theorem we also need the concept of homotopy.
-Given two functions $f,g : Y \to X$ a homotopy relative $K \subset Y$ is a function $H : Y \times [0,1] \to X$ such that $H(y,0) = f(y)$ and $H(y,1) = g(y)$ for all $y \in Y$, and $H(k,t) = f(k) = g(k)$ for all $k\in K, t\in[0,1]$.
-We say that the paths are homotopic relative $K$.
-A typical example is if $Y = [a,b]$ and $K = \{a,b\}$.
-A map $f : [a,b] \to X$ is a path into $X$.
-If it is homotopic to $g$ relative $K$ then there is deformation of $f$ into $g$ such that the endpoints of the curves are not moved.
+\[
+\begin{tikzcd}
+& \tilde{X} \arrow[d, "\pi"] \\
+Y \arrow[r, "f"] \arrow[ru, dashed, "\tilde{f}"] & X
+\end{tikzcd}
+\]
+For trivial coverings, a lift is straightforward to construct.
+Pick any point $y \in Y$ and set $x = f(y)$.
+For any point $\tilde{x} = (x,d)$ in the fibre of $x$ we have the corresponding sheet $X\times\{d\}$.
+Then a lift is given by $(\pi|_{X\times\{d\}})^{-1} \circ f$.
+Notice that we have a lift for every point in the fibre.
+
+We begin with a standard lemma.
+
+\begin{lemma}[Uniqueness of lifts]
+\label{lem:lift unique}
+Let $\pi : \tilde{X} \to X$ be a covering map, $Y$ a connected space, and $f : Y \to X$ continuous.
+Suppose that $\tilde{f}_1, \tilde{f}_2 : Y \to \tilde{X}$ are two lifts of $f$.
+If there is a point $y \in Y$ such that $\tilde{f}_1(y) = \tilde{f}_2(y)$ then the two maps agree everywhere.
+\end{lemma}
+\begin{proof}
+This is a purely topological argument; in particular we use the definition of connected that says the only two subsets of $Y$ that are open and closed are $\emptyset$ and $Y$ itself.
+Define the set
+\[
+A = \{ y \in Y \mid \tilde{f}_1(y) = \tilde{f}_2(y) \}.
+\]
+To show that $A = Y$, is suffices to show that $A$ is closed, open, and non-empty.
+
+That it is non-empty is the premise of the claim.
+
+Next we show that $A$ is closed. 
+The diagonal $\{(\tilde{x},\tilde{x}) \in \Tilde{X} \times \tilde{X} \}$ is a closed subset of $\Tilde{X} \times \tilde{X}$, and $y \mapsto (\tilde{f}_1,\tilde{f}_2)$ is a continuous map from $Y$ to $\Tilde{X} \times \tilde{X}$.
+But $A$ is the preimage of the diagonal under this map, so closed.
+
+Finally we show that $A$ is open.
+Take any point $y \in A$ and let $x = f(y)$ and $\tilde{x} = \tilde{f}_1(y) = \tilde{f}_2(y)$.
+By the covering map property, there is some neighborhood $V$ of $x$ that is evenly covered.
+Let $\tilde{V} \subset \pi^{-1}[V]$ be the sheet (connected component) that contains $\tilde{x}$.
+Further, set $Y' = \tilde{f}_1^{-1}[\tilde{V}] \cap \tilde{f}_1^{-1}[\tilde{V}]$.
+This is an open set of $Y$ (it is the intersection of two open sets) and contains $y$.
+Then we have for $i = 1,2$
+\[
+\tilde{f}_i|_{Y'}
+= \id_{\tilde{V}} \circ \tilde{f}_i|_{Y'}
+= ((\pi|_{\tilde{V}})^{-1} \circ \pi|_{\tilde{V}}) \circ \tilde{f}_i|_{Y'}
+= (\pi|_{\tilde{V}})^{-1} \circ (\pi|_{\tilde{V}} \circ \tilde{f}_i|_{Y'})
+= (\pi|_{\tilde{V}})^{-1} \circ f.
+\]
+This shows that $\tilde{f}_1|_{Y'} = \tilde{f}_2|_{Y'}$.
+In other words, $Y' \subset A$.
+This proves $A$ is open.
+
+\begin{center}
+\begin{tikzpicture}
+  % Draw the space X and its neighborhood V
+  \draw (0,0) circle (2cm); % Space X
+  \node at (2.3,0) {\(X\)};
+  \draw[dashed] (0,0) circle (1cm); % Neighborhood V
+  \node at (1.3,0) {\(V\)};
+  \filldraw[black] (0, 0) circle (2pt) node[right] {$x$}; % Point x
+
+  % Draw the covering space \tilde{X} and its neighborhood \tilde{V}
+  \draw (0,5) circle (2cm); % Space tilde X
+  \node at (2.3,5) {\(\tilde{X}\)};
+  \draw[dashed] (0,5) circle (1cm); % Neighborhood tilde V
+  \node at (1.3,5) {\(\tilde{V}\)};
+  \filldraw[black] (0, 5) circle (2pt) node[right] {$\tilde{x}$}; % Point tilde x
+
+  % % Draw the space Y and its neighborhood Y'
+  \draw (-5,0) circle (2cm);
+  \node at (-2.3-5,0) {\(Y\)};
+  \draw[dashed] (-5,0) circle (1cm); 
+  \node at (-1.3-5,0) {\(Y'\)};
+  \filldraw[black] (-5, 0) circle (2pt) node[left] {$y$}; 
+
+  % % Arrows representing maps
+  \draw[->] (-5+0.5,0) -- (-0.5,0) node[midway, below] {\(f\)}; % f: Y -> X
+  \draw[->] (-5+0.5,0.5) -- (0-0.5,5-0.5) node[midway, above left] {\(\tilde{f}_1, \tilde{f}_2\)}; % \tilde{f}_1, \tilde{f}_2: Y -> \tilde{X}
+  \draw[->] (0,4.5) -- (0,0.5) node[midway, right] {\(\pi\)}; % \pi: \tilde{X} -> X
+  \draw[->] (0.5,0.5) arc[start angle=-60, end angle=60, radius=2.3] node[midway, right] {\((\pi|_{\tilde{V}})^{-1}\)};
+\end{tikzpicture}
+\end{center}
+\end{proof}
+
+Since we have proven a uniqueness result, it is natural to wonder about an existence result.
+It is not the case that it is always possible to lift a given map.
+So instead, in the following theorem we examine how a lift changes as the base map changes. 
+We conceive of $f : Y \to X$ as depending on a ``time'' parameter $t$.
+More properly, we have a map $F : Y \times [0,1] \to X$.
+We prove that if a lift exists at time $t=0$ then it also exists for any time $t \in [0,1]$.
 
 \begin{theorem}[Homotopy Lifting Property]
 \label{thm:homotopy lifting property}
-\textup{\cite[Thm~3.23]{Warner1983}\cite[Thm~1.7(c)]{Hatcher}}\\
+\textup{\cite[Thm~3.23]{Warner1983}\cite[Thm~1.7(c)]{Hatcher2002}}\\
 Let $\pi : \tilde{X} \to X$ be a covering map.
 Given a map $F : Y \times [0,1] \to X$ and a map $\tilde{F}_0 : Y \times \{0\} \to \tilde{X}$ lifting $F|_{Y \times \{0\}}$ there is a unique map $\tilde{F} : Y \times [0,1] \to \tilde{X}$ lifting $F$ such that $\tilde{F}|_{Y \times \{0\}} = \tilde{F}_0$.
-% Suppose that $\pi : X \to Y$ is a covering map and $Z$ is a connected and simply connected space.
-% Then for any map $\alpha: Z \to Y$, point $z \in Z$, and point $x \in \pi^{-1}[\alpha(z)]$ there is a map $\tilde{\alpha} : Z \to X$ with $\alpha = \pi \circ \tilde{\alpha}$ and $\tilde{\alpha}(z) = x$.
-% We say that $\tilde{\alpha}$ is the lift of $\alpha$ through $x$.
+\[
+\begin{tikzcd}
+Y \times \{0\} \arrow[r, "\tilde{F}_0"] \arrow[d, hook] & \tilde{X} \arrow[d, "\pi"] \\
+Y \times [0,1] \arrow[r, "F"] \arrow[ru, "\tilde{F}"] & X
+\end{tikzcd}
+\]
 \end{theorem}
 \begin{proof}
-As a first step, we will construct local lifts.
-Every point $(y,s) \in Y \times [0,1]$ has a connected open neighborhood $N_s \times (a_s,b_s)$ such that the image under $F$ is contained in an evenly covered neighborhood of $F(y,s)$.
-These neighborhoods cover $\{y\} \times [0,1]$, a compact set, so there exists a finite subcover index by $s_i$.
-Set $N = \cap N_{s_i}$, also open and connected, and choose a partition $0 = t_0 < t_1 < \dots < t_n = 1$ of $[0,1]$ so that each $[t_j, t_{j+1}]$ belongs to an interval $(a_{s_i},b_{s_i})$.
-Thus we have a finite cover $N \times [t_j, t_{j+1}]$ of $\{y_0\} \times [0,1]$ such that the image of each is contained in an evenly covered subset $U_j$ (we cannot say that the image itself is evenly covered, because it might not be open in $X$).
+First we set up a special cover on $Y\times[0,1]$.
+For any point $(y,s) \in Y \times [0,1]$ its image $F(y,s)$ is contained in an evenly covered subset $V$ of $X$.
+In $F^{-1}[V]$ we can find an open rectangle $N' \times (a,b)$ containing $(y,s)$.
+Applying this for every point, we get a cover $\{ N'_i \times (a_i,b_i) \}$ of $Y \times [0,1]$.
+But we are not yet done.
+For any $y \in Y$, consider the subcover $\{ N'_i \times (a_i,b_i) | y \in N'_i \}$.
+This covers $\{y\}\times [0,1]$.
+As it is a compact space there is a finite subcover; let it be indexed by $\mathcal{K}_y$.
+Then define $N_y$ to be the connected component of $\bigcap_{k \in \mathcal{K}_y} N'_k \subset Y$ that contains $y$.
+It is open, because the intersection of open sets is finite.
+This cover $\{N_y \times (a_k,b_k)\}_{y \in Y, k \in \mathcal{K}_y}$ is the special cover of $Y \times [0,1]$ that we wanted to construct.
+It has the property that for each $y$ there is the finite subcover $\{N_y \times I_k\}_{k \in \mathcal{K}_y}$ of $N_y\times [0,1] \supset \{y\} \times [0,1]$.
 \begin{center}
 \begin{tikzpicture}
 % Draw the horizontal line
-\draw (0,0) -- (10,0) node[right]{$\{y_0\} \times [0,1]$};
+\draw (0,0) -- (10,0) node[right]{$\{y\} \times [0,1]$};
 
 % Draw the overlapping rectangles
 \fill[gray, opacity=0.5] (0,-1) rectangle (2,1);
 \fill[gray, opacity=0.5] (1,-0.8) rectangle (6,1.5);
-\draw (3.5,1.5) node[below]{$N_i\times(a_i,b_i)$};
+\draw (3.5,1.5) node[below]{$N'_i\times(a_i,b_i)$};
 \fill[gray, opacity=0.5] (5,-1.5) rectangle (8,1);
 \fill[gray, opacity=0.5] (7,-0.5) rectangle (10,0.5);
 
 % Draw the intersection N
 \fill[gray, opacity=0.5] (-1,-0.5) rectangle (-0.8,0.5);
-\draw (-1,0) node[left]{$N \subset Y$};
+\draw (-1,0) node[left]{$N_y \subset Y$};
 
 % Draw the partition
 \draw (0,-2) -- (10,-2);
@@ -439,28 +536,28 @@ Thus we have a finite cover $N \times [t_j, t_{j+1}]$ of $\{y_0\} \times [0,1]$ 
 \end{tikzpicture}
 \end{center}
 
+In the next step, we construct ``local lifts''.
+That means for any point $y \in Y$ construct a lift of $F$ restricted to $N_y\times[0,1]$.
+The argument is constructive but inductive.
+Fix $y \in Y$ and choose a partition $0 = t_0 < t_1 < \dots < t_n = 1$ of $[0,1]$ so that each $[t_j, t_{j+1}]$ belongs to an interval $(a_k,b_k)$ for some $k \in \mathcal{K}_{y}$.
+By the construction of the cover, $F[N_{y} \times [t_j,t_{j+1}]] \subset F[N_y \times (a_k,b_k)]$ is contained in an evenly covered set $V_j \subset X$.
 
-For clarity, set $\tilde{F}_j(y) = \tilde{F}(y,t_j)$ and $F_j(y) = F(y,t_j)$.
-Assume inductively that we have constructed the lift $\tilde{F}$ on $M_j \times [0,t_j]$, for some neighborhood $M_j \subset Y$ of $y$.
-This means $\pi \circ \tilde{F}_j(y) = F_j(y)$, or in other words $\tilde{F}_j(y) \in \pi^{-1}[F_j(y)]$.
-Let $\tilde{U}_j \subset \tilde{X}$ be the sheet of $U_j$ that contains $\tilde{F}(y,t_j)$.
-It might be necessary to shrink $M_j$, by setting $M_{j+1}$ to be the connected component of $M_{j} \cap (\tilde{F}_j |_{M_{j}})^{-1}[\tilde{U}_j]$ that contains $\tilde{F}(y,t_j)$.
-This guarantees that $\tilde{F}_j[M_{j+1}] \subset \tilde{U}_j$.
-Now we extend the definition of $\tilde{F}$ by using the local inverse $\pi^{-1} : U_j \to \tilde{U}_j$:
+Assume inductively that we have constructed the lift $\tilde{F}$ on $N_y \times [0,t_j]$.
+This means $\pi(\tilde{F}(y',t_j)) = F(y',t_j)$, or in other words $\tilde{F}(y',t_j) \in \pi^{-1}[F(y',t_j)]$ for all $y' \in N_{y}$.
+Let $\tilde{V}_j \subset \tilde{X}$ be the sheet of $V_j$ that contains $\tilde{F}(y,t_j)$.
+Then in fact it contains all of $\tilde{F}[N_{y}\times\{t_j\}]$ since this set is connected.
+Now we extend the definition of $\tilde{F}$ by using the local inverse $\pi^{-1} : V_j \to \tilde{V}_j$:
 \[
-\tilde{F}(y', t') = \pi^{-1} \circ F(y',t') \text{ for } y' \in M_{j+1},\; t' \in [t_j,t_{j+1}].
+\tilde{F}(y', t') = \pi^{-1} \circ F(y',t') \text{ for } y' \in N_y,\; t' \in [t_j,t_{j+1}].
 \]
-The base case of the induction $j=0$ is trivial: we set $M_0 = N$ and already have $\tilde{F}_0$ given to us in the theorem.
 
-Next we prove uniqueness by adding to the induction proof above, in particular we will use the thus-far unused property of connectedness of $M_j$.
-Suppose that $\tilde{F}'$ is another lift of $F$ fitting the conditions of the theorem.
-Suppose that we have already established that $\tilde{F}$ and $\tilde{F}'$ are equal on $M_j \times [0,t_j]$.
-Because $M_{j+1} \times [t_j, t_{j+1}]$ is connected, both $\tilde{F}$ and $\tilde{F}'$ must map it to the same component of $\tilde{U}_j$.
-But on $\tilde{U}_j$, $\pi$ is injective.
-Hence the lifting property $\pi \circ \tilde{F} = F = \pi \circ \tilde{F'}$ implies the equality $\tilde{F} = \tilde{F}'$ on $M_{j+1} \times [0,t_{j+1}] \subset (M_{j} \times [0,t_{j}]) \cup (M_{j+1} \times [t_j,t_{j+1}])$.
-Since they are equal at $j=0$, the induction is complete.
+The base case of the induction $j=0$ is trivial: we need to construct a lift of $F$ on $N_y\times[0,0]$, but we already have $\tilde{F}_0$ given to us in the theorem.
+This finishes the proof of the existence of local lifts.
 
 Finally, we use local existence and uniqueness to patch these together into a global function.
+Indeed, suppose that $\tilde{F}_y$ is the local lift on $V_{y}\times[0,1]$.
+If there is a point $y \in V_{y_1}\cap V_{y_2}$ we know that $\Tilde{F}_{y_1}(y,0) = \Tilde{F}_0(y) = \Tilde{F}_{y_2}(y,0)$, and hence by uniqueness of lifts they agree everywhere on $(V_{y_1}\cap V_{y_2})\times[0,1]$.
+So we may safely define $\tilde{F}(y,t) = \tilde{F}_y(y,t)$.
 \end{proof}
 
 Note that $\tilde{F}$ is defined essentially as the composite of $\pi^{-1}$ and $F$ on suitable patches.
@@ -468,43 +565,48 @@ In particular, this shows us its regularity.
 For instance, if $\pi$ and $F$ are smooth then so is $\tilde{F}$.
 
 There are two special cases of this theorem that are used more than any others.
-The first is the case that $Y$ is a one point space.
+The first is the case that $Y$ is a one point space, in which case it plays no role.
 Then we can interpret $F$ as a path $[0,1] \to X$.
 The initial lift $\tilde{F}_0$ is nothing other than a choice of point in $\pi^{-1}[F(0)]$.
 Thus every curve has a lift, unique up to choice of starting point in $\tilde{X}$ lying over the starting point in $X$.
 
 The second use is when $F$ is the homotopy of two curves relative their endpoints.
-Formally $Y = [0,1]$.
-Each of the curves can be lifted with the same starting points.
+Let us define the concept of homotopy.
+Given two functions $f,g : Y \to X$ a homotopy relative $K \subset Y$ is a function $F : Y \times [0,1] \to X$ such that $F(y,0) = f(y)$ and $F(y,1) = g(y)$ for all $y \in Y$, and $F(k,t) = f(k) = g(k)$ for all $k\in K, t\in[0,1]$.
+We say that the maps are homotopic relative $K$.
+In the case of curves we use $Y = [a,b]$ and $K = \{a,b\}$.
+A map $f : [a,b] \to X$ is a path into $X$.
+If $f$ is homotopic to $g$ relative $K$ then there is deformation of $f$ into $g$ such that the endpoints of the curves are not moved.
+From the previous paragraph, both of the curves can be lifted with the same starting points.
 The fact that the homotopy can be lifted tells us that the two curves are homotopic in the covering space.
-In particular, they have the same finishing points. 
+In particular, they have the same finishing points $\tilde{f}(b) = \tilde{g}(b)$. 
 
-An application is the construction of lifts of other maps.
+These two ideas together give the construction of lifts from simply connected spaces.
 \begin{corollary}[Lifting Property]
-\textup{\cite[Prop~1.33]{Hatcher}}
+\textup{\cite[Prop~1.33]{Hatcher2002}}
 Let $\pi : \tilde{X} \to X$ be a covering.
 Suppose that $Y$ is simply connected.
 This means that any two paths in $Y$ with the same endpoints are homotopic.
-Then for any map $f : Y \to X$ and any points $y_0 \in Y$ and $\tilde{x}_0 \in \pi^{-1}[f(y_0)]$, there exists a unique lift $\tilde{f}$ of $f$ with $\tilde{f}(y_0) = \tilde{x}_0$.
+Then given a map $f : Y \to X$ and points $y \in Y$ and $\tilde{x} \in \pi^{-1}[f(y)]$, there exists a unique lift $\tilde{f}$ of $f$ with $\tilde{f}(y) = \tilde{x}$.
 \[\begin{tikzcd}
-(\tilde{X},\tilde{x}_0) \arrow{d}{\pi} & \\
-(X,x_0) & (Y,y_0) \arrow{l}{f} \arrow[dashed]{lu}{\tilde{f}}
+& (\tilde{X},\tilde{x}) \arrow{d}{\pi} \\
+(Y,y) \arrow{r}{f} \arrow[dashed]{ru}{\tilde{f}} & (X,x)
 \end{tikzcd}\]
 \end{corollary}
 \begin{proof}
-For any point $y \in Y$, let $\gamma : [0,1] \to Y$ be a path between $y_0$ and $y$.
-Then by the discussion above, the path $f \circ \gamma$ has a lift $\tilde{\gamma} : [0,1] \to \tilde{X}$ with $\tilde{\gamma}(0) = \tilde{x}_0$.
-Define $\tilde{f}(y) = \tilde{\gamma}(1)$.
-This is well-defined, because if there is any other path $\gamma$ to $y$, then by assumption there is a homotopy $H$ between the two paths.
-Then $f\circ H$ is a homotopy of $f\circ\gamma$ and $f\circ\gamma'$.
-But we know, again from the discussion above, that the lifts of homotopic paths have the same finishing point.
+For any point $y' \in Y$, let $\gamma : [0,1] \to Y$ be a path between $y$ and $y'$.
+Then by the discussion above, the path $f \circ \gamma$ has a lift $\tilde{\gamma} : [0,1] \to \tilde{X}$ with $\tilde{\gamma}(0) = \tilde{x}$.
+Define $\tilde{f}(y') = \tilde{\gamma}(1)$.
+This is well-defined, because if there is any other path $\gamma_2$ to $y'$, then by assumption there is a homotopy $F$ between the two paths.
+Then $f\circ F$ is a homotopy of $f\circ\gamma$ and $f\circ\gamma_2$.
+But we know, again from the discussion above, that the lifts of homotopic paths have the same finishing point $\tilde{f}(y') = \tilde{\gamma}(1) = \tilde{\gamma}_2(1)$.
 \end{proof}
 
 For any space, there is a simply connected covering space.
 The idea is to expand on the idea of the above corollary, that the points of the covering space can be described as the endpoints of paths.
 
 \begin{theorem}
-\textup{\cite[p.63]{Hatcher}}
+\textup{\cite[p.63]{Hatcher2002}}
 Let $X$ be a connected smooth manifold.
 Then there exists a simply connected smooth manifold $\tilde{X}$ and smooth covering map $\pi : \tilde{X} \to X$.
 $\tilde{X}$ is called the \emph{universal cover} of $X$. 

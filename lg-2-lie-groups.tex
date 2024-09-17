@@ -953,9 +953,12 @@ TODO: Check this is a surjective homomorphism.
 The kernel of this map is $x = 0,y=0, e^{2\pi i y} = 1$, which is exactly $N$.
 By the first isomorphism theorem of Lie groups~REF we conclude $H/N \cong G$.
 This shows that the quotient of a linear Lie group does not necessarily remain a linear group.
-\section{Covers}
 
-Let us begin this section with an important example: the double cover of $\lgSO(3)$ by $\lgSU(2)$.
+
+
+\section{Coverings}
+
+Let us begin this section with an important example: the double covering of $\lgSO(3)$ by $\lgSU(2)$.
 We gave quite a detailed description of $\lgSO(3)$ earlier in the chapter, so let us now give $\lgSU(2)$ the same treatment.
 It is the group of unitary rotations of $\bbC^2$.
 It is not too difficult to work out the explicit form such matrices must take.
@@ -989,7 +992,7 @@ In essence, this is the only difference between these groups, as we will now pro
 Let us construct a Lie group homomorphism from $\lgSU(2)$ to $\lgSO(3)$.
 There is a more principled construction that uses the quaternions, but that would take us too far afield. 
 So instead we will find a copy of $\bbR^3$ on which $\lgSU(2)$ acts in a natural way.
-Consider the tangent space $T_I\lgSU(2)$.
+Consider the tangent space $T_I\lgSU(2) \subset \Mat(2,\bbC)$.
 We may describe the tangent vector using paths $\gamma$ in $\lgSU(2)$ with $\gamma(0) = I$:
 \[
 \gamma(t) = \begin{pmatrix} \alpha(t) & -\overline{\beta(t)} \\ \beta(t) & \overline{\alpha(t)} \end{pmatrix}.
@@ -1027,7 +1030,8 @@ Moreover this preserves the inner product
 = \langle X, Y \rangle.
 \]
 Therefore for every $g \in \lgSU(2)$ we have an inner product preserving transformation of $\bbR^3 = T_I\lgSU(2)$, i.e.\ an element of $\lgSO(3)$.
-This gives us a map $\pi : \lgSU(2) \to \lgSO(3)$ (It is a map to $\lgO(3)$, and $\lgSU(2)$ is connected so $\pi[\lgSU(2)] \subset \lgSO(3)$).
+This gives us a map $\pi : \lgSU(2) \to \lgSO(3)$.
+You may object and say it is only a map to $\lgO(3)$, but $\lgSU(2)$ is connected so in fact $\pi[\lgSU(2)] \subset \lgSO(3)$.
 This map is a homomorphism:
 \[
 \pi(gh)(X)
