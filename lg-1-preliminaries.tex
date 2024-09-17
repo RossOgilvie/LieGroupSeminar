@@ -6,11 +6,11 @@
 Often in mathematics there is an obvious notion of a ``subobject'': given a structure on a set there is a simple way to restrict it to a subset, such that the subset can be said to have the same structure.
 For example, the structure on a group is the identity element, inversion, and multiplication; if there is a subset containing the identity element and which is preserved under inversion and multiplication, then we have a subgroup.
 Or for a topological space $X$, any subset $A$ has a topology given by intersection of open sets of $X$ with $A$.
-The structures on the subset can often be characterised by the fact that they make the inclusion map $A \hookrightarrow X$ a structure preserving map (group homomorphism and continuous map respectively for the two examples).
+The structures on the subset can often be characterized by the fact that they make the inclusion map $A \hookrightarrow X$ a structure preserving map (group homomorphism and continuous map respectively for the two examples).
 
 In the case of manifolds however the definition of a submanifold is not as trivial and there are several notions that have strong claims for the title.
 To complicate matters, the notion that is the most widely taught (embedded submanifolds) is not the one that is most appropriate for Lie group theory.
-Let us begin by summarising the common definitions.
+Let us begin by summarizing the common definitions.
 
 \begin{definition}\textup{\cite[Def~1.27, Rem~1.33]{Warner1983},\cite[Defs~1.1.36,~1.1.40,~1.2.10,~1.2.21]{Sharpe1997}} \\
 Let $\phi : N \to M$ be a smooth map of manifolds.
@@ -36,7 +36,7 @@ When we say \emph{submanifold}, we generally mean a weakly embedded submanifold.
 \end{enumerate}
 \end{definition}
 
-This is a lot of terminology, but it harmonises the definitions in Sharpe and Warner, see below table.
+This is a lot of terminology, but it harmonizes the definitions in Sharpe and Warner, see below table.
 It is in fact a strict hierarchy: each type of submanifold is a subtype of the previous.
 
 \begin{table}[h]
@@ -58,12 +58,12 @@ We can split this into a line and two rays in two ways.
 Therefore immersed submanifolds must always be given with the immersion $\phi$.
 
 On the other hand, by using the implicit function theorem the preimage of a regular value is an embedded submanifold.
-The idea is to take the construction of charts in the implicit function theorem and generalise it to weakly embedded submanifolds.
+The idea is to take the construction of charts in the implicit function theorem and generalize it to weakly embedded submanifolds.
 
 \begin{definition}
 \label{def:plaques}
 \textup{\cite[Def~1.2.1,1.2.2,Thm~1.2.7]{Sharpe1997}} \\
-Any any subset $A$ let $C(A,x)$ be points that can be reached from $x$ by a continuous path through $A$.
+Any subset $A$ let $C(A,x)$ be points that can be reached from $x$ by a continuous path through $A$.
 Let $N' \subset M$ be a subset.
 Given a chart $\varphi: U \subset M \to \bbR^m$ we say that $W = C(N'\cap U,x)$ is a \emph{flat plaque} if 
 \[
@@ -97,14 +97,14 @@ Some commentary before we slot this into our hierarchy.
 The definition of submanifold in~\cite{Sharpe1997} requires a collection of charts $(U_\alpha, \varphi_\alpha)$ of $M$ covering $\overline{N'}$ such that the connected components of $U_\alpha \cap N'$ are all flat plaques.
 This has the effect of excluding the following example.
 Consider $N$ as a countable collection of spheres and take $\phi : N \to \bbR^3$ to be the map that embeds the $k$th sphere as $\partial B(k^{-1}, 0.5(k+1)^{-2})$; one has a sequence of non-overlapping spheres decreasing in size with the origin as a limit point.
-In particular any neighbourhood $U$ of the origin must contain a sphere as a connected component of $U \cap N' = \phi[N]$, but a sphere cannot be a flat plaque.
+In particular any neighborhood $U$ of the origin must contain a sphere as a connected component of $U \cap N' = \phi[N]$, but a sphere cannot be a flat plaque.
 Sharpe calls this an `odd limit point', but it seems no more odd than a collection of lines immersed as $\{n^{-1}\} \times \bbR \subset \bbR^2$, which is allowed by the definition.
 If one truly wishes to avoid odd limits, an embedded submanifold is the correct notion.
 Instead, it would be better to say that Sharpe is concerned with foliations, and this shrinking chain of spheres cannot be part of a regular foliation.
 For embedded submanifolds the subspace and submanifold topologies coincide~\cite[Prop~1.2.9]{Sharpe1997}.
 The example of the dense wrapping of the line around a torus is the classic example of a submanifold in Sharpe's sense that is not embedded.
 
-It is also important that we use paracompact manifolds,which is equivalent to each connected component being second countable.
+It is also important that we use paracompact manifolds, which is equivalent to each connected component being second countable.
 This is because a subset of $M$ need not be second countable in the submanifold topology.
 Consider the example of the irrational numbers in the real line.
 The flat plaques are the sets $\{x\}$ for any irrational $x$.
@@ -134,7 +134,7 @@ We apply Urysohn's metrization theorem, which says that $M_0$ is metricizable, t
 Now $N_0$ is a metric space using the restriction of $d$, but this induces the subspace topology, not necessarily the submanifold topology.
 Instead we use the intrinsic distance function $d'$, which is the infimum of path lengths in $N_0$ measured with $d$.
 
-In general, $d' > d$, and we may worry that although $N_0$ is path connected, some of the paths might be infinitely long, and hence $N_0$ would not be a metric space.
+In general, $d' > d$, and we may worry that although $N_0$ is path connected, some paths might be infinitely long, and hence $N_0$ would not be a metric space.
 To see that this is not the case, for any point $x \in N_0$ consider first a flat plaque $W \ni x$.
 We use $\varphi$ to move everything to $\bbR^m$.
 Shrinking the chart if necessary, we can assume that $U$ is convex.
@@ -172,17 +172,17 @@ Warner addresses these concerns with the following theorem:
 \textup{\cite[Remark~1.33]{Warner1983}}
 \begin{enumerate}
 \item Let $M$ be a manifold and $A$ a subset of $M$. Fix a topology on $A$. Then there is at most one manifold structure on $A$ such that $(A,\phi)$ is an immersed submanifold of $M$, where $\phi$ is the inclusion map.
-\item Again let $A$ be a subset of $M$. If $A$ with the subspace topology has a manifold structure such that $(A,\phi)$ is an immersed submanifold of $M$, then it is the unique topology on $A$ such that there exits a manifold structure for which $(A,\phi)$ is an immersed submanifold of $M$.
+\item Again let $A$ be a subset of $M$. If $A$ with the subspace topology has a manifold structure such that $(A,\phi)$ is an immersed submanifold of $M$, then it is the unique topology on $A$ such that there exists a manifold structure for which $(A,\phi)$ is an immersed submanifold of $M$.
 \end{enumerate}
 \end{theorem}
 
-We generalise Part (b) slightly below.
-This generalisation is stronger than~\cite[Lem~2.1.41]{Sharpe1997}, because we only require the inclusions to be injective immersions, not weak embeddings.
+We generalize Part (b) slightly below.
+This generalization is stronger than~\cite[Lem~2.1.41]{Sharpe1997}, because we only require the inclusions to be injective immersions, not weak embeddings.
 
 \begin{theorem}
 \label{thm:unique manifold structure}
 Let $A$ be a subset of $M$. 
-If $A$ with the submanifold topology has a manifold structure such that $(A,\phi)$ is an immersed submanifold of $M$, then it is the unique topology on $A$ such that there exits a manifold structure for which $(A,\phi)$ is an immersed submanifold of $M$.
+If $A$ with the submanifold topology has a manifold structure such that $(A,\phi)$ is an immersed submanifold of $M$, then it is the unique topology on $A$ such that there exists a manifold structure for which $(A,\phi)$ is an immersed submanifold of $M$.
 \end{theorem}
 \begin{proof}
 First we address the relationship between the manifold structure on $A$ and the plaque charts.
@@ -210,21 +210,21 @@ The key local result is
 Let $F : J \times U \subset \bbR\times\bbR^n \to \bbR^n$ be a smooth time-dependent vector field. 
 Assume $0 \in J$. 
 Consider $u : \bbR \to U$ the system of ODEs $u'(t) = F(t,u(t))$.
-For any $c \in U$ there exists a $\varepsilon > 0$ such that there is a unique solution smooth solution on $(-\varepsilon,\varepsilon)$ with $u(0) = c$.
-Moreover, for any $p \in U$ there is an open neighbourhood $p \in V \subset U$, $\varepsilon > 0$ and smooth map $u : (-\varepsilon,\varepsilon) \times V \to U$ such that $u(\cdot,c)$ is the unique solution with initial condition $c$.
+For any $c \in U$ there exists an $\varepsilon > 0$ such that there is a unique solution smooth solution on $(-\varepsilon,\varepsilon)$ with $u(0) = c$.
+Moreover, for any $p \in U$ there is an open neighborhood $p \in V \subset U$, $\varepsilon > 0$ and smooth map $u : (-\varepsilon,\varepsilon) \times V \to U$ such that $u(\cdot,c)$ is the unique solution with initial condition $c$.
 \end{theorem}
 
 If one has a smooth vector field on a manifold, then we can ask for a curve $\gamma$ through $p = \gamma(0)$, called an integral curve, such that the tangent vectors of $\gamma$ are equal to the vector field.
 In other words, the integral curve is a solution to the time-independent ODE $\gamma'(t) = X(\gamma(t))$.
-this theorem provides for the existence of integral curves of the vector field in every coordinate chart, and uniqueness means that they can be patched together to give unique maximal integral curves through every point.
+This theorem provides for the existence of integral curves of the vector field in every coordinate chart, and uniqueness means that they can be patched together to give unique maximal integral curves through every point.
 
 The set of integral curves of a vector field $X$ define a flow of the manifold: $\tilde{X}_t(p)$ is defined to be equal to the integral curve of $X$ through $p$ at time $t$ (ie $t \mapsto \tilde{X}_t(p)$ is the integral curve).
-This is a smooth function defined on a subset of $\bbR \times M$ (treating the subscript as the first variable here), in particular containing some neighbourhood $(-\varepsilon,\varepsilon) \times U$ of any point $(0,p)$.
+This is a smooth function defined on a subset of $\bbR \times M$ (treating the subscript as the first variable here), in particular containing some neighborhood $(-\varepsilon,\varepsilon) \times U$ of any point $(0,p)$.
 Uniqueness of the integral curves means that this flow is reversible.
 Moreover, if the vector field is nonzero at a point, there is a chart containing that point where the vector field is the first coordinate vector $\partial_1$ and the flow is translation.
 In the other direction, the derivative of the flow with respect to $t$ at $t=0$ gives back the vector field $X$.
 
-The flow provides a way to connect points of a manifold with neighbouring points, and so can be used to define a derivative, called the Lie derivative.
+The flow provides a way to connect points of a manifold with neighboring points, and so can be used to define a derivative, called the Lie derivative.
 For example, for a function $f$
 \[
 \mathcal{L}_X f
@@ -261,10 +261,10 @@ Therefore $\mathcal{L}_X Y = [X,Y]$.
 
 From this commutator formula, most of the properties of the Lie derivative of vector fields easily follow.
 For us, the most important are anti-symmetry $[X,Y] = -[Y,X]$ and the Jacobi identity $[X,[Y,Z]] = [[X,Y],Z] + [Y, [X,Z]]$.
-There is also a generalisation of adapted coordinates to sets of linearly-independent commuting vector fields: around each point there is a chart whose coordinates vector fields are the given vector fields.
+There is also a generalization of adapted coordinates to sets of linearly-independent commuting vector fields: around each point there is a chart whose coordinates vector fields are the given vector fields.
 
-We will need a generalisation that deals with vector fields that are not commuting.
-To motivate why this is geometrically interesting and not just generalisation for its own sake, consider a submanifold $N$ inside $M$.
+We will need a generalization that deals with vector fields that are not commuting.
+To motivate why this is geometrically interesting and not just generalization for its own sake, consider a submanifold $N$ inside $M$.
 At each point $p \in N$ we can consider the vector subspace $T_pN \subset T_pM$.
 At least locally, we can describe these subspaces as the span of independent vector fields.
 The natural question is the converse: given a set of independent vector fields on $M$, does there exist a submanifold $N$ whose tangent space is their span?
@@ -273,31 +273,31 @@ For a single vector field, the answer is affirmative, namely the integral curve.
 \begin{definition}
 \textup{\cite[2.2.1,.2.2.2,2.3.2]{Sharpe1997}} \\
 An $r$-dimensional distribution $\mathcal{D}$ on $M$ is a choice of an $r$-dimensional subspace $\mathcal{D}_p$ of $T_p M$ at every point $p \in M$.
-It is called smooth if every point has a neighbourhood and smooth vector fields $\{X_1, \dots, X_r \}$ that span the subspaces.
+It is called smooth if every point has a neighborhood and smooth vector fields $\{X_1, \dots, X_r \}$ that span the subspaces.
 This is called a local basis for $\mathcal{D}$.
-Equivalently, an $r$-dimensional distribution is an rank $r$ subbundle of $TM$.
+Equivalently, an $r$-dimensional distribution is a rank $r$ subbundle of $TM$.
 
 A set of vector fields is called algebraically involutive if their Lie brackets are contained in their span.
 Given two sets of vector fields with the same span, one is algebraically involutive if and only if the other is.
 Therefore algebraically involutive is a property that is defined for distributions.
 
-A distribution is called integrable if every point has a coordinate neighbourhood in which the distribution is spanned by coordinate vector fields.
+A distribution is called integrable if every point has a coordinate neighborhood in which the distribution is spanned by coordinate vector fields.
 \\
 A connected $r$-dimensional immersed submanifold $N$ is called an integral submanifold of $\mathcal{D}$ if at every point $T_pN = \mathcal{D}_p$.
 \end{definition}
 
 Consider the example of nested spheres centered at the origin in $\bbR^3\setminus\{0\}$. 
 Their tangent planes define a $2$-distribution.
-In a neighbourhood of any point, suitable polar coordinates show that it is smooth and integrable.
-However there are not global vector fields spanning this distribution, due to the hairy ball theorem (every vector field on a sphere vanishes at least once).
+In a neighborhood of any point, suitable polar coordinates show that it is smooth and integrable.
+However there don't exist global vector fields spanning this distribution, due to the hairy ball theorem (every vector field on a sphere vanishes at least once).
 By definition, any of the spheres is an integral manifold of this distribution.
 
 The important example of a non-integrable distribution is given in $\bbR^3$ by the planes normal to the vector field $n(x,y,z)=(y,-x,1)$~\cite[Ex~2.3.1]{Sharpe1997}.
 There can be no integral manifold containing the origin.
 Suppose there were.
-Because the tangent plane at the origin is the $xy$-plane, we know that there is a neighbourhood where is a graph over $x$ and $y$.
-Now take a small loop in the integral manifold around the origin lying in this neighbourhood.
-It's height is monotonic, it doesn't close up.
+Because the tangent plane at the origin is the $xy$-plane, we know that there is a neighborhood where is a graph over $x$ and $y$.
+Now take a small loop in the integral manifold around the origin lying in this neighborhood.
+Its height is monotonic, it doesn't close up.
 This is a contradiction.
 A local basis at the origin is given by $X_1 = \partial_x - y \partial_z$, $X_2 = \partial_y + x\partial z$.
 Observe that $[X_1,X_2] = 2\partial_z$, so that it is not algebraically involutive.
@@ -358,14 +358,14 @@ Taking several such sequences, we see that the distribution cannot be continuous
 
 \section{Covers}
 
-In this section we summarise covering maps.
+In this section we summarize covering maps.
 To avoid some technical topological issues, we only give the definition in the smooth case.
 \begin{definition}
 \label{def:covering map}
 \textup{\cite[p.~56]{Hatcher}}
 Let $X$ and $\tilde{X}$ be smooth manifolds and $\pi : \tilde{X} \to X$ a smooth surjection.
 An open set $V \subset X$ is called \emph{evenly covered} if $\pi^{-1}[V]$ is a disjoint union of open sets, each diffeomorphic to $V$ under $\pi$.
-The map $\pi$ is called a \emph{covering} if every point has an evenly covered neighbourhood.
+The map $\pi$ is called a \emph{covering} if every point has an evenly covered neighborhood.
 The connected components of an evenly covered set are called \emph{sheets}, and the preimage of a point of $Y$ is called its fibre.
 $X$ is called the \emph{covering space} and $Y$ the \emph{base space}.
 \end{definition}
@@ -375,9 +375,9 @@ It is easy to see that every covering is a surjective local diffeomorphism, but 
 \begin{example}
 Consider $\gamma : (-2\pi, 2\pi) \to \bbS^1$ given by $t \mapsto e^{it}$.
 This is a surjective local diffeomorphism.
-But the point $1 \in \bbS^1$ does not have an evenly covered neighbourhood.
+But the point $1 \in \bbS^1$ does not have an evenly covered neighborhood.
 To prove this, notice that open subsets of evenly covered sets are themselves evenly covered.
-So if there exists an evenly covered neighbourhood, there exists one of the form $V = \{ e^{it} \mid t \in (-\varepsilon,\varepsilon) \}$.
+So if there exists an evenly covered neighborhood, there exists one of the form $V = \{ e^{it} \mid t \in (-\varepsilon,\varepsilon) \}$.
 But 
 \[
 \gamma^{-1}[V] = (-\varepsilon,\varepsilon) \cup (2\pi - \varepsilon,2\pi) \cup (-2\pi,-2\pi+\varepsilon).
@@ -463,7 +463,7 @@ Since they are equal at $j=0$, the induction is complete.
 Finally, we use local existence and uniqueness to patch these together into a global function.
 \end{proof}
 
-Note that $\tilde{F}$ is define essentially as the composite of $\pi^{-1}$ and $F$ on suitable patches.
+Note that $\tilde{F}$ is defined essentially as the composite of $\pi^{-1}$ and $F$ on suitable patches.
 In particular, this shows us its regularity.
 For instance, if $\pi$ and $F$ are smooth then so is $\tilde{F}$.
 
@@ -514,7 +514,7 @@ Remarkably the proof is constructive.
 Fix a base point of $X$.
 Define the universal cover $\tilde{X}$ to be the set of paths originating at the base point, up to homotopy equivalence.
 The covering map $\pi$ sends a path to its endpoint.
-For any path $\gamma$ take a simply connected open neighbourhood $V$ of its endpoint $x = \pi(\gamma) = \gamma(1)$.
+For any path $\gamma$ take a simply connected open neighborhood $V$ of its endpoint $x = \pi(\gamma) = \gamma(1)$.
 Then concatenation of $\gamma$ with a path in $U$ from $x$ to any point of $U$ is a bijection from $U$ to a subset of $\tilde{X}$.
 Declaring these bijections to be homeomorphisms makes $\tilde{X}$ into a topological space, and declaring further that they are diffeomorphisms makes $\tilde{X}$ into a manifold.
 \end{proof}
@@ -550,7 +550,7 @@ A standard result in linear algebra says that every matrix is conjugate to a mat
 
 Going further, we may ask what can be said of two linear endomorphisms $A,B$.
 The key observation is to consider commuting operators.
-If $A$ and $B$ commute then $B$ preserves the eigenspaces  eigenspaces of $A$:
+If $A$ and $B$ commute then $B$ preserves the eigenspaces of $A$:
 \[
 (A- \lambda I) (Bv) 
 = B(A- \lambda I) v
@@ -559,7 +559,7 @@ If $A$ and $B$ commute then $B$ preserves the eigenspaces  eigenspaces of $A$:
 Therefore $B$ restricts to an endomorphism on each of the eigenspaces of $A$.
 Imposing different conditions on $A$ restricts the possible decompositions of $B$.
 For example, if $A$ is diagonalizable (so $V$ decomposes as the direct sum of the eigenspaces of $A$) then on each eigenspace of $A$ we can choose a basis that puts $B$ into Jordan normal form.
-Hence $A$ and $B$ can simultaneously conjugated to normal form.
+Hence $A$ and $B$ can be simultaneously conjugated to normal form.
 Or if $A$ is diagonalizable and has no repeated eigenvalues, ie its eigenspaces are one dimensional, then these must also be eigenspaces of $B$.
 Hence $A$ and $B$ are simultaneously diagonalizable.
 
