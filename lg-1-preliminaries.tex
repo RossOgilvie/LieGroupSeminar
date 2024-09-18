@@ -395,7 +395,7 @@ Therefore $\gamma$ is not a covering map.
 The most important property of covering maps is that maps into the base space can often be `lifted' to the covering space.
 A function $\tilde{f} : Y \to \tilde{X}$ is called the \emph{lift} of $f : Y \to X$ if $f = \pi \circ \tilde{f}$.
 \[
-\begin{tikzcd}
+\begin{tikzcd}[sep=large]
 & \tilde{X} \arrow[d, "\pi"] \\
 Y \arrow[r, "f"] \arrow[ru, dashed, "\tilde{f}"] & X
 \end{tikzcd}
@@ -447,7 +447,7 @@ In other words, $Y' \subset A$.
 This proves $A$ is open.
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.7]
   % Draw the space X and its neighborhood V
   \draw (0,0) circle (2cm); % Space X
   \node at (2.3,0) {\(X\)};
@@ -491,7 +491,7 @@ We prove that if a lift exists at time $t=0$ then it also exists for any time $t
 Let $\pi : \tilde{X} \to X$ be a covering map.
 Given a map $F : Y \times [0,1] \to X$ and a map $\tilde{F}_0 : Y \times \{0\} \to \tilde{X}$ lifting $F|_{Y \times \{0\}}$ there is a unique map $\tilde{F} : Y \times [0,1] \to \tilde{X}$ lifting $F$ such that $\tilde{F}|_{Y \times \{0\}} = \tilde{F}_0$.
 \[
-\begin{tikzcd}
+\begin{tikzcd}[sep=large]
 Y \times \{0\} \arrow[r, "\tilde{F}_0"] \arrow[d, hook] & \tilde{X} \arrow[d, "\pi"] \\
 Y \times [0,1] \arrow[r, "F"] \arrow[ru, "\tilde{F}"] & X
 \end{tikzcd}
@@ -572,8 +572,11 @@ Thus every curve has a lift, unique up to choice of starting point in $\tilde{X}
 
 The second use is when $F$ is the homotopy of two curves relative their endpoints.
 Let us define the concept of homotopy.
+\begin{definition}
+\label{def:homotopy}
 Given two functions $f,g : Y \to X$ a homotopy relative $K \subset Y$ is a function $F : Y \times [0,1] \to X$ such that $F(y,0) = f(y)$ and $F(y,1) = g(y)$ for all $y \in Y$, and $F(k,t) = f(k) = g(k)$ for all $k\in K, t\in[0,1]$.
 We say that the maps are homotopic relative $K$.
+\end{definition}
 In the case of curves we use $Y = [a,b]$ and $K = \{a,b\}$.
 A map $f : [a,b] \to X$ is a path into $X$.
 If $f$ is homotopic to $g$ relative $K$ then there is deformation of $f$ into $g$ such that the endpoints of the curves are not moved.
@@ -581,14 +584,47 @@ From the previous paragraph, both of the curves can be lifted with the same star
 The fact that the homotopy can be lifted tells us that the two curves are homotopic in the covering space.
 In particular, they have the same finishing points $\tilde{f}(b) = \tilde{g}(b)$. 
 
-These two ideas together give the construction of lifts from simply connected spaces.
-\begin{corollary}[Lifting Property]
+Since we have defined homotopy, let us also define the fundamental group of a space.
+\begin{definition}
+\label{def:fundamental group}
+Fix a point $x_0 \in X$ and consider loops based at $x_0$: continuous paths $\gamma : [0,1] \to X$ with $\gamma(0) = \gamma(1) = x_0$.
+We consider the set $\pi_1(X,x_0)$, called the fundamental group of $X$, of loops up to homotopy relative $x_0$.
+\end{definition}
+We can equip this with an operation, namely concatenation of loops
+\[
+(\beta \cdot \alpha)(s)
+= \begin{cases}
+\alpha(2s) & \text{if } s\leq 0.5 \\
+\beta(2s-1) & \text{if } s> 0.5
+\end{cases}.
+\]
+The identity is the constant path at $x_0$ and inverse is traversal of the loop in the opposite direction
+\[
+\gamma^{-1}(s) = \gamma(1-s).
+\]
+Properly, we should prove these claims.
+As an example of verifying that this does in fact make $\pi_1(X,x_0)$ a group, 
+\[
+F(s,t) = \begin{cases}
+\gamma(2st) & \text{if } s\leq 0.5 \\
+\gamma(2(1-s)t) & \text{if } s> 0.5
+\end{cases}
+\]
+is a homotopy between the identity loop $F(s,0) = \gamma(0) = x_0$ and $F(s,1) = \gamma^{-1} \cdot \gamma$.
+We leave the remaining checks to the reader.
+
+These ideas together give the existence of a lift of any map from a simply connected space.
+A simply connected space is a connected space in which every loop is homotopic to a constant map.
+Equivalently, the fundamental group is the trivial group with one element.
+Be aware, not every author requires simply connected spaces to be connected (and not every author is consistent).
+\begin{corollary}[Lifting existence]
 \textup{\cite[Prop~1.33]{Hatcher2002}}
+\label{cor:lift existence}
 Let $\pi : \tilde{X} \to X$ be a covering.
 Suppose that $Y$ is simply connected.
 This means that any two paths in $Y$ with the same endpoints are homotopic.
 Then given a map $f : Y \to X$ and points $y \in Y$ and $\tilde{x} \in \pi^{-1}[f(y)]$, there exists a unique lift $\tilde{f}$ of $f$ with $\tilde{f}(y) = \tilde{x}$.
-\[\begin{tikzcd}
+\[\begin{tikzcd}[sep=large]
 & (\tilde{X},\tilde{x}) \arrow{d}{\pi} \\
 (Y,y) \arrow{r}{f} \arrow[dashed]{ru}{\tilde{f}} & (X,x)
 \end{tikzcd}\]
@@ -602,32 +638,26 @@ Then $f\circ F$ is a homotopy of $f\circ\gamma$ and $f\circ\gamma_2$.
 But we know, again from the discussion above, that the lifts of homotopic paths have the same finishing point $\tilde{f}(y') = \tilde{\gamma}(1) = \tilde{\gamma}_2(1)$.
 \end{proof}
 
-For any space, there is a simply connected covering space.
-The idea is to expand on the idea of the above corollary, that the points of the covering space can be described as the endpoints of paths.
-
-\begin{theorem}
-\textup{\cite[p.63]{Hatcher2002}}
-Let $X$ be a connected smooth manifold.
-Then there exists a simply connected smooth manifold $\tilde{X}$ and smooth covering map $\pi : \tilde{X} \to X$.
-$\tilde{X}$ is called the \emph{universal cover} of $X$. 
-\end{theorem}
-\begin{proof}[Sketch of proof.]
-Remarkably the proof is constructive.
-Fix a base point of $X$.
-Define the universal cover $\tilde{X}$ to be the set of paths originating at the base point, up to homotopy equivalence.
-The covering map $\pi$ sends a path to its endpoint.
-For any path $\gamma$ take a simply connected open neighborhood $V$ of its endpoint $x = \pi(\gamma) = \gamma(1)$.
-Then concatenation of $\gamma$ with a path in $U$ from $x$ to any point of $U$ is a bijection from $U$ to a subset of $\tilde{X}$.
-Declaring these bijections to be homeomorphisms makes $\tilde{X}$ into a topological space, and declaring further that they are diffeomorphisms makes $\tilde{X}$ into a manifold.
-\end{proof}
-
-The reason for the epitaph `universal' is that if $\pi_X : Y \to X$ is any covering map, and $\pi : \tilde{X} \to X$ is the universal cover, then the lifting property tells us that $\tilde{\pi}$ lifts to a covering map $\pi_Y$ of $Y$, with $\pi_X = \pi_Y \circ \pi$.
-\[\begin{tikzcd}
-\tilde{X} \arrow{d}{\pi} \arrow[dashed]{rd}{\pi_Y} & \\
-X & Y \arrow{l}{\pi_X}
+Simply connected spaces play a special role in the theory of covering spaces.
+If $\pi : \tilde{X} \to X$ is a covering map and $\tilde{X}$ is simply connected (and connected), we say that $\tilde{X}$ is a \emph{universal cover} of $X$.
+The reason for the epitaph `universal' is that if $\pi : Y \to X$ is any covering map, and $\pi_X : \tilde{X} \to X$ is a universal cover, then the lifting property tells us that $\pi_X$ lifts to a map $\pi_Y$ to $Y$, with $\pi_X = \pi \circ \pi_Y$.
+\[\begin{tikzcd}[sep=large]
+\tilde{X} \arrow{rd}{\pi_X} \arrow[dashed]{rr}{\pi_Y} && Y \arrow{ld}{\pi} \\
+& X &
 \end{tikzcd}\]
-
-
+If $Y$ is connected, then we claim that this lift is itself a covering map.
+For any point of $X$ take a neighborhood that is evenly covered by both $\pi_X$ and $\pi$.
+If $U_y \subset Y$ and $V_{\tilde{x}} \subset \tilde{X}$ are sheets, then
+\[
+(\pi|_{U_y})^{-1} \circ \pi_X : \coprod_{\tilde{x} \in \pi_Y^{-1}[y]} V_{\tilde{x}} \to U_y
+\]
+is an even covering of the neighborhood $U_y$ of $y$.
+This shows that $\pi_Y$ is a local diffeomorphism, and in particular both open and closed.
+Since $Y$ is connected, the image of $\tilde{X}$ in $Y$ must be the whole space.
+This shows that $\pi_Y$ is surjective.
+Therefore $\pi_Y$ is a covering.
+A universal cover is in this sense the largest connected space that covers $X$.
+We often speak of the universal cover, because if there are two simply connected covering spaces, we can apply this reasoning to construct a diffeomorphism between them.
 
 \begin{corollary}
 The universal cover is unique in the following sense:
@@ -635,10 +665,11 @@ If $\tilde{X},\tilde{X}'$ are simply connected and $\pi : \tilde{X} \to X, \pi':
 \qed
 \end{corollary}
 
-We can apply this corollary to the universal cover itself.
-Given two points $\tilde{x},\tilde{x}' \in \pi^{-1}[x]$ there is an automorphism of $\tilde{X}$ taking $\tilde{x}$ to $\tilde{x}'$.
-These automorphisms are called deck transformations of $\pi$.
-The set of deck transformations of the universal cover acts transitively on the fibre of any point.
+% DECK TRANSFORMATIONS:
+% We can apply this corollary to the universal cover itself.
+% Given two points $\tilde{x},\tilde{x}' \in \pi^{-1}[x]$ there is an automorphism of $\tilde{X}$ taking $\tilde{x}$ to $\tilde{x}'$.
+% These automorphisms are called deck transformations of $\pi$.
+% The set of deck transformations of the universal cover acts transitively on the fibre of any point.
 
 
 
