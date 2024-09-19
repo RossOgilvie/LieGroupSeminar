@@ -7,7 +7,7 @@ There are in a sense three ways to rotate a sphere.
 Choose a point on the equator of a sphere.
 You can rotate the sphere so that this point moves towards a pole (y-axis rotation), so that this point moves along the equator (z-axis rotation), or so that the point is stationary (x-axis rotation).
 Moreover these rotations are continuous in a way that rotating an equilateral triangle is not, because at each stage of rotation the sphere as a whole occupies the same space.
-
+ 
 How should we describe the rotations of a sphere?
 First observe that antipodal points remain antipodal, so the rotation of a sphere extends to a linear transformation of $\bbR^3$.
 Hence any rotation $R$ can be described by a real $3\times 3$-matrix.
@@ -314,6 +314,7 @@ The answer is yes, it is precisely the definition of submanifold in Sharpe.
 However they are typically not much more regular, and rarely embedded, as the following example shows.
 
 \begin{example}
+\label{eg:dense subgroup in torus}
 Consider the torus $\bbT^2 = \bbS^1 \times \bbS^1$, which we can realise as a subset of $\mathbb{C}^2$.
 Choose an irrational real number $\alpha$ and let $\gamma(t) = (e^{it}, e^{i\alpha t})$.
 This is in fact a homomorphism from $\bbR$ into $\bbT^2$, since
@@ -802,6 +803,7 @@ Therefore this set is bounded.
 
 A more general version of the statement in Warner is the following theorem:
 \begin{theorem}
+\label{thm:quotient by group action}
 Let $G$ be a Lie group acting smoothly, freely and properly on a smooth manifold $M$. Then:
 \begin{itemize}
 \item The orbit space $M/G$ is a topological manifold with dimension $\dim M/G = \dim M - \dim G$.
@@ -853,7 +855,7 @@ Then the quotient $G/H$ is a Lie group of the same dimension as $G$, but typical
 \begin{example}
 \label{eg:psl2r}
 The subgroup $\{I,-I\}$ of $\lgSL(2,\bbR)$ is closed and normal.
-Therefore Theorem~\ref{thm:Lie group quotient} tells us that $\lgSL(2,\bbR)/ \{I,-I\}$ is a three dimensional Lie group, called the projective special linear group $\lgPSL(2,\bbR)$.
+Therefore Theorem~\ref{thm:Lie group quotient} tells us that $\lgSL(2,\bbR)/ \{I,-I\}$ is a three-dimensional Lie group, called the projective special linear group $\lgPSL(2,\bbR)$.
 We saw in Example~\ref{eg:sl2r action on half plane} that both $I$ and $-I$ act trivially on $\bbH$, and so the action of $\lgSL(2,\bbR)$ on $\bbH$ descends to an effective action of $\lgPSL(2,\bbR)$.
 By way of proof, suppose that $g$ acts trivially on $\bbH$.
 Then in particular it lies in $H_i$.
@@ -952,9 +954,12 @@ TODO: Check this is a surjective homomorphism.
 The kernel of this map is $x = 0,y=0, e^{2\pi i y} = 1$, which is exactly $N$.
 By the first isomorphism theorem of Lie groups~REF we conclude $H/N \cong G$.
 This shows that the quotient of a linear Lie group does not necessarily remain a linear group.
-\section{Covers}
 
-Let us begin this section with an important example: the double cover of $\lgSO(3)$ by $\lgSU(2)$.
+
+
+\section{Coverings}
+
+Let us begin this section with an important example: the double covering of $\lgSO(3)$ by $\lgSU(2)$.
 We gave quite a detailed description of $\lgSO(3)$ earlier in the chapter, so let us now give $\lgSU(2)$ the same treatment.
 It is the group of unitary rotations of $\bbC^2$.
 It is not too difficult to work out the explicit form such matrices must take.
@@ -987,8 +992,8 @@ Well, the $3$-sphere is simply connected, but we have seen that $\lgSO(3)$ is no
 In essence, this is the only difference between these groups, as we will now prove.
 Let us construct a Lie group homomorphism from $\lgSU(2)$ to $\lgSO(3)$.
 There is a more principled construction that uses the quaternions, but that would take us too far afield. 
-So instead we will find a copy of $\bbR^3$ on which $\lgSU(2)$ acts in a natural way.
-Consider the tangent space $T_I\lgSU(2)$.
+So instead we will find a copy of $\bbR^3$ on which $\lgSU(2)$ has a natural action.
+Consider the tangent space $T_I\lgSU(2) \subset \Mat(2,\bbC)$.
 We may describe the tangent vector using paths $\gamma$ in $\lgSU(2)$ with $\gamma(0) = I$:
 \[
 \gamma(t) = \begin{pmatrix} \alpha(t) & -\overline{\beta(t)} \\ \beta(t) & \overline{\alpha(t)} \end{pmatrix}.
@@ -1026,14 +1031,16 @@ Moreover this preserves the inner product
 = \langle X, Y \rangle.
 \]
 Therefore for every $g \in \lgSU(2)$ we have an inner product preserving transformation of $\bbR^3 = T_I\lgSU(2)$, i.e.\ an element of $\lgSO(3)$.
-This gives us a map $\pi : \lgSU(2) \to \lgSO(3)$ (It is a map to $\lgO(3)$, and $\lgSU(2)$ is connected so $\pi[\lgSU(2)] \subset \lgSO(3)$).
+This gives us a map $\pi : \lgSU(2) \to \lgSO(3)$.
+You may object and say it is only a map to $\lgO(3)$, but $\lgSU(2)$ is connected so in fact $\pi[\lgSU(2)] \subset \lgSO(3)$.
 This map is a homomorphism:
-\[
+\begin{equation}
+\label{eq:su2 double cover homo}
 \pi(gh)(X)
 = (gh)X(gh)^{-1}
 = g(hXh^{-1})g^{-1}
 = \pi(g)\circ \pi(h)(X).
-\]
+\end{equation}
 It is tedious but not complicated to compute the matrix of $\pi(g)$ with respect to the basis of $T_I\lgSU(2)$ given by $x_1,x_2,x_3$:
 \[
 \pi(g)
@@ -1063,7 +1070,7 @@ It follows from Lemma~\ref{lem:injective differential} that $\pi$ is a local dif
 In fact $\pi$ is surjective, for the following reasons.
 Because $\pi$ is a local diffeomorphism, $\pi[\lgSU(2)]$ is open.
 Because $\lgSU(2)$ is compact, $\pi[\lgSU(2)]$ is closed.
-Because $\lgSO(3)$ is connected, the only non-empty open and closed subset is the whole set.
+And because $\lgSO(3)$ is connected, the only non-empty open and closed subset is the whole set.
 
 Now that we know that $\pi$ is surjective, we can be sure that the following method for finding a preimage will succeed.
 Take first the $2\times2$ minor in bottom right of $\pi(g)$.
@@ -1075,16 +1082,116 @@ This explains the name ``double cover''.
 In particular $\ker \pi = \{I, -I\}$.
 Using Theorem~\ref{thm:first iso}, we get another example of a quotient of Lie groups, $\lgSU(2)/\{I, -I\} \cong \lgSO(3)$.
 
-But let us turn to the theme of this section. 
-This is an example of a covering, as per Definition~\ref{def:covering map}.
-Let us check the required properties.
+\begin{theorem}
+A Lie covering $\pi : \tilde{G} \to G$ is a covering as per Definition~\ref{def:covering map} such that $\pi$ is also a homomorphism of Lie groups.
+\end{theorem}
+
+Let us see that the above example is a Lie group covering.
+Equation~\eqref{eq:su2 double cover homo} shows that it is a homomorphism, so it remains to check it is a covering map.
 We know that it is surjective.
-Given an point $h \in \lgSO(3)$ there are two points $g,-g \in \lgSU(2)$ in the preimage.
-We know that $\pi$ is a local diffeomorphism, so there are neighbourhoods $U^\pm$ of $\pm g$ that map diffeomorphically to $V^\pm = \pi[U^\pm]$.
+Given a point $h \in \lgSO(3)$ there are two points $g,-g \in \lgSU(2)$ in the preimage.
+We know that $\pi$ is a local diffeomorphism, so there are neighborhoods $U^\pm$ of $\pm g$ that map diffeomorphically to $V^\pm = \pi[U^\pm]$.
 Then $V = V^+ \cap V^-$ is evenly covered.
 In fact, because $\lgSU(2)$ is simply connected, it is the universal cover of $\lgSO(3)$.
 
-Generally, what can be said about the covering of Lie groups?
+Generally, what can be said about a covering of Lie groups $\pi : \tilde{G} \to G$?
+First, the fibre over the identity is $\ker \pi$, which of course is itself a group.
+We call this group the deck transformations $\Deck(\pi)$.
+There is a more general definition of deck transformations for coverings of spaces other than Lie groups.
+Like all kernels $\Deck(\pi)$ is a closed normal subgroup (Corollary~\ref{cor:kernel of hom}).
+And because $\pi$ is surjective, Theorem~\ref{thm:first iso} tells us that $\tilde{G}/\Deck(\pi) \cong G$.
+
+Further, Theorem~\ref{thm:discrete in center} tells us that lies in the center $Z(\tilde{G})$.
+Conversely, if we have a Lie group $\tilde{G}$ and a discrete normal subgroup $N$ of its center, then we can consider the quotient $G = \tilde{G}/N$.
+By Theorem~\ref{thm:quotient by group action} this is a smooth manifold of the same dimension.
+TODO: Give a finish to this paragraph in connection to the examples of the previous section.
+Therefore we can understand which Lie groups can be covered by $\tilde{G}$ through the study of its center.
+
+On the other hand, we may wish to understand which Lie groups cover a given Lie group $G$.
+We recall the notion of the fundamental group from Definition~\ref{def:fundamental group}.
+For a Lie group, we can take the base point to be the identity, as this is a distinguished point.
+An easy observation is that a loop in $\tilde{G}$ based at $\tilde{e}$ is mapped down by $\pi$ to a loop in $G$ based at $e$.
+This defines a map $\pi_\# : \pi_1(\tilde{G},\tilde{e}) \to \pi_1(G,e)$, and since it respects the composition of paths, it is a homomorphism of groups.
+% TODO: pi is maybe a bad letter for the covering map.
+In fact it is injective.
+This follows since if the projected loop in $G$ is homotopic to the constant loop, then this homotopy can be lifted to shows that the original loop was also homotopic to the constant loop.
+
+It turns out that there is a homomorphism $\Sigma$ from the fundamental group $\pi_1(G,e)$ to the deck transformations $\ker \pi$ of any cover.
+For any element of $\pi_1(G,e)$ choose a representative loop $\gamma : [0,1] \to G$.
+Use Corollary~\ref{cor:lift existence}, there is a lift $\tilde{\gamma} : [0,1] \to \tilde{G}$ such that $\tilde{\gamma}(0) = \tilde{e} \in \tilde{G}$.
+Then define $\Sigma(\gamma) = \gamma(1) \in \ker \pi$.
+
+There are several things to explain about $\Sigma$.
+First, we must argue that it is well-defined.
+It could be that taking two different paths $\alpha,\beta$ representing the same class in $\pi_1(G,e)$ gives two different points of $\ker \pi$.
+By definition $\alpha,\beta$ are homotopic, but we know that the homotopy can also be lifted.
+In particular $\tilde{\alpha}(1) = \tilde{\beta}(1)$.
+
+% TODO: better symbol for concatenation. a low dot is not distinct enough, a cdot could be confused for the group operation. Maybe star.
+
+Next, $\Sigma$ is a homomorphism.
+Write $\gamma = \beta \ast \alpha$ for the concatenation of two loops, and let $\tilde{\alpha},\tilde{\beta}$ be the lifts of $\alpha,\beta$ that start at $\tilde{e} \in \tilde{G}$.
+The path $t \mapsto \tilde{\alpha}(1) \tilde{\beta}(t)$ is a lift of $\beta$, since 
+\[
+\pi\Big(\tilde{\alpha}(1) \tilde{\beta}(t)\Big)
+= \pi(\tilde{\alpha}(1)) \pi(\tilde{\beta}(t))
+= e \beta(t)
+= \beta(t),
+\]
+which starts at $\tilde{\alpha}(1) \tilde{\beta}(0) = \tilde{\alpha}(1)$.
+Therefore the lift of $\gamma$ is $\tilde{\gamma} = (\tilde{\alpha}(1) \tilde{\beta}) \ast \tilde{\alpha}$ and 
+\[
+\Sigma(\gamma) 
+= \tilde{\gamma}(1) 
+= \tilde{\alpha}(1) \tilde{\beta}(1)
+= \Sigma(\alpha)\Sigma(\beta).
+\]
+
+Finally, $\Sigma$ is surjective.
+This follows if $\Tilde{G}$ is connected: take a path between $\tilde{e}$ and any point $\tilde{g} \in \ker \pi$.
+Projecting this down to $G$ using $\pi$ gives a loop based at $e$.
+Applying $\Sigma$ simply reverses this process: it lifts the loop back up to the path, and outputs the end point $\tilde{g}$.
+A specific case of this argument shows that for any loop $\tilde{\gamma}$ in $\tilde{G}$ based at $\tilde{e}$ that $\Sigma(\pi_\#(\tilde{\gamma})) = \tilde{e}$.
+Thus every covering space corresponds to a quotient of the fundamental group.
+
+Putting together these two group homomorphisms give a remarkable short exact sequence
+\[
+\begin{tikzcd}
+0 \arrow[r] & \pi_1(\tilde{G},\tilde{e}) \arrow[r, hook, "\pi_\#"] & \pi_1(G,e) \arrow[r, two heads, "\Sigma"] & \ker \pi \arrow[r] & 0.
+\end{tikzcd}
+\]
+Consequently, $\pi_\#(\pi_1(\tilde{G},\tilde{e}))$ is always a normal subgroup of $\pi_1(G,e)$.
+
+TODO: Ross continue here. It should now follow that all coverings are regular.
+
+
+In particular this means that a connected cover $G$ has a `maximum' size, namely when $\pi_1(G,e) \cong \ker \pi$.
+
+The question remains whether to every quotient of the fundamental group there actually exists a covering, and if so how to construct it.
+
+
+TODO: Then all covers can be constructed by quotienting a universal cover. Construct the universal cover.
+
+
+For any space, there is a simply connected covering space.
+The idea is to expand on the idea of the above corollary, that the points of the covering space can be described as the endpoints of paths.
+
+\begin{theorem}
+\textup{\cite[p.63]{Hatcher2002}}
+Let $X$ be a connected smooth manifold.
+Then there exists a simply connected smooth manifold $\tilde{X}$ and smooth covering map $\pi : \tilde{X} \to X$.
+$\tilde{X}$ is called a \emph{universal cover} of $X$. 
+\end{theorem}
+\begin{proof}[Sketch of proof.]
+Remarkably the proof is constructive.
+Fix a base point $x_0$ of $X$.
+Define the universal cover $\tilde{X}$ to be the set of paths originating at the base point, up to homotopy equivalence.
+The covering map $\pi$ sends a path to its endpoint.
+For any path $\gamma$ take a simply connected open neighborhood $V$ of its endpoint $x = \pi(\gamma) = \gamma(1)$.
+Then concatenation of $\gamma$ with a path in $U$ from $x$ to any point of $U$ is a bijection from $U$ to a subset of $\tilde{X}$.
+Declaring these bijections to be homeomorphisms makes $\tilde{X}$ into a topological space, and declaring further that they are diffeomorphisms makes $\tilde{X}$ into a manifold.
+\end{proof}
+
 \begin{theorem}
 The universal cover of a Lie group can itself be given a Lie group structure, such that the projection map is a homomorphism.
 \end{theorem}
@@ -1094,7 +1201,7 @@ Choose any element $\tilde{e} \in \pi^{-1}[e]$ to be its identity.
 The map $m : \tilde{G}\times\tilde{G} \to G$ given by $(g,h) \mapsto \pi(g)\pi(h)$ has a unique lift to $\tilde{m} : \tilde{G}\times\tilde{G} \to \tilde{G}$ with $\tilde{m}(\tilde{e},\tilde{e}) = \tilde{e}$, since $\tilde{G}\times\tilde{G}$ is simply connected.
 Likewise we can lift $\iota \circ \pi$.
 That $\tilde{m}$ is a lift of $\pi(g)\pi(h)$ means precisely that $\pi(\tilde{m}(g,h)) = \pi(g)\pi(h)$.
-So if $\tilde{m}$ is the mutliplcation of a Lie group, then $\pi$ will be a homomorphism.
+So if $\tilde{m}$ is the multiplication of a Lie group, then $\pi$ will be a homomorphism.
 
 Indeed these lifted operations make $\tilde{G}$ into a Lie group.
 Let us use the example of $\tilde{e}g = g$ as a prototype of a check of the Lie group axioms.
@@ -1107,10 +1214,6 @@ Observe that $\tilde{m}(\tilde{e},\cdot)$ and $\id_{\tilde{G}}$ are both lifts o
 \]
 By uniqueness of lifts, $\tilde{m}(\tilde{e},g) = \id_{\tilde{G}}(g) = g$ for all $g$.
 \end{proof}
-
-TODO: Deck transformations are left translations by elements over the identity. They belong to the center. Discrete. Conversely, quotient by discrete normal subgroup is a covering map.
-
-TODO: I separated out covering theory for manifolds into the prerequite section. But it is possible to simplify the proofs using that loops at the identity homotopically commute with paths? Or that you can do things in a neighborhood of identity and move it along paths to any other point?
 
 
 \begin{example}
