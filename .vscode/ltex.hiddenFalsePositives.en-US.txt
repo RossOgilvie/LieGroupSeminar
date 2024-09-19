@@ -1,0 +1,1 @@
+{"rule":"CAPITALIZATION_NNP_DERIVED","sentence":"^\\QAs in group theory, we have abelian and non-abelian groups.\\E$"}

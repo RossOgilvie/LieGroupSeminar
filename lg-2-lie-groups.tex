@@ -18,7 +18,7 @@ This holds exactly if $R^TR = I$, which gives us the orthogonal group
 \]
 We can understand the defining equation as saying that the columns of $R$ are an orthonormal basis of $\bbR^3$.
 Indeed they are the images of the standard basis of $\bbR^3$ under $R$.
-By rotations we mean proper rotations, which are by definition orientation preserving, so we want that the columns of $R$ are a right handed basis.
+By rotations we mean proper rotations, which are by definition orientation preserving, so we want that the columns of $R$ are a right-handed basis.
 That leads to the special orthogonal group
 \[
 \lgSO(3) = \{ R \in \lgO(3) \mid \det R = 1 \}.
@@ -37,7 +37,7 @@ The orthogonal matrices are exactly $\lgO(3) = f^{-1}(I)$.
 The derivative at $R$ in the direction $S$ is $f'(R)(S) = R^TS + S^T R = R^T S + (R^T S)^T$.
 At a point $R \in \lgO(3)$ this is surjective in $S$: for any symmetric matrix $Y$ let $S = \frac{1}{2}RY$.
 Hence $f$ is full rank at every point $R \in \lgO(3)$ and by the implicit function theorem $\lgO(3)$ is an embedded submanifold of $\Mat(3,\bbR) \cong \bbR^9$.
-The symmetric matrices are dimension $6$, so in fact our heuristic has been formalised to a rigorous argument.
+The symmetric matrices are dimension $6$, so in fact our heuristic has been formalized to a rigorous argument.
 
 The group operation, matrix multiplication, is a smooth operation on the set of matrices because it is polynomial.
 Therefore it is also smooth when restricted to an embedded submanifold.
@@ -45,7 +45,7 @@ Similarly inversion is an everywhere defined rational function on the open set o
 This makes $\lgO(3)$ and $\lgSO(3)$ Lie groups.
 
 Now that we know that $\lgO(3)$ is a manifold, we can ask about its connected components.
-Intuitively we can rotate any right handed frame $R \in \lgSO(3)$ to the standard basis $I$, so $\lgSO(3)$ is connected.
+Intuitively we can rotate any right-handed frame $R \in \lgSO(3)$ to the standard basis $I$, so $\lgSO(3)$ is connected.
 Because it contains the identity, it is called the identity component.
 On the other hand, the reflection in the plane $x_1 = 0$ has determinant $-1$ whereas $\det I = 1$.
 Determinant is continuous (polynomial) function on matrices and as already noted $R \in \lgO(3)$ implies $\det R = \pm 1$, so this reflection is not in the identity component.
@@ -54,7 +54,7 @@ In conclusion, $\lgSO(3)$ is connected and $\lgO(3)$ has two diffeomorphic compo
 
 To understand the topology of $\lgSO(3)$ an alternate description is useful.
 Every rotation of $\bbR^3$ is rotation around an axis.
-More precisely, we can describe the rotation axis by a unit vector $u$ such that the rotation is right handed by an angle $\theta$ in the range $[0,\pi]$.
+More precisely, we can describe the rotation axis by a unit vector $u$ such that the rotation is right-handed by an angle $\theta$ in the range $[0,\pi]$.
 Thus the rotations can be described by the closed unit ball $\theta u \in \overline{B(0,1)}$.
 The origin is rotation by angle $0$ with the axis of rotation irrelevant.
 But similarly, rotation by $\pi$ around $u$ and $-u$ are the same rotation.
@@ -196,7 +196,7 @@ All finite groups are also Lie groups using the discrete topology to make them $
 These are not central examples of Lie groups, whose essential character is their `continuity', but they are useful to describe non-connected Lie groups.
 For example, we have seen that the $\lgSO(3)$ is the component of $\lgO(3)$ that contains the identity.
 In fact $\lgO(3)$ is the product of $\lgSO(3)$ and $C_2$ the group with two elements.
-Generalising, the identity component $G_0$ of a Lie group $G$ is a normal Lie subgroup~\cite[Prop~1.10]{Hall2015}.
+Generalizing, the identity component $G_0$ of a Lie group $G$ is a normal Lie subgroup~\cite[Prop~1.10]{Hall2015}.
 To prove it is a subgroup, note that $\mu(I,I) = I$ and $\iota(I) = I$, so the images of $G_0\times G_0$ under multiplication and $G_0$ under inversion, which are connected, are both contained in $G_0$.
 If $g(t)$ is a path connecting $e$ and $g$, then $h^{-1}g(t)h$ is a path connecting $e$ and $h^{-1}gh$.
 Thus $G_0$ is normal.
@@ -210,7 +210,7 @@ As we will see later, the abelian Lie groups are easy to classify.
 
 Perhaps the most important category of Lie group are the matrix Lie groups~\cite[Definition~1.4]{Hall2015}.
 First we have the general linear group $\lgGL(n,\bbC)$, the set of $n\times n$ invertible matrices with complex entries.
-This can be considered as an open subset of $\bbC^{n^2}$, so it is a manifold. And just as for $\lgO(3)$ the group operation is polynomial and group inversion is rational without zeroes of the denominator, hence both are smooth.
+This can be considered as an open subset of $\bbC^{n^2}$, so it is a manifold. And just as for $\lgO(3)$, the group operation is polynomial and group inversion is rational without zeroes of the denominator, hence both are smooth.
 A matrix group is any closed Lie subgroup of $\lgGL(n,\bbC)$.
 As a special case we have the real matrix groups, which are subsets of the (real) matrix group $\lgGL(n,\bbR)$.
 
@@ -287,7 +287,7 @@ Indeed, many books downplay the differential geometric aspects of Lie theory bec
 \section{Subgroups and Homomorphisms}
 \label{sec:subgroups}
 In Definition \ref{Def:subgroup} we defined a Lie subgroup.
-Now we explore some of the technical issues of that definition.
+Now we explore some technical issues of that definition.
 For general manifolds there are immersed submanifolds that are not weakly embedded. 
 The following theorem rules this out for Lie subgroups; though they are defined only as injective immersion they are in fact stronger.
 It also clearly has echos of Theorem~\ref{thm:submanifolds}.
@@ -315,7 +315,7 @@ However they are typically not much more regular, and rarely embedded, as the fo
 
 \begin{example}
 \label{eg:dense subgroup in torus}
-Consider the torus $\bbT^2 = \bbS^1 \times \bbS^1$, which we can realise as a subset of $\mathbb{C}^2$.
+Consider the torus $\bbT^2 = \bbS^1 \times \bbS^1$, which we can realize as a subset of $\mathbb{C}^2$.
 Choose an irrational real number $\alpha$ and let $\gamma(t) = (e^{it}, e^{i\alpha t})$.
 This is in fact a homomorphism from $\bbR$ into $\bbT^2$, since
 \[
@@ -342,7 +342,7 @@ Therefore there is a non-constant sequence $(1, e^{2\pi i\alpha n_k})$ with limi
 Hence $\gamma$ is not a homeomorphism onto its image, since $(\gamma|_{\gamma[\bbR]})^{-1}$ is not continuous.
 \end{example}
 
-We can generalise the example into a theorem.
+We can generalize the example into a theorem.
 
 \begin{theorem}
 \textup{\cite[3.21]{Warner1983}}\\
@@ -368,9 +368,9 @@ But by using the group action, this can be transferred to any point.
 Conversely we assume now that $\phi$ is an embedding and prove that $\phi[H]$ is closed. \\
 We take an adapted coordinate system $U$ at the identity of $G$.
 Because $\phi$ is an embedding, we may assume that $\phi[H] \cap U$ is a single slice.
-Further, take a small cubic neighbourhood $V$ of the identity such that the closure of $W = \{g^{-1}g' | g,g' \in V \}$ is contained in $U$.
+Further, take a small cubic neighborhood $V$ of the identity such that the closure of $W = \{g^{-1}g' | g,g' \in V \}$ is contained in $U$.
 Now let $\{g_n\}_{n \in \mathbb{N}} \subset \phi[H]$ be any sequence converging to $g \in G$. 
-We want to move this to a neighbourhood of the identity in such a way so that the $g_n$ end up in the slice $\phi[H] \cap U$.
+We want to move this to a neighborhood of the identity in such a way so that the $g_n$ end up in the slice $\phi[H] \cap U$.
 Without loss of generality, we may discard initial elements of the sequence so that it lies in $gV$. 
 But then $g_1^{-1}g_n \in \phi[H] \cap W$.
 The limit $g_1^{-1}g$ therefore lies in $\phi[H] \cap \bar{W} \subset \phi[H] \cap U$, proving that $g \in \phi[H]$.
@@ -467,7 +467,7 @@ Hence
 \end{pmatrix}.
 \]
 This is the inclusion of $\bbR$ into $\lgGL(2,\bbC)$ that we discussed at the end of Section~\ref{sec:examples}.
-We can generalise to the case that $X$ is a nilpotent matrix, $X^k = 0$ for some $k$, so that the matrix exponential is polynomial.
+We can generalize to the case that $X$ is a nilpotent matrix, $X^k = 0$ for some $k$, so that the matrix exponential is polynomial.
 Since polynomials cannot be periodic, $\gamma_X$ is line.
 
 For our second example, consider
@@ -531,7 +531,7 @@ Then $\varphi$ is an immersion (resp submersion) if and only if $d\varphi|_e$ is
 \end{lemma}
 % TODO: Does submersion imply varphi is surjective to H_0?
 
-We can use these tools to generalise the proof that one parameter subgroups are uniquely determined by their tangent vectors at the identity.
+We can use these tools to generalize the proof that one parameter subgroups are uniquely determined by their tangent vectors at the identity.
 
 \begin{theorem}
 \textup{\cite[Thm~3.16]{Warner1983}} \\
@@ -640,7 +640,7 @@ Finally we have another result that knowledge of a Lie group near the identity i
 \begin{theorem}
 \label{thm:local generation}
 \textup{\cite[3.18]{Warner1983}}\\
-Let $G$ be a connected Lie group, and let $U$ be a neighbourhood of the identity $e$. Then 
+Let $G$ be a connected Lie group, and let $U$ be a neighborhood of the identity $e$. Then 
 \begin{align*}
 G= \bigcup_{n=1}^{\infty} U^n
 \end{align*}
@@ -652,7 +652,7 @@ We will outline the idea of the proof. We consider an open subset $V \subset U$ 
 \begin{align*}
 H = \bigcup_{n=1}^{\infty} V^n \subset \bigcup_{n=1}^{\infty} U^n.
 \end{align*}
-By choice of $V$, $H$ satisfies the subgroup condition. Further $H$ is an open subset of $G$ as a union of open sets. In fact for any $g \in G$ the coset $gH$ is open in $G$, since it preimage of $H$ under $(g^{-1} \cdot) : G \to G$.
+By choice of $V$, $H$ satisfies the subgroup condition. Further $H$ is an open subset of $G$ as a union of open sets. In fact for any $g \in G$ the coset $gH$ is open in $G$, since it is the preimage of $H$ under $(g^{-1} \cdot) : G \to G$.
 Now we want to prove that $H$ is also closed. But the complement of $H$ can be written
 \[
 G \setminus H = \bigcup_{g \in G \setminus H} gH,
@@ -779,9 +779,9 @@ g
 \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta
 \end{pmatrix}.
 \]
-This factorisation is unique; if $nak = n'a'k'$, apply it to the point $i$ and solve.
+This factorization is unique; if $nak = n'a'k'$, apply it to the point $i$ and solve.
 The Iwasawa decomposition of a Lie group exhibits it as the product of a compact Lie group and a euclidean space (here one might make the substitution $y = e^{2t}$ to make this clearer).
-The standard convention is to take the inverse, so that the factorisation is in the reverse order, in which case it is also known as KAN decomposition (Compact-Abelian-Nilpotent, although not nilpotent in the matrix sense of the term).
+The standard convention is to take the inverse, so that the factorization is in the reverse order, in which case it is also known as KAN decomposition (Compact-Abelian-Nilpotent, although not nilpotent in the matrix sense of the term).
 
 The only property defined above that we have not yet checked is properness.
 Consider a hyperbolic disc $K \subset \bbH$ centered at $i$. 
@@ -790,7 +790,7 @@ We need to shows that the set
 \{ g \in \lgSL(2,\bbR) \mid \exists z \in K : g \cdot z \in K\}
 \]
 is compact.
-It is the the preimage of a closed set, so closed, and thus the difficulty is boundedness.
+It is the preimage of a closed set, so closed, and thus the difficulty is boundedness.
 We will apply the Iwasawa decomposition.
 The three factors act on $\bbH$ by horizontal translation, scaling, and hyperbolic rotation.
 As $\Real K$ is compact, there is a bound on how far it can be horizontally translated such that it still overlaps.
@@ -819,7 +819,7 @@ TODO: Rewrite this as an example/application of the above theorem.
 Let $H$ be a closed subgroup of a Lie Group $G$ and let $G/H$ be defined to be the set $\{\sigma H \colon \sigma \in G\}$ of left cosets modulo $H$. Let $\pi \colon G \to G/H$ denote the natural projection $\pi(\sigma) = \sigma H$. Then $G/H$ has a unique manifold structure s.t.
 \begin{itemize}
 \item $\pi$ is $C^{\infty}$
-\item There exist local smooth sections of $G/H$ in $G$, meaning that if $\sigma H \in G/H$, there is a neighbourhood $W$ of $\sigma H$ and a $C^{\infty}$ map $\tau \colon W \to G$ s.t. $\pi \circ \tau = id\vert_W$.
+\item There exist local smooth sections of $G/H$ in $G$, meaning that if $\sigma H \in G/H$, there is a neighborhood $W$ of $\sigma H$ and a $C^{\infty}$ map $\tau \colon W \to G$ s.t. $\pi \circ \tau = id\vert_W$.
 \end{itemize}
 \end{example}
 
@@ -872,7 +872,7 @@ From this, we see that the imaginary part is unchanged only if $\theta = 0,\pi$.
 Conversely the elements corresponding to $\theta$ and $\theta + \pi$ act the same. 
 
 $\lgPSL(2,\bbR)$ is exactly the group of orientation and angle preserving transformations of $\bbH$.
-Thus we can identity $\lgPSL(2,\bbR)$ with the bundle $M = S\bbH$ of unit length tangent vectors of $\bbH$: choose one point and vector as the base point $m_0$ of $M$ and identify each element of the group with where it sends the base point.
+Thus we can identify $\lgPSL(2,\bbR)$ with the bundle $M = S\bbH$ of unit length tangent vectors of $\bbH$: choose one point and vector as the base point $m_0$ of $M$ and identify each element of the group with where it sends the base point.
 This is the idea of Theorem~\ref{thm:transitive action homogeneous manifold} and this identification is $\tilde{\beta}$.
 \end{example}
 
@@ -888,10 +888,10 @@ Group theory tells us the induced map $\tilde{\varphi}(g\ker\varphi) = \varphi(g
 But this is precisely the conclusion of Theorem~\ref{thm:transitive action homogeneous manifold}: we have a group action $\eta : G \times H \to H$ given by $\eta(g,h) = \varphi(g)h$, whose isotropy group at $e \in H$ is $\ker\varphi$.
 \end{proof}
 
-TODO: Nicolas. Is converse of this true?
+TODO: Nicolas. There is an above proposition that says discrete normal subgroups lie in the center.
 Many examples come from discrete subgroups of the center.
 This is because any subgroup of the center is automatically normal: $gng^{-1} = gg^{-1}n = n \in N$.
-A discrete subgroup is a a closed $0$-dimensional Lie subgroup, so the quotient will have the same dimension.
+A discrete subgroup is a closed $0$-dimensional Lie subgroup, so the quotient will have the same dimension.
 The following example illustrates this.
 
 \begin{definition}
@@ -1224,14 +1224,14 @@ In particular, this shows that $\widetilde{\lgSL}(2,\bbR)$ is diffeomorphic to $
 Unfortunately, the none of the subgroups of the Iwasawa decomposition are normal subgroups.
 Consequently it is not easy to describe the group operation of $\lgSL(2,\bbR)$ in terms of $(x,y,e^{i\theta})$, and therefore the group operation on $\widetilde{\lgSL}(2,\bbR)$ in terms of $(x,y,\theta)$.
 
-Although it algebraically tricky to write down, it is straightforward to describe it geometrically using Example~\ref{eg:psl2r}.
+Although it is algebraically tricky to write down, it is straightforward to describe it geometrically using Example~\ref{eg:psl2r}.
 As $\lgPSL(2,\bbR) = \lgSL(2,\bbR)/\{I,-I\}$ is covered by $\lgSL(2,\bbR)$, its universal cover is also $\widetilde{\lgSL}(2,\bbR)$.
 $\lgPSL(2,\bbR)$ is diffeomorphic to the bundle $M$ of unit tangent vectors of $\bbH$ and the Iwasawa decomposition gives us a path to every element.
 These paths are a continuous transformation of $\bbH$.
 Two continuous transformations are homotopic if they act on a vector of $T_i\bbH$ to give the same result \emph{counting windings}.
 Thus the only difference between calculating a product in $\widetilde{\lgSL}(2,\bbR)$ and $\lgPSL(2,\bbR)$ is tracking the windings.
 \begin{webonly}
-Here is a visualisation of the process:
+Here is a visualization of the process:
 \includedesmos{8r39rgxadu}
 \end{webonly}
 % TODO: I had originally intended to prove that ~SL2R is not a linear group. But the argument using simply connectedness to lift to SL2C might be better later.
@@ -1246,3 +1246,5 @@ Here we should construct the bi-invariant metric.
 
 \section{Simple Lie groups}
 We should give a refined version of the classification problem: to find simply-connected simple compact Lie groups.
+
+TODO: To what extent does moving to the universal cover preserve compactness?
